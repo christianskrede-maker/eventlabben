@@ -1,3 +1,5 @@
+'use client';
+
 export default function Page() {
   return (
     <main className="page">
@@ -119,9 +121,7 @@ export default function Page() {
 
       <div className="container">
         <section className="hero">
-          <div className="badge">
-            EVENTLABBEN.COM
-          </div>
+          <div className="badge">EVENTLABBEN.COM</div>
 
           <h1>
             Digitale arrangementer
@@ -141,7 +141,6 @@ export default function Page() {
         <section className="cards">
           <div className="card">
             <h2>NFC & adgang</h2>
-
             <p>
               NFC-brikker på nøkkelringer, navneskilt eller deltakerkort
               åpner arrangementssider automatisk med mobiltelefonen.
@@ -150,7 +149,6 @@ export default function Page() {
 
           <div className="card">
             <h2>Eventside</h2>
-
             <p>
               Hvert arrangement får sin egen side med program,
               praktisk informasjon, kart, linker, bonger og oppdateringer.
@@ -159,7 +157,6 @@ export default function Page() {
 
           <div className="card">
             <h2>3D-print</h2>
-
             <p>
               Vi designer og printer skilt, navneskilt,
               bordkort, nøkkelringer og spesialprodukter til arrangementet.
@@ -167,9 +164,7 @@ export default function Page() {
           </div>
         </section>
 
-        <div className="footer">
-          EventLabben © 2026
-        </div>
+        <div className="footer">EventLabben © 2026</div>
       </div>
     </main>
   );
