@@ -5,22 +5,12 @@ import { useMemo, useState } from 'react';
 const events = {
   'betonmast-sommerfest': {
     company: 'Betonmast',
-    title: 'Sommerfest',
-    subtitle: 'Velkommen til Betonmast sommerfest',
+    title: 'Sommerfest 2026',
+    subtitle: 'Én gjeng. Én kultur. Helt rå.',
     date: '22. juni 2026',
     location: 'Oslo',
     password: 'beton',
-    color: '#ffd500',
-    dark: '#050505',
-    intro:
-      'Her finner du program, praktisk informasjon, linker og oppdateringer for arrangementet.',
-    program: [
-      { time: '17:00', title: 'Ankomst og registrering' },
-      { time: '17:30', title: 'Velkommen' },
-      { time: '18:00', title: 'Matservering' },
-      { time: '20:00', title: 'Underholdning' },
-      { time: '22:00', title: 'Musikk og sosialt' },
-    ],
+    type: 'betonmast',
   },
   'asker-hoyre-arsmote': {
     company: 'Asker Høyre',
@@ -31,14 +21,6 @@ const events = {
     password: 'asker',
     color: '#1d4ed8',
     dark: '#0f172a',
-    intro:
-      'Her finner du program, dokumenter, praktisk informasjon og nyttige linker.',
-    program: [
-      { time: '18:00', title: 'Registrering' },
-      { time: '18:30', title: 'Åpning av møtet' },
-      { time: '19:00', title: 'Saksliste' },
-      { time: '20:30', title: 'Avslutning' },
-    ],
   },
   'valgkamp-2026': {
     company: 'EventLabben',
@@ -49,14 +31,6 @@ const events = {
     password: 'valg',
     color: '#ec4899',
     dark: '#111827',
-    intro:
-      'Samlet informasjon for kickoff, program, kontaktpersoner og praktiske detaljer.',
-    program: [
-      { time: '10:00', title: 'Oppmøte' },
-      { time: '10:30', title: 'Strategi og mål' },
-      { time: '12:00', title: 'Lunsj' },
-      { time: '13:00', title: 'Workshop' },
-    ],
   },
 };
 
@@ -69,27 +43,26 @@ export default function EventPage({ params }: { params: { slug: string } }) {
   const [unlocked, setUnlocked] = useState(false);
   const [error, setError] = useState('');
 
-  const isKnownEvent = Boolean(event);
-
   const theme = useMemo(() => {
-    if (!event) {
+    if (!event) return { color: '#ffffff', dark: '#111827' };
+
+    if ('type' in event && event.type === 'betonmast') {
       return {
-        color: '#ffffff',
-        dark: '#111827',
+        color: '#ffd500',
+        dark: '#050505',
       };
     }
 
     return {
-      color: event.color,
-      dark: event.dark,
+      color: event.color || '#ffffff',
+      dark: event.dark || '#111827',
     };
   }, [event]);
 
-  if (!isKnownEvent) {
+  if (!event) {
     return (
       <main className="page">
         <style jsx>{styles}</style>
-
         <section className="notFound">
           <h1>Fant ikke arrangementet</h1>
           <p>Dette arrangementet finnes ikke ennå.</p>
@@ -116,16 +89,14 @@ export default function EventPage({ params }: { params: { slug: string } }) {
       <main
         className="page"
         style={{
-          background: `radial-gradient(circle at top left, ${theme.color}55, transparent 32%), linear-gradient(135deg, ${theme.dark}, #020617)`,
+          background: `radial-gradient(circle at top left, ${theme.color}55, transparent 34%), linear-gradient(135deg, ${theme.dark}, #020617)`,
         }}
       >
         <style jsx>{styles}</style>
 
         <section className="lockBox">
           <div className="smallLabel">{event.company}</div>
-
           <h1>{event.title}</h1>
-
           <p>{event.subtitle}</p>
 
           <form onSubmit={checkPassword} className="lockForm">
@@ -148,6 +119,10 @@ export default function EventPage({ params }: { params: { slug: string } }) {
     );
   }
 
+  if ('type' in event && event.type === 'betonmast') {
+    return <BetonmastPage event={event} />;
+  }
+
   return (
     <main
       className="page"
@@ -160,9 +135,7 @@ export default function EventPage({ params }: { params: { slug: string } }) {
       <div className="container">
         <header className="hero">
           <div className="smallLabel">{event.company}</div>
-
           <h1>{event.title}</h1>
-
           <p className="subtitle">{event.subtitle}</p>
 
           <div className="meta">
@@ -174,69 +147,182 @@ export default function EventPage({ params }: { params: { slug: string } }) {
         <section className="grid">
           <div className="card large">
             <h2>Velkommen</h2>
-            <p>{event.intro}</p>
+            <p>
+              Her finner du program, praktisk informasjon, linker og
+              oppdateringer for arrangementet.
+            </p>
           </div>
 
           <div className="card">
             <h2>Praktisk info</h2>
-            <p>
-              Denne siden er laget for deltakerne på arrangementet. Her kan vi
-              legge inn transport, kontaktpersoner, kart, linker og beskjeder.
-            </p>
+            <p>Transport, kontaktpersoner, kart, linker og beskjeder.</p>
           </div>
 
           <div className="card">
             <h2>NFC</h2>
-            <p>
-              NFC-brikken kan peke direkte hit, slik at deltakerne får rask
-              tilgang til all informasjon på mobilen.
-            </p>
+            <p>NFC-brikken peker direkte hit.</p>
           </div>
         </section>
 
-        <section className="programCard">
-          <h2>Program</h2>
-
-          <div className="programList">
-            {event.program.map((item) => (
-              <div className="programItem" key={`${item.time}-${item.title}`}>
-                <strong>{item.time}</strong>
-                <span>{item.title}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="grid">
-          <div className="card">
-            <h2>Bonger</h2>
-            <p>
-              Her kan vi senere legge inn digitale bonger per deltaker, for
-              eksempel matbong, drikkebonger eller garderobe.
-            </p>
-          </div>
-
-          <div className="card">
-            <h2>Lenker</h2>
-            <p>
-              Her kan vi legge inn menyer, kart, dokumenter, billetter,
-              presentasjoner eller praktiske linker.
-            </p>
-          </div>
-
-          <div className="card">
-            <h2>Kontakt</h2>
-            <p>
-              Her kan vi legge inn kontaktperson for arrangementet, vakter,
-              arrangør eller prosjektleder.
-            </p>
-          </div>
-        </section>
-
-        <footer>
-          EventLabben · {event.company}
-        </footer>
+        <footer>EventLabben · {event.company}</footer>
       </div>
+    </main>
+  );
+}
+
+function BetonmastPage({ event }: { event: any }) {
+  return (
+    <main className="betonPage">
+      <style jsx>{styles}</style>
+
+      <nav className="betonNav">
+        <div className="betonLogo">BETONMAST</div>
+
+        <div className="navLinks">
+          <a href="#program">Program</a>
+          <a href="#musikk">Musikk</a>
+          <a href="#info">Praktisk info</a>
+          <a href="#bonger">Bonger</a>
+        </div>
+      </nav>
+
+      <section className="betonHero">
+        <div className="heroText">
+          <div className="yellowLabel">Velkommen til</div>
+
+          <h1>
+            BETONMAST
+            <br />
+            <span>SOMMERFEST</span>
+            <br />
+            2026
+          </h1>
+
+          <div className="eventStrip">
+            <strong>{event.date}</strong>
+            <span>|</span>
+            <strong>{event.location}</strong>
+          </div>
+
+          <h2>
+            Én gjeng. Én kultur.
+            <br />
+            Helt <span>rå.</span>
+          </h2>
+
+          <p>
+            Velkommen til årets høydepunkt. Her finner du program, praktisk
+            informasjon, nyttige linker og alt du trenger for en legendarisk
+            kveld.
+          </p>
+        </div>
+
+        <div className="comicBox">
+          <div className="speech">Penger i kassa, fest i glassa!</div>
+
+          <div className="comicPlaceholder">
+            <div className="comicFace">😎</div>
+            <div className="money">💸 💰 💸</div>
+            <p>Humoristisk tegneseriebilde kommer her</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="musikk" className="musicSection">
+        <h2>Våre låter</h2>
+
+        <div className="musicGrid">
+          <div className="musicCard">
+            <div className="platform spotify">Spotify</div>
+
+            <h3>Buss for tog (Betonmast) 2025</h3>
+
+            <p>
+              Den første låta. Her legger vi inn Spotify-link når du sender den.
+            </p>
+
+            <a href="#" className="musicButton disabled">
+              Spotify-link kommer
+            </a>
+          </div>
+
+          <div className="musicCard">
+            <div className="platform spotify">Spotify</div>
+
+            <h3>Buss for tog (Betonmast) 2026</h3>
+
+            <p>
+              Ny låt for sommerfesten 2026. Klar for fullt trøkk.
+            </p>
+
+            <a
+              href="https://open.spotify.com/track/45H8lXkftq2qzGA1bQbV7T"
+              target="_blank"
+              className="musicButton"
+            >
+              Lytt på Spotify ↗
+            </a>
+          </div>
+
+          <div className="musicCard">
+            <div className="platform youtube">YouTube</div>
+
+            <h3>Helt Rå</h3>
+
+            <p>
+              Offisiell Betonmast-låt. Alltid like rå.
+            </p>
+
+            <a
+              href="https://www.youtube.com/watch?v=OSSbtGlNLRY"
+              target="_blank"
+              className="musicButton"
+            >
+              Se på YouTube ↗
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="info" className="infoGrid">
+        <div className="infoCard">
+          <div className="icon">📅</div>
+          <h3>Dato</h3>
+          <p>{event.date}</p>
+          <small>Sett av dagen!</small>
+        </div>
+
+        <div className="infoCard">
+          <div className="icon">📍</div>
+          <h3>Sted</h3>
+          <p>{event.location}</p>
+          <small>Mer info kommer snart.</small>
+        </div>
+
+        <div id="program" className="infoCard">
+          <div className="icon">👷</div>
+          <h3>Program</h3>
+          <p>Fullt program kommer.</p>
+          <small>Mat, musikk og moro.</small>
+        </div>
+      </section>
+
+      <section id="bonger" className="quoteBox">
+        <div>
+          “Vi bygger mer enn bygg.
+          <br />
+          Vi bygger <span>kultur.</span>”
+        </div>
+
+        <div className="stamp">
+          BETONMAST
+          <small>HELT RÅ SIDEN 1958</small>
+        </div>
+      </section>
+
+      <footer className="betonFooter">
+        EventLabben for <span>Betonmast</span> © 2026
+      </footer>
     </main>
   );
 }
@@ -266,7 +352,6 @@ const styles = `
     background: rgba(255,255,255,0.12);
     border: 1px solid rgba(255,255,255,0.16);
     font-weight: 900;
-    letter-spacing: 0.04em;
     margin-bottom: 22px;
   }
 
@@ -295,7 +380,6 @@ const styles = `
 
   .meta span {
     background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.14);
     padding: 12px 18px;
     border-radius: 999px;
     font-weight: 800;
@@ -309,7 +393,6 @@ const styles = `
   }
 
   .card,
-  .programCard,
   .lockBox,
   .notFound {
     background: rgba(255,255,255,0.09);
@@ -317,52 +400,21 @@ const styles = `
     border-radius: 28px;
     padding: 30px;
     backdrop-filter: blur(16px);
-    box-shadow: 0 18px 40px rgba(0,0,0,0.18);
   }
 
   .large {
     grid-column: span 2;
   }
 
-  .card h2,
-  .programCard h2 {
+  .card h2 {
     margin-top: 0;
     font-size: 30px;
   }
 
-  .card p,
-  .programCard p {
+  .card p {
     color: rgba(255,255,255,0.78);
     line-height: 1.7;
     font-size: 17px;
-  }
-
-  .programCard {
-    margin-top: 24px;
-  }
-
-  .programList {
-    display: grid;
-    gap: 12px;
-  }
-
-  .programItem {
-    display: grid;
-    grid-template-columns: 100px 1fr;
-    gap: 18px;
-    align-items: center;
-    padding: 16px 18px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 18px;
-  }
-
-  .programItem strong {
-    font-size: 18px;
-  }
-
-  .programItem span {
-    color: rgba(255,255,255,0.86);
-    line-height: 1.5;
   }
 
   .lockBox,
@@ -377,13 +429,6 @@ const styles = `
     font-size: 54px;
   }
 
-  .lockBox p,
-  .notFound p {
-    color: rgba(255,255,255,0.78);
-    font-size: 18px;
-    line-height: 1.6;
-  }
-
   .lockForm {
     margin-top: 28px;
     display: grid;
@@ -393,9 +438,8 @@ const styles = `
   .lockForm input {
     padding: 17px 18px;
     border-radius: 14px;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: none;
     font-size: 17px;
-    background: rgba(255,255,255,0.95);
   }
 
   .lockForm button {
@@ -429,46 +473,378 @@ const styles = `
     font-size: 15px;
   }
 
-  @media (max-width: 900px) {
-    h1 {
-      font-size: 54px;
-    }
+  .betonPage {
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at top right, rgba(255,213,0,0.18), transparent 34%),
+      radial-gradient(circle at bottom left, rgba(255,213,0,0.16), transparent 32%),
+      linear-gradient(135deg, #050505 0%, #111 45%, #020202 100%);
+    color: white;
+    font-family: Arial, sans-serif;
+    padding-bottom: 60px;
+  }
 
-    .grid {
+  .betonNav {
+    height: 88px;
+    border-bottom: 5px solid #ffd500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 42px;
+    background: #050505;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+
+  .betonLogo {
+    color: #ffd500;
+    font-size: 38px;
+    font-weight: 1000;
+    letter-spacing: -2px;
+  }
+
+  .navLinks {
+    display: flex;
+    gap: 30px;
+  }
+
+  .navLinks a {
+    color: white;
+    text-decoration: none;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .navLinks a:first-child {
+    color: #ffd500;
+  }
+
+  .betonHero {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 70px 32px 40px;
+    display: grid;
+    grid-template-columns: 1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .yellowLabel {
+    color: white;
+    font-size: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .heroText h1 {
+    font-size: 82px;
+    line-height: 0.9;
+    margin: 0;
+    font-weight: 1000;
+    letter-spacing: -4px;
+  }
+
+  .heroText h1 span {
+    color: #ffd500;
+  }
+
+  .eventStrip {
+    display: inline-flex;
+    gap: 12px;
+    align-items: center;
+    background: #ffd500;
+    color: black;
+    padding: 14px 22px;
+    font-size: 24px;
+    font-weight: 1000;
+    margin-top: 28px;
+    transform: skew(-5deg);
+  }
+
+  .heroText h2 {
+    margin-top: 34px;
+    font-size: 38px;
+    line-height: 1.15;
+    text-transform: uppercase;
+  }
+
+  .heroText h2 span {
+    color: #ffd500;
+  }
+
+  .heroText p {
+    font-size: 21px;
+    line-height: 1.65;
+    max-width: 560px;
+    color: rgba(255,255,255,0.82);
+  }
+
+  .comicBox {
+    position: relative;
+  }
+
+  .speech {
+    position: absolute;
+    right: 0;
+    top: 20px;
+    background: white;
+    color: black;
+    padding: 20px;
+    border-radius: 28px;
+    max-width: 210px;
+    font-size: 22px;
+    font-weight: 1000;
+    text-align: center;
+    z-index: 2;
+  }
+
+  .comicPlaceholder {
+    min-height: 500px;
+    border-radius: 34px;
+    background:
+      radial-gradient(circle at center, rgba(255,213,0,0.3), transparent 40%),
+      linear-gradient(135deg, #222, #050505);
+    border: 1px solid rgba(255,213,0,0.35);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    padding: 30px;
+  }
+
+  .comicFace {
+    font-size: 120px;
+  }
+
+  .money {
+    font-size: 62px;
+    margin: 16px 0;
+  }
+
+  .comicPlaceholder p {
+    color: rgba(255,255,255,0.65);
+    font-weight: 800;
+  }
+
+  .musicSection,
+  .infoGrid,
+  .quoteBox {
+    max-width: 1180px;
+    margin: 42px auto 0;
+    padding: 0 32px;
+  }
+
+  .musicSection h2 {
+    text-align: center;
+    color: #ffd500;
+    font-size: 42px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .musicGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .musicCard {
+    background: rgba(255,255,255,0.055);
+    border: 1px solid rgba(255,213,0,0.28);
+    border-radius: 24px;
+    padding: 28px;
+  }
+
+  .platform {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-weight: 1000;
+    margin-bottom: 18px;
+  }
+
+  .spotify {
+    background: #1db954;
+    color: black;
+  }
+
+  .youtube {
+    background: #ff0000;
+    color: white;
+  }
+
+  .musicCard h3 {
+    font-size: 28px;
+    margin: 0 0 12px;
+    text-transform: uppercase;
+  }
+
+  .musicCard p {
+    color: rgba(255,255,255,0.76);
+    line-height: 1.6;
+  }
+
+  .musicButton {
+    display: inline-block;
+    margin-top: 18px;
+    background: #ffd500;
+    color: black;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-weight: 1000;
+    text-decoration: none;
+  }
+
+  .disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .infoGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    border: 1px solid rgba(255,213,0,0.28);
+    border-radius: 24px;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .infoCard {
+    padding: 34px;
+    background: rgba(255,255,255,0.045);
+    border-right: 1px solid rgba(255,213,0,0.2);
+  }
+
+  .infoCard:last-child {
+    border-right: none;
+  }
+
+  .icon {
+    font-size: 40px;
+    margin-bottom: 16px;
+  }
+
+  .infoCard h3 {
+    color: #ffd500;
+    font-size: 28px;
+    margin: 0 0 12px;
+    text-transform: uppercase;
+  }
+
+  .infoCard p {
+    font-size: 22px;
+    margin: 0 0 8px;
+  }
+
+  .infoCard small {
+    color: rgba(255,255,255,0.65);
+  }
+
+  .quoteBox {
+    border: 1px solid rgba(255,213,0,0.28);
+    border-radius: 24px;
+    padding: 34px;
+    background: rgba(255,255,255,0.045);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    font-size: 36px;
+    font-weight: 1000;
+    font-style: italic;
+    text-transform: uppercase;
+  }
+
+  .quoteBox span {
+    color: #ffd500;
+  }
+
+  .stamp {
+    border: 2px solid #ffd500;
+    color: #ffd500;
+    padding: 20px 26px;
+    font-style: normal;
+    text-align: center;
+  }
+
+  .stamp small {
+    display: block;
+    color: white;
+    font-size: 13px;
+    letter-spacing: 4px;
+    margin-top: 8px;
+  }
+
+  .betonFooter {
+    text-align: center;
+    margin-top: 48px;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .betonFooter span {
+    color: #ffd500;
+  }
+
+  @media (max-width: 900px) {
+    .betonHero {
       grid-template-columns: 1fr;
     }
 
-    .large {
-      grid-column: span 1;
+    .musicGrid,
+    .infoGrid {
+      grid-template-columns: 1fr;
     }
 
-    .subtitle {
-      font-size: 20px;
+    .infoCard {
+      border-right: none;
+      border-bottom: 1px solid rgba(255,213,0,0.2);
+    }
+
+    .quoteBox {
+      flex-direction: column;
+      text-align: center;
+      font-size: 28px;
+    }
+
+    .navLinks {
+      display: none;
     }
   }
 
   @media (max-width: 640px) {
-    .container {
-      padding: 40px 16px 70px;
+    .betonNav {
+      padding: 0 20px;
     }
 
-    .hero {
-      padding: 50px 8px 36px;
+    .betonLogo {
+      font-size: 30px;
     }
 
-    h1 {
-      font-size: 42px;
-      letter-spacing: -1px;
+    .heroText h1 {
+      font-size: 52px;
     }
 
-    .lockBox h1,
-    .notFound h1 {
-      font-size: 38px;
+    .eventStrip {
+      font-size: 18px;
     }
 
-    .programItem {
-      grid-template-columns: 1fr;
-      gap: 4px;
+    .heroText h2 {
+      font-size: 30px;
+    }
+
+    .comicPlaceholder {
+      min-height: 340px;
+    }
+
+    .speech {
+      position: static;
+      margin-bottom: 16px;
+      max-width: none;
     }
   }
 `;
