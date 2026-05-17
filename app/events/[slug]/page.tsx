@@ -53,10 +53,10 @@ export default function EventPage({ params }: { params: { slug: string } }) {
       };
     }
 
-    return {
-      color: event.color || '#ffffff',
-      dark: event.dark || '#111827',
-    };
+  return {
+  color: 'color' in event ? event.color : '#ffffff',
+  dark: 'dark' in event ? event.dark : '#111827',
+};
   }, [event]);
 
   if (!event) {
