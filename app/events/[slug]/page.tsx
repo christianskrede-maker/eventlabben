@@ -381,7 +381,14 @@ export default function EventPage({
             <h3>BUSS FOR TOG 2025</h3>
             <p>Den første låta — klar for allsang.</p>
 
-            <a className="spotifyBtn">Spotify-link kommer</a>
+            <a
+  href="https://open.spotify.com/track/45H8lXkftq2qzGA1bQbV7T"
+  target="_blank"
+  rel="noreferrer"
+  className="spotifyBtn"
+>
+  Hør på Spotify ↗
+</a>
           </div>
 
           <div className="spotifyCard">
