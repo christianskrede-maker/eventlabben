@@ -230,7 +230,7 @@ export default function EventPage({
 
         <div className="menu">
           <a href="#program">Program</a>
-          <a href="#spotify">Spotify</a>
+          <a href="#musikk">Musikk</a>
           <a href="/events/betonmast-sommerfest/tippekampen">
             Tippekampen
           </a>
@@ -299,8 +299,8 @@ export default function EventPage({
         </div>
       </section>
 
-      <section className="section" id="spotify">
-        <h2 className="sectionTitle">SPOTIFY</h2>
+      <section className="section" id="musikk">
+  <h2 className="sectionTitle">MUSIKK</h2>
 
         <div className="spotifyGrid">
           <div className="spotifyCard">
