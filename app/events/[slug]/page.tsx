@@ -63,11 +63,11 @@ export default function EventPage({ params }: { params: { slug: string } }) {
         />
 
         <div>
-          <a href="#program">Program</a>
-          <a href="#info">Praktisk info</a>
-          <a href="#drakter">Drakter</a>
-          <a href="#spotify">Spotify</a>
-          <a href="#tippekampen">Tippekampen</a>
+          <a href="/events/betonmast-sommerfest/program">Program</a>
+          <a href="/events/betonmast-sommerfest/praktisk-info">Praktisk info</a>
+          <a href="/events/betonmast-sommerfest/drakter">Drakter</a>
+          <a href="/events/betonmast-sommerfest/spotify">Spotify</a>
+          <a href="/events/betonmast-sommerfest/tippekampen">Tippekampen</a>
         </div>
       </nav>
 
