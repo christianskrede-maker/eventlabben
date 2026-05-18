@@ -7,18 +7,34 @@ export default function TippekampenPage() {
         .page {
           min-height: 100vh;
           background:
-            radial-gradient(circle at top right, rgba(255,213,0,0.18), transparent 30%),
+            radial-gradient(circle at top right, rgba(255,213,0,0.18), transparent 32%),
             linear-gradient(135deg, #050505, #111, #000);
           color: white;
           font-family: Arial, sans-serif;
           overflow-x: hidden;
         }
 
+        .top {
+          padding: 28px 20px;
+          text-align: center;
+          border-bottom: 3px solid #ffd500;
+          background: rgba(0,0,0,0.92);
+        }
+
+        .logo {
+          max-width: 320px;
+          width: 80%;
+          height: auto;
+        }
+
         .hero {
           max-width: 1200px;
           margin: 0 auto;
-          padding: 90px 24px 60px;
-          text-align: center;
+          padding: 70px 24px 40px;
+          display: grid;
+          grid-template-columns: 1.15fr 0.85fr;
+          gap: 42px;
+          align-items: center;
         }
 
         .eyebrow {
@@ -30,11 +46,12 @@ export default function TippekampenPage() {
         }
 
         h1 {
-          font-size: 88px;
+          font-size: 86px;
           line-height: 0.95;
           margin: 0;
           font-weight: 900;
           text-transform: uppercase;
+          letter-spacing: -3px;
         }
 
         h1 span {
@@ -42,88 +59,108 @@ export default function TippekampenPage() {
         }
 
         .lead {
-          max-width: 760px;
-          margin: 32px auto 0;
-          font-size: 24px;
+          margin-top: 28px;
+          font-size: 22px;
           line-height: 1.6;
-          color: rgba(255,255,255,0.78);
+          color: rgba(255,255,255,0.8);
+          max-width: 720px;
+        }
+
+        .matchCard,
+        .prizeCard,
+        .rulesCard,
+        .formCard {
+          background: rgba(255,255,255,0.055);
+          border: 1px solid rgba(255,213,0,0.25);
+          border-radius: 30px;
+          box-shadow: 0 0 50px rgba(255,213,0,0.08);
         }
 
         .matchCard {
-          max-width: 1000px;
-          margin: 50px auto 0;
-          padding: 34px;
-          border-radius: 32px;
-          border: 1px solid rgba(255,213,0,0.25);
-          background: rgba(255,255,255,0.05);
-          backdrop-filter: blur(10px);
+          padding: 30px;
+          text-align: center;
         }
 
-        .matchTeams {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 34px;
-          font-size: 54px;
+        .teams {
+          display: grid;
+          gap: 14px;
+          font-size: 38px;
           font-weight: 900;
           text-transform: uppercase;
         }
 
         .vs {
           color: #ffd500;
+          font-size: 26px;
         }
 
-        .matchMeta {
-          margin-top: 26px;
+        .badges {
+          margin-top: 24px;
           display: flex;
-          justify-content: center;
+          gap: 10px;
           flex-wrap: wrap;
-          gap: 12px;
+          justify-content: center;
         }
 
         .badge {
           background: #ffd500;
           color: black;
-          padding: 12px 18px;
+          padding: 11px 15px;
           border-radius: 999px;
           font-weight: 900;
+          font-size: 14px;
+        }
+
+        .shirtBox {
+          margin-top: 24px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 14px;
+        }
+
+        .shirtBox img {
+          width: 100%;
+          border-radius: 18px;
+          border: 1px solid rgba(255,213,0,0.25);
+          background: #050505;
         }
 
         .section {
           max-width: 1200px;
           margin: 0 auto;
-          padding: 80px 24px;
+          padding: 54px 24px;
         }
 
         .sectionTitle {
           color: #ffd500;
-          font-size: 52px;
-          margin-bottom: 34px;
+          font-size: 48px;
           text-transform: uppercase;
+          margin: 0 0 28px;
           font-weight: 900;
         }
 
         .prizeCard {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 32px;
-          background: rgba(255,255,255,0.05);
-          border: 1px solid rgba(255,213,0,0.22);
-          border-radius: 34px;
+          grid-template-columns: 320px 1fr;
           overflow: hidden;
         }
 
-        .prizeImage img {
+        .farrisLogoBox {
+          background: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 42px;
+        }
+
+        .farrisLogoBox img {
+          max-width: 240px;
           width: 100%;
-          height: 100%;
-          object-fit: cover;
+          height: auto;
         }
 
         .prizeContent {
-          padding: 42px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
+          padding: 38px;
         }
 
         .prizeLabel {
@@ -135,8 +172,8 @@ export default function TippekampenPage() {
         }
 
         .prizeContent h3 {
-          font-size: 48px;
-          margin: 0 0 20px;
+          font-size: 42px;
+          margin: 0 0 18px;
         }
 
         .prizeContent p {
@@ -146,81 +183,97 @@ export default function TippekampenPage() {
         }
 
         .prizeBtn {
-          margin-top: 26px;
           display: inline-block;
+          margin-top: 22px;
           background: #ffd500;
           color: black;
-          padding: 16px 22px;
+          padding: 15px 20px;
           border-radius: 14px;
           font-weight: 900;
           text-decoration: none;
-          width: fit-content;
         }
 
         .rulesGrid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 18px;
+          gap: 16px;
         }
 
-        .ruleCard {
-          background: rgba(255,255,255,0.05);
-          border: 1px solid rgba(255,213,0,0.22);
-          border-radius: 24px;
+        .rulesCard {
           padding: 24px;
         }
 
-        .ruleCard span {
+        .rulesCard span {
           display: block;
           color: #ffd500;
           font-size: 13px;
           font-weight: 900;
           text-transform: uppercase;
-          margin-bottom: 12px;
+          margin-bottom: 10px;
         }
 
-        .ruleCard strong {
+        .rulesCard strong {
           display: block;
-          font-size: 24px;
-          margin-bottom: 12px;
+          font-size: 22px;
+          margin-bottom: 10px;
         }
 
-        .ruleCard p {
+        .rulesCard p {
           color: rgba(255,255,255,0.76);
-          line-height: 1.5;
+          line-height: 1.55;
+          margin: 0;
+        }
+
+        .formCard {
+          padding: 30px;
+        }
+
+        .formIntro {
+          color: rgba(255,255,255,0.78);
+          line-height: 1.7;
+          font-size: 18px;
+          margin-bottom: 28px;
         }
 
         .formGrid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 20px;
+          gap: 18px;
         }
 
         .field {
           display: flex;
           flex-direction: column;
-          gap: 10px;
+          gap: 9px;
         }
 
         .field label {
+          color: #ffd500;
           font-weight: 900;
           text-transform: uppercase;
           font-size: 13px;
-          color: #ffd500;
         }
 
         .field input,
         .field select {
-          padding: 16px;
+          padding: 15px;
           border-radius: 14px;
-          border: 1px solid rgba(255,213,0,0.2);
-          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(255,213,0,0.24);
+          background: rgba(255,255,255,0.06);
           color: white;
           font-size: 16px;
         }
 
+        .field select option {
+          color: black;
+        }
+
+        .full {
+          grid-column: 1 / -1;
+        }
+
         .submitBtn {
-          margin-top: 34px;
+          margin-top: 28px;
           background: #ffd500;
           color: black;
           border: none;
@@ -229,38 +282,80 @@ export default function TippekampenPage() {
           font-size: 18px;
           font-weight: 900;
           cursor: pointer;
+          width: 100%;
         }
 
-        .lockedBox {
-          margin-top: 28px;
+        .note {
+          margin-top: 18px;
+          color: rgba(255,255,255,0.72);
+          line-height: 1.6;
+          font-size: 15px;
+        }
+
+        .tieBox {
+          margin-top: 22px;
           background: rgba(255,213,0,0.12);
           border: 1px solid rgba(255,213,0,0.3);
-          border-radius: 20px;
-          padding: 20px;
-          text-align: center;
+          border-radius: 18px;
+          padding: 18px;
           font-weight: 900;
+          text-align: center;
         }
 
         @media (max-width: 900px) {
+          .top {
+            padding: 22px 16px;
+          }
+
+          .logo {
+            width: 86%;
+            max-width: 300px;
+          }
+
+          .hero {
+            grid-template-columns: 1fr;
+            padding: 48px 18px 24px;
+            text-align: center;
+          }
+
           h1 {
-            font-size: 52px;
+            font-size: 46px;
+            letter-spacing: -1px;
           }
 
           .lead {
             font-size: 18px;
+            margin-left: auto;
+            margin-right: auto;
           }
 
-          .matchTeams {
+          .teams {
+            font-size: 30px;
+          }
+
+          .section {
+            padding: 42px 18px;
+          }
+
+          .sectionTitle {
             font-size: 34px;
-            gap: 16px;
+            text-align: center;
           }
 
           .prizeCard {
             grid-template-columns: 1fr;
           }
 
+          .farrisLogoBox {
+            padding: 34px;
+          }
+
+          .prizeContent {
+            padding: 28px;
+          }
+
           .prizeContent h3 {
-            font-size: 34px;
+            font-size: 30px;
           }
 
           .rulesGrid {
@@ -271,66 +366,79 @@ export default function TippekampenPage() {
             grid-template-columns: 1fr;
           }
 
-          .sectionTitle {
-            font-size: 36px;
+          .shirtBox {
+            grid-template-columns: 1fr;
           }
         }
       `}</style>
 
+      <header className="top">
+        <img
+          src="/events/betonmast-sommerfest/betonmast-logo.jpg"
+          alt="Betonmast"
+          className="logo"
+        />
+      </header>
+
       <section className="hero">
-        <div className="eyebrow">
-          Betonmast Sommerfest 2026
+        <div>
+          <div className="eyebrow">Betonmast Sommerfest 2026</div>
+
+          <h1>
+            TIPPE<span>KAMPEN</span>
+          </h1>
+
+          <p className="lead">
+            Tipp på Norge–Irak og konkurrer mot kollegaene dine live under
+            kampen. Førstepremien er middag, spa og overnatting for to.
+          </p>
         </div>
 
-        <h1>
-          TIPPE<span>KAMPEN</span>
-        </h1>
-
-        <p className="lead">
-          Konkurrer mot kollegaene dine live under Norge–Irak.
-          Leaderboard oppdateres gjennom kampen.
-        </p>
-
         <div className="matchCard">
-          <div className="matchTeams">
+          <div className="teams">
             <span>🇳🇴 Norge</span>
             <span className="vs">VS</span>
             <span>🇮🇶 Irak</span>
           </div>
 
-          <div className="matchMeta">
-            <div className="badge">16. juni 2026</div>
+          <div className="badges">
             <div className="badge">VM 2026</div>
             <div className="badge">Live leaderboard</div>
+            <div className="badge">Én innsending per e-post</div>
+          </div>
+
+          <div className="shirtBox">
+            <img
+              src="/events/betonmast-sommerfest/drakt-front.jpg"
+              alt="1998-drakt"
+            />
+            <img
+              src="/events/betonmast-sommerfest/drakt-back.jpg"
+              alt="Betonmast-drakt"
+            />
           </div>
         </div>
       </section>
 
       <section className="section">
-        <h2 className="sectionTitle">
-          1. PREMIE
-        </h2>
+        <h2 className="sectionTitle">1. premie</h2>
 
         <div className="prizeCard">
-          <div className="prizeImage">
+          <div className="farrisLogoBox">
             <img
-              src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1600&auto=format&fit=crop"
+              src="/events/betonmast-sommerfest/farris-logo.png"
               alt="Farris Bad"
             />
           </div>
 
           <div className="prizeContent">
-            <div className="prizeLabel">
-              Farris Bad
-            </div>
+            <div className="prizeLabel">Farris Bad</div>
 
-            <h3>
-              Spaopphold for to
-            </h3>
+            <h3>Middag, spa og overnatting for to</h3>
 
             <p>
-              Vinneren av Tippekampen får middag, spa og én overnatting
-              for to personer på Farris Bad.
+              Vinneren av Tippekampen får middag, spa og én overnatting for to
+              personer på Farris Bad.
             </p>
 
             <a
@@ -346,112 +454,166 @@ export default function TippekampenPage() {
       </section>
 
       <section className="section">
-        <h2 className="sectionTitle">
-          Regler
-        </h2>
+        <h2 className="sectionTitle">Regler</h2>
 
         <div className="rulesGrid">
-          <div className="ruleCard">
+          <div className="rulesCard">
             <span>1</span>
             <strong>Ett tips</strong>
-            <p>
-              Du kan kun sende inn ett tips per e-postadresse.
-            </p>
+            <p>Du kan kun sende inn ett tips per e-postadresse.</p>
           </div>
 
-          <div className="ruleCard">
+          <div className="rulesCard">
             <span>2</span>
-            <strong>Automatisk låsing</strong>
-            <p>
-              Tippekampen stenger automatisk ved kampstart.
-            </p>
+            <strong>Låses ved kampstart</strong>
+            <p>Alle tips må være sendt inn før kampen starter.</p>
           </div>
 
-          <div className="ruleCard">
+          <div className="rulesCard">
             <span>3</span>
             <strong>Live leaderboard</strong>
-            <p>
-              Resultatlisten oppdateres live gjennom kampen.
-            </p>
+            <p>Poenglisten kan oppdateres live under kampen.</p>
           </div>
 
-          <div className="ruleCard">
+          <div className="rulesCard">
             <span>4</span>
-            <strong>Poengsystem</strong>
-            <p>
-              Riktige hendelser og resultat gir poeng.
-            </p>
+            <strong>Ved uavgjort</strong>
+            <p>Ved poenglikhet på toppen trekkes vinneren blant de likt plasserte.</p>
           </div>
         </div>
       </section>
 
       <section className="section">
-        <h2 className="sectionTitle">
-          Lever ditt tips
-        </h2>
+        <h2 className="sectionTitle">Lever ditt tips</h2>
 
-        <div className="formGrid">
-          <div className="field">
-            <label>Navn</label>
-            <input placeholder="Ola Nordmann" />
+        <div className="formCard">
+          <p className="formIntro">
+            Spørsmålene under gir nok spredning til å kåre en vinner blant mange
+            deltakere, men er fortsatt enkle å kontrollere etter kampen.
+          </p>
+
+          <div className="formGrid">
+            <div className="field">
+              <label>Navn</label>
+              <input placeholder="Ola Nordmann" />
+            </div>
+
+            <div className="field">
+              <label>E-post</label>
+              <input placeholder="navn@betonmast.no" />
+            </div>
+
+            <div className="field">
+              <label>Sluttresultat</label>
+              <input placeholder="2-1" />
+            </div>
+
+            <div className="field">
+              <label>Pause-resultat</label>
+              <input placeholder="1-0" />
+            </div>
+
+            <div className="field">
+              <label>Hvem vinner?</label>
+              <select>
+                <option>Norge</option>
+                <option>Irak</option>
+                <option>Uavgjort</option>
+              </select>
+            </div>
+
+            <div className="field">
+              <label>Totalt antall mål</label>
+              <input placeholder="3" />
+            </div>
+
+            <div className="field">
+              <label>Første mål</label>
+              <select>
+                <option>Norge</option>
+                <option>Irak</option>
+                <option>Ingen mål</option>
+              </select>
+            </div>
+
+            <div className="field">
+              <label>Første corner</label>
+              <select>
+                <option>Norge</option>
+                <option>Irak</option>
+              </select>
+            </div>
+
+            <div className="field">
+              <label>Første innkast</label>
+              <select>
+                <option>Norge</option>
+                <option>Irak</option>
+              </select>
+            </div>
+
+            <div className="field">
+              <label>Første gule kort</label>
+              <select>
+                <option>Norge</option>
+                <option>Irak</option>
+                <option>Ingen</option>
+              </select>
+            </div>
+
+            <div className="field">
+              <label>Første bytte</label>
+              <select>
+                <option>Norge</option>
+                <option>Irak</option>
+              </select>
+            </div>
+
+            <div className="field">
+              <label>Blir det straffe?</label>
+              <select>
+                <option>Ja</option>
+                <option>Nei</option>
+              </select>
+            </div>
+
+            <div className="field">
+              <label>Blir det VAR-situasjon?</label>
+              <select>
+                <option>Ja</option>
+                <option>Nei</option>
+              </select>
+            </div>
+
+            <div className="field">
+              <label>Rødt kort?</label>
+              <select>
+                <option>Ja</option>
+                <option>Nei</option>
+              </select>
+            </div>
+
+            <div className="field full">
+              <label>Bonus: Første Betonmast-allsang?</label>
+              <select>
+                <option>Før kampstart</option>
+                <option>I pausen</option>
+                <option>Etter første Norge-mål</option>
+                <option>Etter kampen</option>
+              </select>
+            </div>
           </div>
 
-          <div className="field">
-            <label>E-post</label>
-            <input placeholder="navn@betonmast.no" />
+          <button className="submitBtn">Send inn tips</button>
+
+          <div className="tieBox">
+            Ved poenglikhet på toppen trekkes vinneren blant de likt plasserte.
           </div>
 
-          <div className="field">
-            <label>Sluttresultat</label>
-            <input placeholder="2-1" />
-          </div>
-
-          <div className="field">
-            <label>Pause-resultat</label>
-            <input placeholder="1-0" />
-          </div>
-
-          <div className="field">
-            <label>Første mål</label>
-            <select>
-              <option>Norge</option>
-              <option>Irak</option>
-              <option>Ingen mål</option>
-            </select>
-          </div>
-
-          <div className="field">
-            <label>Første corner</label>
-            <select>
-              <option>Norge</option>
-              <option>Irak</option>
-            </select>
-          </div>
-
-          <div className="field">
-            <label>Første gule kort</label>
-            <select>
-              <option>Norge</option>
-              <option>Irak</option>
-              <option>Ingen</option>
-            </select>
-          </div>
-
-          <div className="field">
-            <label>VAR-situasjon?</label>
-            <select>
-              <option>Ja</option>
-              <option>Nei</option>
-            </select>
-          </div>
-        </div>
-
-        <button className="submitBtn">
-          Send inn tips
-        </button>
-
-        <div className="lockedBox">
-          Tippekampen låses automatisk ved kampstart.
+          <p className="note">
+            Neste steg blir å koble skjemaet til Google Sheets og lage live
+            leaderboard.
+          </p>
         </div>
       </section>
     </main>
