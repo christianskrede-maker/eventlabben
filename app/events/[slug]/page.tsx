@@ -51,6 +51,19 @@ export default function EventPage({
         .logo {
           height: 36px;
         }
+        .musicBannerWrap {
+  margin-top: 56px;
+  display: flex;
+  justify-content: center;
+}
+
+.musicBanner {
+  width: 100%;
+  max-width: 900px;
+  border-radius: 28px;
+  border: 1px solid rgba(255,213,0,0.3);
+  box-shadow: 0 0 45px rgba(255,213,0,0.12);
+}
 
         .menu {
           display: flex;
@@ -329,8 +342,17 @@ export default function EventPage({
               Se på YouTube
             </a>
           </div>
-        </div>
-      </section>
+       </div>
+
+<div className="musicBannerWrap">
+  <img
+    src="/events/betonmast-sommerfest/hero-banner.jpg"
+    alt="Fotball VM 2026 Norway"
+    className="musicBanner"
+  />
+</div>
+
+</section>
     </main>
   );
 }
