@@ -402,13 +402,14 @@ export default function EventPage({
             <h3>HELT RÅ</h3>
             <p>Offisiell Betonmast-stemning.</p>
 
-            <a
-              className="spotifyBtn"
-              href="https://youtube.com"
-              target="_blank"
-            >
-              Se på YouTube
-            </a>
+        <a
+  href="https://www.youtube.com/watch?v=OSSbtGlNLRY"
+  target="_blank"
+  rel="noreferrer"
+  className="spotifyBtn"
+>
+  Se på YouTube ↗
+</a>
           </div>
        </div>
 
