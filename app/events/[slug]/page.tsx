@@ -1,326 +1,206 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-
-const events = {
-  'betonmast-sommerfest': {
-    company: 'Betonmast',
-    title: 'Sommerfest 2026',
-    subtitle: 'Én gjeng. Én kultur. Helt rå.',
-    date: '22. juni 2026',
-    location: 'Oslo',
-    password: 'beton',
-    type: 'betonmast',
-  },
-  'asker-hoyre-arsmote': {
-    company: 'Asker Høyre',
-    title: 'Årsmøte',
-    subtitle: 'Praktisk informasjon og program',
-    date: '14. februar 2026',
-    location: 'Asker',
-    password: 'asker',
-    color: '#1d4ed8',
-    dark: '#0f172a',
-  },
-  'valgkamp-2026': {
-    company: 'EventLabben',
-    title: 'Valgkamp Kickoff',
-    subtitle: 'Program og praktisk informasjon',
-    date: '5. august 2026',
-    location: 'Drammen',
-    password: 'valg',
-    color: '#ec4899',
-    dark: '#111827',
-  },
-};
-
-type EventSlug = keyof typeof events;
+import { useState } from 'react';
 
 export default function EventPage({ params }: { params: { slug: string } }) {
-  const event = events[params.slug as EventSlug];
-
   const [code, setCode] = useState('');
   const [unlocked, setUnlocked] = useState(false);
   const [error, setError] = useState('');
 
-  const theme = useMemo(() => {
-    if (!event) return { color: '#ffffff', dark: '#111827' };
-
-    if ('type' in event && event.type === 'betonmast') {
-      return {
-        color: '#ffd500',
-        dark: '#050505',
-      };
-    }
-
-  return {
-  color: 'color' in event ? event.color : '#ffffff',
-  dark: 'dark' in event ? event.dark : '#111827',
-};
-  }, [event]);
-
-  if (!event) {
-    return (
-      <main className="page">
-        <style jsx>{styles}</style>
-        <section className="notFound">
-          <h1>Fant ikke arrangementet</h1>
-          <p>Dette arrangementet finnes ikke ennå.</p>
-          <a href="/events">Tilbake til arrangementer</a>
-        </section>
-      </main>
-    );
+  if (params.slug !== 'betonmast-sommerfest') {
+    return <div>Fant ikke arrangementet</div>;
   }
 
   const checkPassword = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (code.trim().toLowerCase() === event.password.toLowerCase()) {
+    if (code.trim().toLowerCase() === 'beton') {
       setUnlocked(true);
       setError('');
-      return;
+    } else {
+      setError('Feil kode. Prøv igjen.');
     }
-
-    setError('Feil kode. Prøv igjen.');
   };
 
   if (!unlocked) {
     return (
-      <main
-        className="page"
-        style={{
-          background: `radial-gradient(circle at top left, ${theme.color}55, transparent 34%), linear-gradient(135deg, ${theme.dark}, #020617)`,
-        }}
-      >
+      <main className="lockPage">
         <style jsx>{styles}</style>
 
         <section className="lockBox">
-          <div className="smallLabel">{event.company}</div>
-          <h1>{event.title}</h1>
-          <p>{event.subtitle}</p>
+          <img
+            src="/events/betonmast-sommerfest/betonmast-logo.jpg"
+            alt="Betonmast"
+            className="lockLogo"
+          />
 
-          <form onSubmit={checkPassword} className="lockForm">
+          <h1>Sommerfest 2026</h1>
+          <p>Fotball-VM, lagånd og en helt rå kveld.</p>
+
+          <form onSubmit={checkPassword}>
             <input
               placeholder="Skriv inn kode"
               value={code}
               onChange={(e) => setCode(e.target.value)}
             />
-
             <button type="submit">Åpne arrangement</button>
-
             {error && <div className="error">{error}</div>}
           </form>
-
-          <a href="/events" className="backLink">
-            ← Tilbake
-          </a>
         </section>
       </main>
     );
   }
 
-  if ('type' in event && event.type === 'betonmast') {
-    return <BetonmastPage event={event} />;
-  }
-
   return (
-    <main
-      className="page"
-      style={{
-        background: `radial-gradient(circle at top left, ${theme.color}55, transparent 32%), linear-gradient(135deg, ${theme.dark}, #020617)`,
-      }}
-    >
+    <main className="page">
       <style jsx>{styles}</style>
 
-      <div className="container">
-        <header className="hero">
-          <div className="smallLabel">{event.company}</div>
-          <h1>{event.title}</h1>
-          <p className="subtitle">{event.subtitle}</p>
+      <nav className="nav">
+        <img
+          src="/events/betonmast-sommerfest/betonmast-logo.jpg"
+          alt="Betonmast"
+          className="navLogo"
+        />
 
-          <div className="meta">
-            <span>{event.date}</span>
-            <span>{event.location}</span>
-          </div>
-        </header>
-
-        <section className="grid">
-          <div className="card large">
-            <h2>Velkommen</h2>
-            <p>
-              Her finner du program, praktisk informasjon, linker og
-              oppdateringer for arrangementet.
-            </p>
-          </div>
-
-          <div className="card">
-            <h2>Praktisk info</h2>
-            <p>Transport, kontaktpersoner, kart, linker og beskjeder.</p>
-          </div>
-
-          <div className="card">
-            <h2>NFC</h2>
-            <p>NFC-brikken peker direkte hit.</p>
-          </div>
-        </section>
-
-        <footer>EventLabben · {event.company}</footer>
-      </div>
-    </main>
-  );
-}
-
-function BetonmastPage({ event }: { event: any }) {
-  return (
-    <main className="betonPage">
-      <style jsx>{styles}</style>
-
-      <nav className="betonNav">
-        <div className="betonLogo">BETONMAST</div>
-
-        <div className="navLinks">
+        <div>
           <a href="#program">Program</a>
-          <a href="#musikk">Musikk</a>
           <a href="#info">Praktisk info</a>
-          <a href="#bonger">Bonger</a>
+          <a href="#drakter">Drakter</a>
+          <a href="#spotify">Spotify</a>
+          <a href="#tippekampen">Tippekampen</a>
         </div>
       </nav>
 
-      <section className="betonHero">
+      <section className="hero">
         <div className="heroText">
-          <div className="yellowLabel">Velkommen til</div>
+          <p className="label">Betonmast Buskerud-Vestfold</p>
 
           <h1>
-            BETONMAST
-            <br />
-            <span>SOMMERFEST</span>
-            <br />
-            2026
+            Sommerfest
+            <span> 2026</span>
           </h1>
 
-          <div className="eventStrip">
-            <strong>{event.date}</strong>
-            <span>|</span>
-            <strong>{event.location}</strong>
-          </div>
-
-          <h2>
-            Én gjeng. Én kultur.
-            <br />
-            Helt <span>rå.</span>
-          </h2>
-
-          <p>
-            Velkommen til årets høydepunkt. Her finner du program, praktisk
-            informasjon, nyttige linker og alt du trenger for en legendarisk
-            kveld.
+          <p className="lead">
+            Én gjeng. Én kultur. Fotball-VM, konkurranser, musikk og sommerfest
+            med skikkelig Betonmast-stemning.
           </p>
+
+          <div className="meta">
+            <span>22. juni 2026</span>
+            <span>Oslo</span>
+            <span>Dresscode: fotballdrakt</span>
+          </div>
         </div>
 
-        <div className="comicBox">
-          <div className="speech">Penger i kassa, fest i glassa!</div>
+        <div className="heroImageBox">
+          <img
+            src="/events/betonmast-sommerfest/hero-banner.jpg"
+            alt="Fotball VM 2026 Norway"
+          />
+        </div>
+      </section>
 
-          <div className="comicPlaceholder">
-            <div className="comicFace">😎</div>
-            <div className="money">💸 💰 💸</div>
-            <p>Humoristisk tegneseriebilde kommer her</p>
+      <section id="program" className="section">
+        <h2>Program</h2>
+
+        <div className="timeline">
+          <div><strong>15:00</strong><span>Dørene åpner</span></div>
+          <div><strong>16:00</strong><span>Grillbuffet og mingling</span></div>
+          <div><strong>17:30</strong><span>Quiz og konkurranser</span></div>
+          <div><strong>18:30</strong><span>Kampvisning og tippekamp</span></div>
+          <div><strong>21:00</strong><span>DJ, musikk og sommerfest</span></div>
+          <div><strong>01:00</strong><span>Takk for i kveld</span></div>
+        </div>
+      </section>
+
+      <section id="info" className="section cards">
+        <div className="card">
+          <h3>Dato</h3>
+          <p>22. juni 2026</p>
+        </div>
+
+        <div className="card">
+          <h3>Sted</h3>
+          <p>Oslo — mer praktisk info kommer.</p>
+        </div>
+
+        <div className="card">
+          <h3>Dresscode</h3>
+          <p>Fotballdrakt, retrodrakt eller sommerlig pent.</p>
+        </div>
+
+        <div className="card">
+          <h3>Transport</h3>
+          <p>Info om buss, taxi og parkering kommer.</p>
+        </div>
+      </section>
+
+      <section id="drakter" className="section">
+        <h2>Draktene</h2>
+        <p className="sectionIntro">
+          Vi kjører VM-stemning med retrofølelse og egen Betonmast-vri.
+        </p>
+
+        <div className="shirtGrid">
+          <div className="shirtCard">
+            <h3>1998 Retro</h3>
+            <img
+              src="/events/betonmast-sommerfest/drakt-front.jpg"
+              alt="Drakt front"
+            />
+          </div>
+
+          <div className="shirtCard">
+            <h3>Betonmast Edition</h3>
+            <img
+              src="/events/betonmast-sommerfest/drakt-back.jpg"
+              alt="Drakt bakside"
+            />
           </div>
         </div>
       </section>
 
-      <section id="musikk" className="musicSection">
-        <h2>Våre låter</h2>
+      <section id="spotify" className="section">
+        <h2>Spotify</h2>
 
         <div className="musicGrid">
           <div className="musicCard">
-            <div className="platform spotify">Spotify</div>
-
-            <h3>Buss for tog (Betonmast) 2025</h3>
-
-            <p>
-              Den første låta. Her legger vi inn Spotify-link når du sender den.
-            </p>
-
-            <a href="#" className="musicButton disabled">
-              Spotify-link kommer
-            </a>
+            <h3>Buss for tog 2025</h3>
+            <p>Den første låta — klar for allsang.</p>
+            <a href="#" className="disabled">Spotify-link kommer</a>
           </div>
 
           <div className="musicCard">
-            <div className="platform spotify">Spotify</div>
-
-            <h3>Buss for tog (Betonmast) 2026</h3>
-
-            <p>
-              Ny låt for sommerfesten 2026. Klar for fullt trøkk.
-            </p>
-
-            <a
-              href="https://open.spotify.com/track/45H8lXkftq2qzGA1bQbV7T"
-              target="_blank"
-              className="musicButton"
-            >
-              Lytt på Spotify ↗
-            </a>
+            <h3>2026-låta</h3>
+            <p>Ikke klar ennå — kommer når den er publisert.</p>
+            <a href="#" className="disabled">Kommer snart</a>
           </div>
 
           <div className="musicCard">
-            <div className="platform youtube">YouTube</div>
-
             <h3>Helt Rå</h3>
-
-            <p>
-              Offisiell Betonmast-låt. Alltid like rå.
-            </p>
-
-            <a
-              href="https://www.youtube.com/watch?v=OSSbtGlNLRY"
-              target="_blank"
-              className="musicButton"
-            >
+            <p>Offisiell Betonmast-stemning.</p>
+            <a href="https://www.youtube.com/watch?v=OSSbtGlNLRY" target="_blank">
               Se på YouTube ↗
             </a>
           </div>
         </div>
       </section>
 
-      <section id="info" className="infoGrid">
-        <div className="infoCard">
-          <div className="icon">📅</div>
-          <h3>Dato</h3>
-          <p>{event.date}</p>
-          <small>Sett av dagen!</small>
-        </div>
+      <section id="tippekampen" className="section tippeBox">
+        <h2>Tippekampen</h2>
+        <p>
+          Her kan ansatte tippe resultat på de første VM-kampene. Vi kan senere
+          koble dette til skjema og leaderboard.
+        </p>
 
-        <div className="infoCard">
-          <div className="icon">📍</div>
-          <h3>Sted</h3>
-          <p>{event.location}</p>
-          <small>Mer info kommer snart.</small>
-        </div>
-
-        <div id="program" className="infoCard">
-          <div className="icon">👷</div>
-          <h3>Program</h3>
-          <p>Fullt program kommer.</p>
-          <small>Mat, musikk og moro.</small>
+        <div className="matchGrid">
+          <div>🇳🇴 Norge — Brasil 🇧🇷</div>
+          <div>🇩🇪 Tyskland — Spania 🇪🇸</div>
+          <div>🇫🇷 Frankrike — Argentina 🇦🇷</div>
         </div>
       </section>
 
-      <section id="bonger" className="quoteBox">
-        <div>
-          “Vi bygger mer enn bygg.
-          <br />
-          Vi bygger <span>kultur.</span>”
-        </div>
-
-        <div className="stamp">
-          BETONMAST
-          <small>HELT RÅ SIDEN 1958</small>
-        </div>
-      </section>
-
-      <footer className="betonFooter">
+      <footer>
         EventLabben for <span>Betonmast</span> © 2026
       </footer>
     </main>
@@ -328,128 +208,66 @@ function BetonmastPage({ event }: { event: any }) {
 }
 
 const styles = `
-  .page {
+  .page,
+  .lockPage {
     min-height: 100vh;
+    background:
+      radial-gradient(circle at top right, rgba(255,213,0,0.18), transparent 32%),
+      linear-gradient(135deg, #050505, #111, #000);
     color: white;
     font-family: Arial, sans-serif;
   }
 
-  .container {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 70px 24px;
-  }
-
-  .hero {
-    text-align: center;
-    padding: 70px 20px 50px;
-  }
-
-  .smallLabel {
-    display: inline-block;
-    padding: 9px 16px;
-    border-radius: 999px;
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.16);
-    font-weight: 900;
-    margin-bottom: 22px;
-  }
-
-  h1 {
-    font-size: 78px;
-    line-height: 0.95;
-    margin: 0 0 22px;
-    font-weight: 900;
-    letter-spacing: -3px;
-  }
-
-  .subtitle {
-    font-size: 24px;
-    color: rgba(255,255,255,0.82);
-    margin: 0 auto 28px;
-    max-width: 760px;
-    line-height: 1.6;
-  }
-
-  .meta {
+  .lockPage {
     display: flex;
-    gap: 14px;
+    align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
+    padding: 24px;
   }
 
-  .meta span {
-    background: rgba(255,255,255,0.12);
-    padding: 12px 18px;
-    border-radius: 999px;
-    font-weight: 800;
+  .lockBox {
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,213,0,0.3);
+    border-radius: 28px;
+    padding: 36px;
   }
 
-  .grid {
+  .lockLogo {
+    max-width: 280px;
+    margin-bottom: 24px;
+  }
+
+  .lockBox h1 {
+    font-size: 44px;
+    margin: 0 0 12px;
+    text-transform: uppercase;
+  }
+
+  .lockBox p {
+    color: rgba(255,255,255,0.75);
+  }
+
+  form {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 22px;
+    gap: 12px;
     margin-top: 24px;
   }
 
-  .card,
-  .lockBox,
-  .notFound {
-    background: rgba(255,255,255,0.09);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 28px;
-    padding: 30px;
-    backdrop-filter: blur(16px);
-  }
-
-  .large {
-    grid-column: span 2;
-  }
-
-  .card h2 {
-    margin-top: 0;
-    font-size: 30px;
-  }
-
-  .card p {
-    color: rgba(255,255,255,0.78);
-    line-height: 1.7;
-    font-size: 17px;
-  }
-
-  .lockBox,
-  .notFound {
-    max-width: 520px;
-    margin: 14vh auto 0;
-    text-align: center;
-  }
-
-  .lockBox h1,
-  .notFound h1 {
-    font-size: 54px;
-  }
-
-  .lockForm {
-    margin-top: 28px;
-    display: grid;
-    gap: 12px;
-  }
-
-  .lockForm input {
-    padding: 17px 18px;
+  input,
+  button {
+    padding: 16px;
     border-radius: 14px;
     border: none;
-    font-size: 17px;
+    font-size: 16px;
   }
 
-  .lockForm button {
-    padding: 17px 18px;
-    border-radius: 14px;
-    border: none;
-    background: white;
-    color: #111827;
+  button {
+    background: #ffd500;
+    color: black;
     font-weight: 900;
-    font-size: 17px;
     cursor: pointer;
   }
 
@@ -458,393 +276,253 @@ const styles = `
     font-weight: 800;
   }
 
-  .backLink,
-  .notFound a {
-    display: inline-block;
-    margin-top: 22px;
-    color: white;
-    opacity: 0.8;
-  }
-
-  footer {
-    text-align: center;
-    color: rgba(255,255,255,0.5);
-    margin-top: 70px;
-    font-size: 15px;
-  }
-
-  .betonPage {
-    min-height: 100vh;
-    background:
-      radial-gradient(circle at top right, rgba(255,213,0,0.18), transparent 34%),
-      radial-gradient(circle at bottom left, rgba(255,213,0,0.16), transparent 32%),
-      linear-gradient(135deg, #050505 0%, #111 45%, #020202 100%);
-    color: white;
-    font-family: Arial, sans-serif;
-    padding-bottom: 60px;
-  }
-
-  .betonNav {
-    height: 88px;
-    border-bottom: 5px solid #ffd500;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 42px;
-    background: #050505;
+  .nav {
     position: sticky;
     top: 0;
     z-index: 20;
-  }
-
-  .betonLogo {
-    color: #ffd500;
-    font-size: 38px;
-    font-weight: 1000;
-    letter-spacing: -2px;
-  }
-
-  .navLinks {
+    height: 84px;
+    background: rgba(0,0,0,0.94);
+    border-bottom: 4px solid #ffd500;
     display: flex;
-    gap: 30px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 36px;
   }
 
-  .navLinks a {
+  .navLogo {
+    height: 42px;
+    width: auto;
+  }
+
+  .nav div {
+    display: flex;
+    gap: 24px;
+  }
+
+  .nav a {
     color: white;
     text-decoration: none;
     font-weight: 900;
     text-transform: uppercase;
+    font-size: 14px;
   }
 
-  .navLinks a:first-child {
+  .nav a:hover {
     color: #ffd500;
   }
 
-  .betonHero {
+  .hero {
     max-width: 1240px;
     margin: 0 auto;
-    padding: 70px 32px 40px;
+    padding: 72px 32px 48px;
     display: grid;
-    grid-template-columns: 1fr 0.9fr;
-    gap: 40px;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
     align-items: center;
   }
 
-  .yellowLabel {
-    color: white;
-    font-size: 20px;
+  .label {
+    color: #ffd500;
     font-weight: 900;
     text-transform: uppercase;
-    margin-bottom: 14px;
+    letter-spacing: 2px;
   }
 
-  .heroText h1 {
+  h1 {
     font-size: 82px;
-    line-height: 0.9;
+    line-height: 0.92;
     margin: 0;
-    font-weight: 1000;
+    text-transform: uppercase;
     letter-spacing: -4px;
   }
 
-  .heroText h1 span {
+  h1 span,
+  footer span {
     color: #ffd500;
   }
 
-  .eventStrip {
-    display: inline-flex;
+  .lead {
+    margin-top: 28px;
+    font-size: 22px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.78);
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
     gap: 12px;
-    align-items: center;
+    margin-top: 28px;
+  }
+
+  .meta span {
     background: #ffd500;
     color: black;
-    padding: 14px 22px;
-    font-size: 24px;
-    font-weight: 1000;
-    margin-top: 28px;
-    transform: skew(-5deg);
+    padding: 12px 16px;
+    border-radius: 999px;
+    font-weight: 900;
   }
 
-  .heroText h2 {
-    margin-top: 34px;
-    font-size: 38px;
-    line-height: 1.15;
-    text-transform: uppercase;
+  .heroImageBox img {
+    width: 100%;
+    border-radius: 30px;
+    border: 2px solid rgba(255,213,0,0.35);
+    box-shadow: 0 0 50px rgba(255,213,0,0.14);
   }
 
-  .heroText h2 span {
-    color: #ffd500;
-  }
-
-  .heroText p {
-    font-size: 21px;
-    line-height: 1.65;
-    max-width: 560px;
-    color: rgba(255,255,255,0.82);
-  }
-
-  .comicBox {
-    position: relative;
-  }
-
-  .speech {
-    position: absolute;
-    right: 0;
-    top: 20px;
-    background: white;
-    color: black;
-    padding: 20px;
-    border-radius: 28px;
-    max-width: 210px;
-    font-size: 22px;
-    font-weight: 1000;
-    text-align: center;
-    z-index: 2;
-  }
-
-  .comicPlaceholder {
-    min-height: 500px;
-    border-radius: 34px;
-    background:
-      radial-gradient(circle at center, rgba(255,213,0,0.3), transparent 40%),
-      linear-gradient(135deg, #222, #050505);
-    border: 1px solid rgba(255,213,0,0.35);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    text-align: center;
-    padding: 30px;
-  }
-
-  .comicFace {
-    font-size: 120px;
-  }
-
-  .money {
-    font-size: 62px;
-    margin: 16px 0;
-  }
-
-  .comicPlaceholder p {
-    color: rgba(255,255,255,0.65);
-    font-weight: 800;
-  }
-
-  .musicSection,
-  .infoGrid,
-  .quoteBox {
+  .section {
     max-width: 1180px;
-    margin: 42px auto 0;
+    margin: 48px auto 0;
     padding: 0 32px;
   }
 
-  .musicSection h2 {
-    text-align: center;
+  .section h2 {
     color: #ffd500;
-    font-size: 42px;
+    font-size: 46px;
     text-transform: uppercase;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
-  .musicGrid {
+  .sectionIntro {
+    color: rgba(255,255,255,0.75);
+    font-size: 20px;
+  }
+
+  .timeline {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 22px;
+    gap: 14px;
   }
 
-  .musicCard {
-    background: rgba(255,255,255,0.055);
+  .timeline div,
+  .card,
+  .musicCard,
+  .tippeBox {
+    background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,213,0,0.28);
-    border-radius: 24px;
-    padding: 28px;
+    border-radius: 22px;
+    padding: 24px;
   }
 
-  .platform {
-    display: inline-block;
-    padding: 8px 14px;
-    border-radius: 999px;
-    font-weight: 1000;
-    margin-bottom: 18px;
+  .timeline div {
+    display: flex;
+    gap: 24px;
+    align-items: center;
   }
 
-  .spotify {
-    background: #1db954;
-    color: black;
+  .timeline strong {
+    color: #ffd500;
+    font-size: 24px;
+    min-width: 90px;
   }
 
-  .youtube {
-    background: #ff0000;
-    color: white;
+  .timeline span {
+    font-size: 20px;
   }
 
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+
+  .card h3,
+  .shirtCard h3,
   .musicCard h3 {
-    font-size: 28px;
-    margin: 0 0 12px;
+    color: #ffd500;
     text-transform: uppercase;
+    margin-top: 0;
   }
 
-  .musicCard p {
-    color: rgba(255,255,255,0.76);
+  .card p,
+  .musicCard p,
+  .tippeBox p {
+    color: rgba(255,255,255,0.75);
     line-height: 1.6;
   }
 
-  .musicButton {
-    display: inline-block;
-    margin-top: 18px;
-    background: #ffd500;
-    color: black;
-    padding: 15px 20px;
-    border-radius: 10px;
-    font-weight: 1000;
-    text-decoration: none;
+  .shirtGrid,
+  .musicGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
   }
 
-  .disabled {
+  .musicGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .shirtCard {
+    background: #050505;
+    border: 1px solid rgba(255,213,0,0.28);
+    border-radius: 28px;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .shirtCard img {
+    width: 100%;
+    border-radius: 22px;
+  }
+
+  .musicCard a {
+    display: inline-block;
+    margin-top: 14px;
+    background: #ffd500;
+    color: black;
+    padding: 13px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 900;
+  }
+
+  .musicCard a.disabled {
     opacity: 0.5;
     pointer-events: none;
   }
 
-  .infoGrid {
+  .matchGrid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0;
-    border: 1px solid rgba(255,213,0,0.28);
-    border-radius: 24px;
-    overflow: hidden;
-    padding: 0;
+    gap: 12px;
+    margin-top: 20px;
   }
 
-  .infoCard {
-    padding: 34px;
-    background: rgba(255,255,255,0.045);
-    border-right: 1px solid rgba(255,213,0,0.2);
+  .matchGrid div {
+    background: rgba(0,0,0,0.35);
+    border-radius: 14px;
+    padding: 16px;
+    font-weight: 900;
   }
 
-  .infoCard:last-child {
-    border-right: none;
-  }
-
-  .icon {
-    font-size: 40px;
-    margin-bottom: 16px;
-  }
-
-  .infoCard h3 {
-    color: #ffd500;
-    font-size: 28px;
-    margin: 0 0 12px;
-    text-transform: uppercase;
-  }
-
-  .infoCard p {
-    font-size: 22px;
-    margin: 0 0 8px;
-  }
-
-  .infoCard small {
-    color: rgba(255,255,255,0.65);
-  }
-
-  .quoteBox {
-    border: 1px solid rgba(255,213,0,0.28);
-    border-radius: 24px;
-    padding: 34px;
-    background: rgba(255,255,255,0.045);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 24px;
-    font-size: 36px;
-    font-weight: 1000;
-    font-style: italic;
-    text-transform: uppercase;
-  }
-
-  .quoteBox span {
-    color: #ffd500;
-  }
-
-  .stamp {
-    border: 2px solid #ffd500;
-    color: #ffd500;
-    padding: 20px 26px;
-    font-style: normal;
+  footer {
     text-align: center;
-  }
-
-  .stamp small {
-    display: block;
-    color: white;
-    font-size: 13px;
-    letter-spacing: 4px;
-    margin-top: 8px;
-  }
-
-  .betonFooter {
-    text-align: center;
-    margin-top: 48px;
-    color: rgba(255,255,255,0.65);
-  }
-
-  .betonFooter span {
-    color: #ffd500;
+    color: rgba(255,255,255,0.6);
+    margin: 72px 0 0;
+    padding-bottom: 48px;
   }
 
   @media (max-width: 900px) {
-    .betonHero {
-      grid-template-columns: 1fr;
-    }
-
+    .hero,
+    .shirtGrid,
     .musicGrid,
-    .infoGrid {
+    .cards {
       grid-template-columns: 1fr;
     }
 
-    .infoCard {
-      border-right: none;
-      border-bottom: 1px solid rgba(255,213,0,0.2);
-    }
-
-    .quoteBox {
+    .nav {
+      height: auto;
       flex-direction: column;
-      text-align: center;
-      font-size: 28px;
+      gap: 14px;
+      padding: 18px;
     }
 
-    .navLinks {
-      display: none;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .betonNav {
-      padding: 0 20px;
+    .nav div {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
     }
 
-    .betonLogo {
-      font-size: 30px;
-    }
-
-    .heroText h1 {
+    h1 {
       font-size: 52px;
-    }
-
-    .eventStrip {
-      font-size: 18px;
-    }
-
-    .heroText h2 {
-      font-size: 30px;
-    }
-
-    .comicPlaceholder {
-      min-height: 340px;
-    }
-
-    .speech {
-      position: static;
-      margin-bottom: 16px;
-      max-width: none;
     }
   }
 `;
