@@ -2,11 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-export default function EventPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default function EventPage({ params }: { params: { slug: string } }) {
   const [shirtIndex, setShirtIndex] = useState(0);
 
   useEffect(() => {
@@ -21,11 +17,6 @@ export default function EventPage({
     return <div>Fant ikke arrangementet</div>;
   }
 
-  const shirts = [
-    '/events/betonmast-sommerfest/drakt-front.jpg',
-    '/events/betonmast-sommerfest/drakt-back.jpg',
-  ];
-
   return (
     <main className="page">
       <style jsx>{`
@@ -34,6 +25,7 @@ export default function EventPage({
           background: radial-gradient(circle at top right, #3a3200 0%, #000 45%);
           color: white;
           font-family: Arial, sans-serif;
+          overflow-x: hidden;
         }
 
         .nav {
@@ -51,19 +43,6 @@ export default function EventPage({
         .logo {
           height: 36px;
         }
-        .musicBannerWrap {
-  margin-top: 56px;
-  display: flex;
-  justify-content: center;
-}
-
-.musicBanner {
-  width: 100%;
-  max-width: 900px;
-  border-radius: 28px;
-  border: 1px solid rgba(255,213,0,0.3);
-  box-shadow: 0 0 45px rgba(255,213,0,0.12);
-}
 
         .menu {
           display: flex;
@@ -129,7 +108,6 @@ export default function EventPage({
         }
 
         .visual {
-          position: relative;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -138,18 +116,35 @@ export default function EventPage({
         .shirtCard {
           width: 100%;
           max-width: 500px;
-          background: rgba(255,255,255,0.03);
-          border: 1px solid rgba(255,213,0,0.25);
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 213, 0, 0.25);
           border-radius: 32px;
           padding: 24px;
-          backdrop-filter: blur(8px);
-          box-shadow: 0 0 50px rgba(255,213,0,0.15);
+          box-shadow: 0 0 50px rgba(255, 213, 0, 0.15);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .shirtSpacer {
+          padding-top: 120%;
         }
 
         .shirtImage {
-          width: 100%;
+          position: absolute;
+          inset: 24px;
+          width: calc(100% - 48px);
+          height: calc(100% - 48px);
+          object-fit: contain;
           border-radius: 20px;
-          transition: opacity 0.5s ease;
+          transition: opacity 0.8s ease-in-out;
+        }
+
+        .shirtImage.active {
+          opacity: 1;
+        }
+
+        .shirtImage.hidden {
+          opacity: 0;
         }
 
         .section {
@@ -174,8 +169,8 @@ export default function EventPage({
         .programItem {
           display: flex;
           gap: 32px;
-          background: rgba(255,255,255,0.05);
-          border: 1px solid rgba(255,213,0,0.2);
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 213, 0, 0.2);
           padding: 24px;
           border-radius: 22px;
           font-size: 22px;
@@ -194,8 +189,8 @@ export default function EventPage({
         }
 
         .spotifyCard {
-          background: rgba(255,255,255,0.05);
-          border: 1px solid rgba(255,213,0,0.2);
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 213, 0, 0.2);
           padding: 28px;
           border-radius: 24px;
         }
@@ -216,73 +211,178 @@ export default function EventPage({
           text-decoration: none;
         }
 
+        .musicBannerWrap {
+          margin-top: 56px;
+          display: flex;
+          justify-content: center;
+        }
+
+        .musicBanner {
+          width: 100%;
+          max-width: 900px;
+          border-radius: 28px;
+          border: 1px solid rgba(255, 213, 0, 0.3);
+          box-shadow: 0 0 45px rgba(255, 213, 0, 0.12);
+        }
+
+        .factsSection {
+          margin-top: 80px;
+          padding-top: 56px;
+          border-top: 1px solid rgba(255, 213, 0, 0.25);
+        }
+
+        .factsSection h2 {
+          color: #ffd500;
+          font-size: 48px;
+          font-weight: 900;
+          margin-bottom: 12px;
+        }
+
+        .factsIntro {
+          color: #ddd;
+          font-size: 20px;
+          margin-bottom: 32px;
+        }
+
+        .factsGrid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 18px;
+        }
+
+        .factCard {
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 213, 0, 0.22);
+          border-radius: 22px;
+          padding: 24px;
+        }
+
+        .factCard span {
+          display: block;
+          color: #ffd500;
+          font-weight: 900;
+          text-transform: uppercase;
+          font-size: 13px;
+          margin-bottom: 12px;
+        }
+
+        .factCard strong {
+          display: block;
+          font-size: 28px;
+          margin-bottom: 10px;
+        }
+
+        .factCard p {
+          color: #ccc;
+          line-height: 1.5;
+        }
+
         @media (max-width: 900px) {
-          .hero {
-            grid-template-columns: 1fr;
+          .nav {
+            flex-direction: column;
+            justify-content: center;
+            gap: 14px;
+            padding: 18px 16px;
           }
 
-          .title {
-            font-size: 58px;
+          .logo {
+            height: 48px;
           }
 
           .menu {
-            gap: 14px;
-            font-size: 12px;
+            width: 100%;
+            justify-content: center;
+            gap: 10px;
             flex-wrap: wrap;
-            justify-content: flex-end;
           }
-          .factsSection {
-  margin-top: 80px;
-  padding-top: 56px;
-  border-top: 1px solid rgba(255,213,0,0.25);
-}
 
-.factsSection h2 {
-  color: #ffd500;
-  font-size: 48px;
-  font-weight: 900;
-  margin-bottom: 12px;
-}
+          .menu a {
+            font-size: 12px;
+            background: rgba(255, 213, 0, 0.12);
+            border: 1px solid rgba(255, 213, 0, 0.25);
+            padding: 9px 11px;
+            border-radius: 999px;
+          }
 
-.factsIntro {
-  color: #ddd;
-  font-size: 20px;
-  margin-bottom: 32px;
-}
+          .hero {
+            grid-template-columns: 1fr;
+            padding: 52px 18px;
+            gap: 36px;
+            text-align: center;
+          }
 
-.factsGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-}
+          .title {
+            font-size: 46px;
+            line-height: 1;
+            letter-spacing: -1px;
+            word-break: normal;
+          }
 
-.factCard {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,213,0,0.22);
-  border-radius: 22px;
-  padding: 24px;
-}
+          .text {
+            font-size: 18px;
+            margin: 0 auto;
+          }
 
-.factCard span {
-  display: block;
-  color: #ffd500;
-  font-weight: 900;
-  text-transform: uppercase;
-  font-size: 13px;
-  margin-bottom: 12px;
-}
+          .badges {
+            justify-content: center;
+          }
 
-.factCard strong {
-  display: block;
-  font-size: 28px;
-  margin-bottom: 10px;
-}
+          .badge {
+            font-size: 13px;
+            padding: 10px 14px;
+          }
 
-.factCard p {
-  color: #ccc;
-  line-height: 1.5;
-}
+          .shirtCard {
+            max-width: 340px;
+            padding: 18px;
+          }
 
+          .shirtImage {
+            inset: 18px;
+            width: calc(100% - 36px);
+            height: calc(100% - 36px);
+          }
+
+          .section {
+            padding: 40px 18px 80px;
+          }
+
+          .sectionTitle {
+            font-size: 38px;
+            text-align: center;
+          }
+
+          .programItem {
+            font-size: 17px;
+            gap: 14px;
+            padding: 18px;
+          }
+
+          .time {
+            min-width: 64px;
+          }
+
+          .spotifyGrid {
+            grid-template-columns: 1fr;
+          }
+
+          .musicBanner {
+            border-radius: 18px;
+          }
+
+          .factsGrid {
+            grid-template-columns: 1fr;
+          }
+
+          .factsSection h2 {
+            font-size: 34px;
+            text-align: center;
+          }
+
+          .factsIntro {
+            text-align: center;
+            font-size: 17px;
+          }
         }
       `}</style>
 
@@ -311,8 +411,8 @@ export default function EventPage({
           </h1>
 
           <p className="text">
-            Én gjeng. Én kultur. Fotball-VM, konkurranser, musikk og
-            sommerfest med ekte Betonmast-stemning.
+            Én gjeng. Én kultur. Fotball-VM, konkurranser, musikk og sommerfest
+            med ekte Betonmast-stemning.
           </p>
 
           <div className="badges">
@@ -324,10 +424,18 @@ export default function EventPage({
 
         <div className="visual">
           <div className="shirtCard">
+            <div className="shirtSpacer" />
+
             <img
-              key={shirtIndex}
-              src={shirts[shirtIndex]}
-              className="shirtImage"
+              src="/events/betonmast-sommerfest/drakt-front.jpg"
+              alt="Fotballdrakt front"
+              className={`shirtImage ${shirtIndex === 0 ? 'active' : 'hidden'}`}
+            />
+
+            <img
+              src="/events/betonmast-sommerfest/drakt-back.jpg"
+              alt="Fotballdrakt bakside"
+              className={`shirtImage ${shirtIndex === 1 ? 'active' : 'hidden'}`}
             />
           </div>
         </div>
@@ -365,7 +473,7 @@ export default function EventPage({
       </section>
 
       <section className="section" id="musikk">
-  <h2 className="sectionTitle">MUSIKK</h2>
+        <h2 className="sectionTitle">MUSIKK</h2>
 
         <div className="spotifyGrid">
           <div className="spotifyCard">
@@ -373,13 +481,13 @@ export default function EventPage({
             <p>Den første låta — klar for allsang.</p>
 
             <a
-  href="https://open.spotify.com/track/45H8lXkftq2qzGA1bQbV7T"
-  target="_blank"
-  rel="noreferrer"
-  className="spotifyBtn"
->
-  Hør på Spotify ↗
-</a>
+              href="https://open.spotify.com/track/45H8lXkftq2qzGA1bQbV7T"
+              target="_blank"
+              rel="noreferrer"
+              className="spotifyBtn"
+            >
+              Hør på Spotify ↗
+            </a>
           </div>
 
           <div className="spotifyCard">
@@ -393,57 +501,60 @@ export default function EventPage({
             <h3>HELT RÅ</h3>
             <p>Offisiell Betonmast-stemning.</p>
 
-        <a
-  href="https://www.youtube.com/watch?v=OSSbtGlNLRY"
-  target="_blank"
-  rel="noreferrer"
-  className="spotifyBtn"
->
-  Se på YouTube ↗
-</a>
+            <a
+              href="https://www.youtube.com/watch?v=OSSbtGlNLRY"
+              target="_blank"
+              rel="noreferrer"
+              className="spotifyBtn"
+            >
+              Se på YouTube ↗
+            </a>
           </div>
-       </div>
+        </div>
 
-<div className="musicBannerWrap">
-  <img
-    src="/events/betonmast-sommerfest/hero-banner.jpg"
-    alt="Fotball VM 2026 Norway"
-    className="musicBanner"
-  />
-</div>
-<div className="factsSection">
-  <h2>LIVE & FAKTA</h2>
-  <p className="factsIntro">
-    Her samler vi nyttig live-info og morsomme fakta før og under arrangementet.
-  </p>
+        <div className="musicBannerWrap">
+          <img
+            src="/events/betonmast-sommerfest/hero-banner.jpg"
+            alt="Fotball VM 2026 Norway"
+            className="musicBanner"
+          />
+        </div>
 
-  <div className="factsGrid">
-    <div className="factCard">
-      <span>Vær Oslo</span>
-      <strong>Kommer snart</strong>
-      <p>Live værmelding kan kobles inn her.</p>
-    </div>
+        <div className="factsSection">
+          <h2>LIVE & FAKTA</h2>
 
-    <div className="factCard">
-      <span>Badevann</span>
-      <strong>Kommer snart</strong>
-      <p>Badevannstemperatur for Oslofjorden.</p>
-    </div>
+          <p className="factsIntro">
+            Her samler vi nyttig live-info og morsomme fakta før og under
+            arrangementet.
+          </p>
 
-    <div className="factCard">
-      <span>Boligindeks</span>
-      <strong>24 mnd</strong>
-      <p>Graf eller nøkkeltall kan legges inn her.</p>
-    </div>
+          <div className="factsGrid">
+            <div className="factCard">
+              <span>Vær Oslo</span>
+              <strong>Kommer snart</strong>
+              <p>Live værmelding kan kobles inn her.</p>
+            </div>
 
-    <div className="factCard">
-      <span>Ekstra modul</span>
-      <strong>Ledig</strong>
-      <p>Plass til det kunden spør om senere.</p>
-    </div>
-  </div>
-</div>
-</section>
+            <div className="factCard">
+              <span>Badevann</span>
+              <strong>Kommer snart</strong>
+              <p>Badevannstemperatur for Oslofjorden.</p>
+            </div>
+
+            <div className="factCard">
+              <span>Boligindeks</span>
+              <strong>24 mnd</strong>
+              <p>Graf eller nøkkeltall kan legges inn her.</p>
+            </div>
+
+            <div className="factCard">
+              <span>Ekstra modul</span>
+              <strong>Ledig</strong>
+              <p>Plass til det kunden spør om senere.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
