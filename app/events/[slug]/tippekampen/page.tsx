@@ -434,7 +434,7 @@ export default function TippekampenPage() {
   .leaderboardRow div:first-child {
     font-size: 20px;
   }
-} 
+}
         }
       `}</style>
 
