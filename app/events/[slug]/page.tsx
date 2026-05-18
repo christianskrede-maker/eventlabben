@@ -231,6 +231,67 @@ export default function EventPage({
             flex-wrap: wrap;
             justify-content: flex-end;
           }
+          .factsSection {
+  margin-top: 80px;
+  padding-top: 56px;
+  border-top: 1px solid rgba(255,213,0,0.25);
+}
+
+.factsSection h2 {
+  color: #ffd500;
+  font-size: 48px;
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+.factsIntro {
+  color: #ddd;
+  font-size: 20px;
+  margin-bottom: 32px;
+}
+
+.factsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.factCard {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,213,0,0.22);
+  border-radius: 22px;
+  padding: 24px;
+}
+
+.factCard span {
+  display: block;
+  color: #ffd500;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.factCard strong {
+  display: block;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.factCard p {
+  color: #ccc;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .factsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .factsSection h2 {
+    font-size: 36px;
+  }
+}
         }
       `}</style>
 
@@ -351,7 +412,38 @@ export default function EventPage({
     className="musicBanner"
   />
 </div>
+<div className="factsSection">
+  <h2>LIVE & FAKTA</h2>
+  <p className="factsIntro">
+    Her samler vi nyttig live-info og morsomme fakta før og under arrangementet.
+  </p>
 
+  <div className="factsGrid">
+    <div className="factCard">
+      <span>Vær Oslo</span>
+      <strong>Kommer snart</strong>
+      <p>Live værmelding kan kobles inn her.</p>
+    </div>
+
+    <div className="factCard">
+      <span>Badevann</span>
+      <strong>Kommer snart</strong>
+      <p>Badevannstemperatur for Oslofjorden.</p>
+    </div>
+
+    <div className="factCard">
+      <span>Boligindeks</span>
+      <strong>24 mnd</strong>
+      <p>Graf eller nøkkeltall kan legges inn her.</p>
+    </div>
+
+    <div className="factCard">
+      <span>Ekstra modul</span>
+      <strong>Ledig</strong>
+      <p>Plass til det kunden spør om senere.</p>
+    </div>
+  </div>
+</div>
 </section>
     </main>
   );
