@@ -283,15 +283,6 @@ export default function EventPage({
   line-height: 1.5;
 }
 
-@media (max-width: 900px) {
-  .factsGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .factsSection h2 {
-    font-size: 36px;
-  }
-}
         }
       `}</style>
 
