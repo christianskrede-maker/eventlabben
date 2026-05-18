@@ -7,7 +7,7 @@ export default function TippekampenPage() {
         .page {
           min-height: 100vh;
           background:
-            radial-gradient(circle at top right, rgba(255,213,0,0.18), transparent 32%),
+            radial-gradient(circle at top right, rgba(255, 213, 0, 0.18), transparent 32%),
             linear-gradient(135deg, #050505, #111, #000);
           color: white;
           font-family: Arial, sans-serif;
@@ -18,7 +18,7 @@ export default function TippekampenPage() {
           padding: 28px 20px;
           text-align: center;
           border-bottom: 3px solid #ffd500;
-          background: rgba(0,0,0,0.92);
+          background: rgba(0, 0, 0, 0.92);
         }
 
         .logo {
@@ -62,7 +62,7 @@ export default function TippekampenPage() {
           margin-top: 28px;
           font-size: 22px;
           line-height: 1.6;
-          color: rgba(255,255,255,0.8);
+          color: rgba(255, 255, 255, 0.8);
           max-width: 720px;
         }
 
@@ -70,10 +70,10 @@ export default function TippekampenPage() {
         .prizeCard,
         .rulesCard,
         .formCard {
-          background: rgba(255,255,255,0.055);
-          border: 1px solid rgba(255,213,0,0.25);
+          background: rgba(255, 255, 255, 0.055);
+          border: 1px solid rgba(255, 213, 0, 0.25);
           border-radius: 30px;
-          box-shadow: 0 0 50px rgba(255,213,0,0.08);
+          box-shadow: 0 0 50px rgba(255, 213, 0, 0.08);
         }
 
         .matchCard {
@@ -121,7 +121,7 @@ export default function TippekampenPage() {
         .shirtBox img {
           width: 100%;
           border-radius: 18px;
-          border: 1px solid rgba(255,213,0,0.25);
+          border: 1px solid rgba(255, 213, 0, 0.25);
           background: #050505;
         }
 
@@ -177,7 +177,7 @@ export default function TippekampenPage() {
         }
 
         .prizeContent p {
-          color: rgba(255,255,255,0.8);
+          color: rgba(255, 255, 255, 0.8);
           line-height: 1.7;
           font-size: 18px;
         }
@@ -219,7 +219,7 @@ export default function TippekampenPage() {
         }
 
         .rulesCard p {
-          color: rgba(255,255,255,0.76);
+          color: rgba(255, 255, 255, 0.76);
           line-height: 1.55;
           margin: 0;
         }
@@ -229,7 +229,7 @@ export default function TippekampenPage() {
         }
 
         .formIntro {
-          color: rgba(255,255,255,0.78);
+          color: rgba(255, 255, 255, 0.78);
           line-height: 1.7;
           font-size: 18px;
           margin-bottom: 28px;
@@ -258,8 +258,8 @@ export default function TippekampenPage() {
         .field select {
           padding: 15px;
           border-radius: 14px;
-          border: 1px solid rgba(255,213,0,0.24);
-          background: rgba(255,255,255,0.06);
+          border: 1px solid rgba(255, 213, 0, 0.24);
+          background: rgba(255, 255, 255, 0.06);
           color: white;
           font-size: 16px;
         }
@@ -287,19 +287,67 @@ export default function TippekampenPage() {
 
         .note {
           margin-top: 18px;
-          color: rgba(255,255,255,0.72);
+          color: rgba(255, 255, 255, 0.72);
           line-height: 1.6;
           font-size: 15px;
         }
 
         .tieBox {
           margin-top: 22px;
-          background: rgba(255,213,0,0.12);
-          border: 1px solid rgba(255,213,0,0.3);
+          background: rgba(255, 213, 0, 0.12);
+          border: 1px solid rgba(255, 213, 0, 0.3);
           border-radius: 18px;
           padding: 18px;
           font-weight: 900;
           text-align: center;
+        }
+
+        .leaderboardWrap {
+          margin-top: 24px;
+          border-radius: 28px;
+          overflow: hidden;
+          border: 1px solid rgba(255, 213, 0, 0.22);
+          background: rgba(255, 255, 255, 0.04);
+        }
+
+        .leaderboardTop,
+        .leaderboardRow {
+          display: grid;
+          grid-template-columns: 80px 1fr 120px 180px;
+          gap: 18px;
+          padding: 20px 24px;
+          align-items: center;
+        }
+
+        .leaderboardTop {
+          background: rgba(255, 213, 0, 0.12);
+          color: #ffd500;
+          font-weight: 900;
+          text-transform: uppercase;
+          font-size: 13px;
+          letter-spacing: 1px;
+        }
+
+        .leaderboardRow {
+          border-top: 1px solid rgba(255, 255, 255, 0.06);
+          font-size: 18px;
+        }
+
+        .leaderboardRow.gold {
+          background: rgba(255, 213, 0, 0.08);
+        }
+
+        .leaderboardRow div:first-child {
+          font-weight: 900;
+          font-size: 24px;
+          color: #ffd500;
+        }
+
+        .leaderboardInfo {
+          margin-top: 18px;
+          color: rgba(255, 255, 255, 0.7);
+          text-align: center;
+          line-height: 1.6;
         }
 
         @media (max-width: 900px) {
@@ -369,72 +417,23 @@ export default function TippekampenPage() {
           .shirtBox {
             grid-template-columns: 1fr;
           }
-         .leaderboardWrap {
-  margin-top: 24px;
-  border-radius: 28px;
-  overflow: hidden;
-  border: 1px solid rgba(255,213,0,0.22);
-  background: rgba(255,255,255,0.04);
-}
 
-.leaderboardTop,
-.leaderboardRow {
-  display: grid;
-  grid-template-columns: 80px 1fr 120px 180px;
-  gap: 18px;
-  padding: 20px 24px;
-  align-items: center;
-}
+          .leaderboardTop,
+          .leaderboardRow {
+            grid-template-columns: 50px 1fr 70px;
+            font-size: 14px;
+            gap: 10px;
+            padding: 16px;
+          }
 
-.leaderboardTop {
-  background: rgba(255,213,0,0.12);
-  color: #ffd500;
-  font-weight: 900;
-  text-transform: uppercase;
-  font-size: 13px;
-  letter-spacing: 1px;
-}
+          .leaderboardTop div:last-child,
+          .leaderboardRow div:last-child {
+            display: none;
+          }
 
-.leaderboardRow {
-  border-top: 1px solid rgba(255,255,255,0.06);
-  font-size: 18px;
-}
-
-.leaderboardRow.gold {
-  background: rgba(255,213,0,0.08);
-}
-
-.leaderboardRow div:first-child {
-  font-weight: 900;
-  font-size: 24px;
-  color: #ffd500;
-}
-
-.leaderboardInfo {
-  margin-top: 18px;
-  color: rgba(255,255,255,0.7);
-  text-align: center;
-  line-height: 1.6;
-}
-
-@media (max-width: 900px) {
-  .leaderboardTop,
-  .leaderboardRow {
-    grid-template-columns: 50px 1fr 70px;
-    font-size: 14px;
-    gap: 10px;
-    padding: 16px;
-  }
-
-  .leaderboardTop div:last-child,
-  .leaderboardRow div:last-child {
-    display: none;
-  }
-
-  .leaderboardRow div:first-child {
-    font-size: 20px;
-  }
-}
+          .leaderboardRow div:first-child {
+            font-size: 20px;
+          }
         }
       `}</style>
 
@@ -682,57 +681,58 @@ export default function TippekampenPage() {
           </p>
         </div>
       </section>
+
       <section className="section">
-  <h2 className="sectionTitle">LIVE LEADERBOARD</h2>
+        <h2 className="sectionTitle">LIVE LEADERBOARD</h2>
 
-  <div className="leaderboardWrap">
-    <div className="leaderboardTop">
-      <div>#</div>
-      <div>Navn</div>
-      <div>Poeng</div>
-      <div>Status</div>
-    </div>
+        <div className="leaderboardWrap">
+          <div className="leaderboardTop">
+            <div>#</div>
+            <div>Navn</div>
+            <div>Poeng</div>
+            <div>Status</div>
+          </div>
 
-    <div className="leaderboardRow gold">
-      <div>1</div>
-      <div>Martin H.</div>
-      <div>12</div>
-      <div>🔥 Leder</div>
-    </div>
+          <div className="leaderboardRow gold">
+            <div>1</div>
+            <div>Martin H.</div>
+            <div>12</div>
+            <div>🔥 Leder</div>
+          </div>
 
-    <div className="leaderboardRow">
-      <div>2</div>
-      <div>Kristine L.</div>
-      <div>11</div>
-      <div>+1 riktig</div>
-    </div>
+          <div className="leaderboardRow">
+            <div>2</div>
+            <div>Kristine L.</div>
+            <div>11</div>
+            <div>+1 riktig</div>
+          </div>
 
-    <div className="leaderboardRow">
-      <div>3</div>
-      <div>Henrik S.</div>
-      <div>10</div>
-      <div>Henger med</div>
-    </div>
+          <div className="leaderboardRow">
+            <div>3</div>
+            <div>Henrik S.</div>
+            <div>10</div>
+            <div>Henger med</div>
+          </div>
 
-    <div className="leaderboardRow">
-      <div>4</div>
-      <div>Camilla R.</div>
-      <div>9</div>
-      <div>VAR reddet</div>
-    </div>
+          <div className="leaderboardRow">
+            <div>4</div>
+            <div>Camilla R.</div>
+            <div>9</div>
+            <div>VAR reddet</div>
+          </div>
 
-    <div className="leaderboardRow">
-      <div>5</div>
-      <div>Thomas B.</div>
-      <div>8</div>
-      <div>Trenger mål</div>
-    </div>
-  </div>
+          <div className="leaderboardRow">
+            <div>5</div>
+            <div>Thomas B.</div>
+            <div>8</div>
+            <div>Trenger mål</div>
+          </div>
+        </div>
 
-  <div className="leaderboardInfo">
-    Leaderboard oppdateres live under kampen av Betonmast-admin.
-  </div>
-</section>
+        <div className="leaderboardInfo">
+          Leaderboard oppdateres live under kampen av Betonmast-admin.
+        </div>
+      </section>
     </main>
   );
 }
