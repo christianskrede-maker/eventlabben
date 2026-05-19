@@ -223,6 +223,79 @@ function checkPassword(e: React.FormEvent) {
         </p>
 
         <div className="card">
+          <div className="fazitGrid">
+
+  <input
+    placeholder="Sluttresultat"
+    onChange={(e) => updateField("sluttresultat", e.target.value)}
+  />
+
+  <input
+    placeholder="Pause-resultat"
+    onChange={(e) => updateField("pauseResultat", e.target.value)}
+  />
+
+  <select onChange={(e) => updateField("vinner", e.target.value)}>
+    <option>Norge</option>
+    <option>Irak</option>
+    <option>Uavgjort</option>
+  </select>
+
+  <input
+    placeholder="Totalt mål"
+    onChange={(e) => updateField("maal", e.target.value)}
+  />
+
+  <select onChange={(e) => updateField("forsteMaal", e.target.value)}>
+    <option>Norge</option>
+    <option>Irak</option>
+    <option>Ingen mål</option>
+  </select>
+
+  <select onChange={(e) => updateField("forsteCorner", e.target.value)}>
+    <option>Norge</option>
+    <option>Irak</option>
+  </select>
+
+  <select onChange={(e) => updateField("forsteInnkast", e.target.value)}>
+    <option>Norge</option>
+    <option>Irak</option>
+  </select>
+
+  <select onChange={(e) => updateField("gultKort", e.target.value)}>
+    <option>Norge</option>
+    <option>Irak</option>
+    <option>Ingen</option>
+  </select>
+
+  <select onChange={(e) => updateField("forsteBytte", e.target.value)}>
+    <option>Norge</option>
+    <option>Irak</option>
+  </select>
+
+  <select onChange={(e) => updateField("straffe", e.target.value)}>
+    <option>Ja</option>
+    <option>Nei</option>
+  </select>
+
+  <select onChange={(e) => updateField("var", e.target.value)}>
+    <option>Ja</option>
+    <option>Nei</option>
+  </select>
+
+  <select onChange={(e) => updateField("rodtKort", e.target.value)}>
+    <option>Ja</option>
+    <option>Nei</option>
+  </select>
+
+  <select onChange={(e) => updateField("allsang", e.target.value)}>
+    <option>Før kampstart</option>
+    <option>I pausen</option>
+    <option>Etter første Norge-mål</option>
+    <option>Etter kampen</option>
+  </select>
+
+</div>
           <div
             className={`status ${
               tippingOpen ? 'open' : 'closed'
