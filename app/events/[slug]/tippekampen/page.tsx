@@ -666,7 +666,7 @@ async function handleSubmit(e: React.FormEvent) {
 
             <div className="field">
               <label>Totalt antall mål</label>
-              <input placeholder="3" />
+              <input name="maal" placeholder="4" />
             </div>
 
             <div className="field">
