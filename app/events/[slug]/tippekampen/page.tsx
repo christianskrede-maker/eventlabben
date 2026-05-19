@@ -1,70 +1,90 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function TippekampenPage() {
   const [formData, setFormData] = useState({
-  navn: '',
-  email: '',
-  sluttresultat: '',
-  pauseResultat: '',
-  vinner: 'Norge',
-  maal: '',
-  forsteMaal: 'Norge',
-  forsteCorner: 'Norge',
-  forsteInnkast: 'Norge',
-  gultKort: 'Norge',
-  forsteBytte: 'Norge',
-  straffe: 'Ja',
-  var: 'Ja',
-  rodtKort: 'Ja',
-  allsang: 'Før kampstart',
-});
+    navn: '',
+    email: '',
+    sluttresultat: '',
+    pauseResultat: '',
+    vinner: 'Norge',
+    maal: '',
+    forsteMaal: 'Norge',
+    forsteCorner: 'Norge',
+    forsteInnkast: 'Norge',
+    gultKort: 'Norge',
+    forsteBytte: 'Norge',
+    straffe: 'Ja',
+    var: 'Ja',
+    rodtKort: 'Nei',
+    allsang: 'Før kampstart',
+  });
 
-const [status, setStatus] = useState('');
-const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState('');
+  const [loading, setLoading] = useState(false);
 
-function updateField(field: string, value: string) {
-  setFormData((prev) => ({
-    ...prev,
-    [field]: value,
-  }));
-}
-
-async function handleSubmit(e: React.FormEvent) {
-  e.preventDefault();
-  setLoading(true);
-  setStatus('');
-
-  try {
-    const response = await fetch('/api/tippekampen', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
-
-    const result = await response.json();
-
-    if (result.success) {
-      setStatus('Takk! Tipset ditt er registrert.');
-    } else {
-      setStatus(result.error || 'Noe gikk galt.');
-    }
-  } catch {
-    setStatus('Kunne ikke sende inn tips akkurat nå.');
-  } finally {
-    setLoading(false);
+  function updateField(field: string, value: string) {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
   }
-}
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
+    setLoading(true);
+    setStatus('');
+
+    try {
+      const response = await fetch('/api/tippekampen', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus('Takk! Tipset ditt er registrert.');
+
+        setFormData({
+          navn: '',
+          email: '',
+          sluttresultat: '',
+          pauseResultat: '',
+          vinner: 'Norge',
+          maal: '',
+          forsteMaal: 'Norge',
+          forsteCorner: 'Norge',
+          forsteInnkast: 'Norge',
+          gultKort: 'Norge',
+          forsteBytte: 'Norge',
+          straffe: 'Ja',
+          var: 'Ja',
+          rodtKort: 'Nei',
+          allsang: 'Før kampstart',
+        });
+      } else {
+        setStatus(result.error || 'Noe gikk galt.');
+      }
+    } catch {
+      setStatus('Kunne ikke sende inn tips.');
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <main className="page">
       <style jsx>{`
         .page {
           min-height: 100vh;
           background:
-            radial-gradient(circle at top right, rgba(255, 213, 0, 0.18), transparent 32%),
+            radial-gradient(circle at top right, rgba(255,213,0,0.16), transparent 30%),
             linear-gradient(135deg, #050505, #111, #000);
           color: white;
           font-family: Arial, sans-serif;
@@ -75,12 +95,12 @@ async function handleSubmit(e: React.FormEvent) {
           padding: 28px 20px;
           text-align: center;
           border-bottom: 3px solid #ffd500;
-          background: rgba(0, 0, 0, 0.92);
+          background: rgba(0,0,0,0.92);
         }
 
         .logo {
-          max-width: 320px;
           width: 80%;
+          max-width: 320px;
           height: auto;
         }
 
@@ -89,26 +109,24 @@ async function handleSubmit(e: React.FormEvent) {
           margin: 0 auto;
           padding: 70px 24px 40px;
           display: grid;
-          grid-template-columns: 1.15fr 0.85fr;
-          gap: 42px;
+          grid-template-columns: 1.1fr 0.9fr;
+          gap: 40px;
           align-items: center;
         }
 
         .eyebrow {
           color: #ffd500;
           text-transform: uppercase;
-          letter-spacing: 2px;
           font-weight: 900;
+          letter-spacing: 2px;
           margin-bottom: 16px;
         }
 
         h1 {
-          font-size: 86px;
+          font-size: 84px;
           line-height: 0.95;
           margin: 0;
           font-weight: 900;
-          text-transform: uppercase;
-          letter-spacing: -3px;
         }
 
         h1 span {
@@ -116,84 +134,83 @@ async function handleSubmit(e: React.FormEvent) {
         }
 
         .lead {
-          margin-top: 28px;
+          margin-top: 26px;
           font-size: 22px;
-          line-height: 1.6;
-          color: rgba(255, 255, 255, 0.8);
-          max-width: 720px;
+          line-height: 1.7;
+          color: rgba(255,255,255,0.82);
         }
 
         .matchCard,
-        .prizeCard,
+        .formCard,
+        .leaderboardWrap,
         .rulesCard,
-        .formCard {
-          background: rgba(255, 255, 255, 0.055);
-          border: 1px solid rgba(255, 213, 0, 0.25);
-          border-radius: 30px;
-          box-shadow: 0 0 50px rgba(255, 213, 0, 0.08);
+        .prizeCard {
+          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(255,213,0,0.22);
+          border-radius: 28px;
+          box-shadow: 0 0 45px rgba(255,213,0,0.08);
         }
 
         .matchCard {
-          padding: 30px;
+          padding: 28px;
           text-align: center;
         }
 
         .teams {
           display: grid;
-          gap: 14px;
-          font-size: 38px;
+          gap: 12px;
+          font-size: 36px;
           font-weight: 900;
           text-transform: uppercase;
         }
 
         .vs {
           color: #ffd500;
-          font-size: 26px;
+          font-size: 24px;
         }
 
         .badges {
           margin-top: 24px;
           display: flex;
-          gap: 10px;
           flex-wrap: wrap;
+          gap: 10px;
           justify-content: center;
         }
 
         .badge {
           background: #ffd500;
           color: black;
-          padding: 11px 15px;
+          padding: 10px 15px;
           border-radius: 999px;
+          font-size: 13px;
           font-weight: 900;
-          font-size: 14px;
         }
 
         .shirtBox {
           margin-top: 24px;
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 14px;
+          gap: 12px;
         }
 
         .shirtBox img {
           width: 100%;
           border-radius: 18px;
-          border: 1px solid rgba(255, 213, 0, 0.25);
-          background: #050505;
+          border: 1px solid rgba(255,213,0,0.22);
         }
 
         .section {
           max-width: 1200px;
           margin: 0 auto;
-          padding: 54px 24px;
+          padding: 50px 24px;
         }
 
         .sectionTitle {
-          color: #ffd500;
           font-size: 48px;
-          text-transform: uppercase;
-          margin: 0 0 28px;
+          color: #ffd500;
+          margin-bottom: 26px;
           font-weight: 900;
+          text-transform: uppercase;
         }
 
         .prizeCard {
@@ -205,15 +222,14 @@ async function handleSubmit(e: React.FormEvent) {
         .farrisLogoBox {
           background: white;
           display: flex;
-          align-items: center;
           justify-content: center;
-          padding: 42px;
+          align-items: center;
+          padding: 40px;
         }
 
         .farrisLogoBox img {
-          max-width: 240px;
           width: 100%;
-          height: auto;
+          max-width: 220px;
         }
 
         .prizeContent {
@@ -234,9 +250,8 @@ async function handleSubmit(e: React.FormEvent) {
         }
 
         .prizeContent p {
-          color: rgba(255, 255, 255, 0.8);
           line-height: 1.7;
-          font-size: 18px;
+          color: rgba(255,255,255,0.82);
         }
 
         .prizeBtn {
@@ -244,7 +259,7 @@ async function handleSubmit(e: React.FormEvent) {
           margin-top: 22px;
           background: #ffd500;
           color: black;
-          padding: 15px 20px;
+          padding: 14px 18px;
           border-radius: 14px;
           font-weight: 900;
           text-decoration: none;
@@ -265,7 +280,6 @@ async function handleSubmit(e: React.FormEvent) {
           color: #ffd500;
           font-size: 13px;
           font-weight: 900;
-          text-transform: uppercase;
           margin-bottom: 10px;
         }
 
@@ -276,9 +290,8 @@ async function handleSubmit(e: React.FormEvent) {
         }
 
         .rulesCard p {
-          color: rgba(255, 255, 255, 0.76);
-          line-height: 1.55;
-          margin: 0;
+          line-height: 1.6;
+          color: rgba(255,255,255,0.76);
         }
 
         .formCard {
@@ -286,9 +299,8 @@ async function handleSubmit(e: React.FormEvent) {
         }
 
         .formIntro {
-          color: rgba(255, 255, 255, 0.78);
+          color: rgba(255,255,255,0.78);
           line-height: 1.7;
-          font-size: 18px;
           margin-bottom: 28px;
         }
 
@@ -306,17 +318,17 @@ async function handleSubmit(e: React.FormEvent) {
 
         .field label {
           color: #ffd500;
+          font-size: 13px;
           font-weight: 900;
           text-transform: uppercase;
-          font-size: 13px;
         }
 
         .field input,
         .field select {
           padding: 15px;
           border-radius: 14px;
-          border: 1px solid rgba(255, 213, 0, 0.24);
-          background: rgba(255, 255, 255, 0.06);
+          border: 1px solid rgba(255,213,0,0.24);
+          background: rgba(255,255,255,0.06);
           color: white;
           font-size: 16px;
         }
@@ -330,93 +342,68 @@ async function handleSubmit(e: React.FormEvent) {
         }
 
         .submitBtn {
+          width: 100%;
           margin-top: 28px;
           background: #ffd500;
           color: black;
           border: none;
-          padding: 18px 24px;
+          padding: 18px;
           border-radius: 16px;
           font-size: 18px;
           font-weight: 900;
           cursor: pointer;
-          width: 100%;
         }
 
-        .note {
+        .submitBtn:disabled {
+          opacity: 0.6;
+        }
+
+        .statusBox {
           margin-top: 18px;
-          color: rgba(255, 255, 255, 0.72);
-          line-height: 1.6;
-          font-size: 15px;
-        }
-
-        .tieBox {
-          margin-top: 22px;
-          background: rgba(255, 213, 0, 0.12);
-          border: 1px solid rgba(255, 213, 0, 0.3);
+          background: rgba(255,213,0,0.12);
+          border: 1px solid rgba(255,213,0,0.3);
           border-radius: 18px;
           padding: 18px;
-          font-weight: 900;
           text-align: center;
+          font-weight: 900;
         }
 
         .leaderboardWrap {
-          margin-top: 24px;
-          border-radius: 28px;
           overflow: hidden;
-          border: 1px solid rgba(255, 213, 0, 0.22);
-          background: rgba(255, 255, 255, 0.04);
         }
 
         .leaderboardTop,
         .leaderboardRow {
           display: grid;
           grid-template-columns: 80px 1fr 120px 180px;
-          gap: 18px;
+          gap: 16px;
           padding: 20px 24px;
           align-items: center;
         }
 
         .leaderboardTop {
-          background: rgba(255, 213, 0, 0.12);
+          background: rgba(255,213,0,0.12);
           color: #ffd500;
+          font-size: 13px;
           font-weight: 900;
           text-transform: uppercase;
-          font-size: 13px;
-          letter-spacing: 1px;
         }
 
         .leaderboardRow {
-          border-top: 1px solid rgba(255, 255, 255, 0.06);
-          font-size: 18px;
+          border-top: 1px solid rgba(255,255,255,0.06);
         }
 
         .leaderboardRow.gold {
-          background: rgba(255, 213, 0, 0.08);
-        }
-
-        .leaderboardRow div:first-child {
-          font-weight: 900;
-          font-size: 24px;
-          color: #ffd500;
+          background: rgba(255,213,0,0.08);
         }
 
         .leaderboardInfo {
           margin-top: 18px;
-          color: rgba(255, 255, 255, 0.7);
           text-align: center;
-          line-height: 1.6;
+          color: rgba(255,255,255,0.7);
         }
 
         @media (max-width: 900px) {
-          .top {
-            padding: 22px 16px;
-          }
-
-          .logo {
-            width: 86%;
-            max-width: 300px;
-          }
-
           .hero {
             grid-template-columns: 1fr;
             padding: 48px 18px 24px;
@@ -424,18 +411,11 @@ async function handleSubmit(e: React.FormEvent) {
           }
 
           h1 {
-            font-size: 46px;
-            letter-spacing: -1px;
+            font-size: 48px;
           }
 
           .lead {
             font-size: 18px;
-            margin-left: auto;
-            margin-right: auto;
-          }
-
-          .teams {
-            font-size: 30px;
           }
 
           .section {
@@ -447,20 +427,12 @@ async function handleSubmit(e: React.FormEvent) {
             text-align: center;
           }
 
-          .prizeCard {
+          .shirtBox {
             grid-template-columns: 1fr;
           }
 
-          .farrisLogoBox {
-            padding: 34px;
-          }
-
-          .prizeContent {
-            padding: 28px;
-          }
-
-          .prizeContent h3 {
-            font-size: 30px;
+          .prizeCard {
+            grid-template-columns: 1fr;
           }
 
           .rulesGrid {
@@ -471,25 +443,17 @@ async function handleSubmit(e: React.FormEvent) {
             grid-template-columns: 1fr;
           }
 
-          .shirtBox {
-            grid-template-columns: 1fr;
-          }
-
           .leaderboardTop,
           .leaderboardRow {
             grid-template-columns: 50px 1fr 70px;
-            font-size: 14px;
             gap: 10px;
             padding: 16px;
+            font-size: 14px;
           }
 
           .leaderboardTop div:last-child,
           .leaderboardRow div:last-child {
             display: none;
-          }
-
-          .leaderboardRow div:first-child {
-            font-size: 20px;
           }
         }
       `}</style>
@@ -511,8 +475,7 @@ async function handleSubmit(e: React.FormEvent) {
           </h1>
 
           <p className="lead">
-            Tipp på Norge–Irak og konkurrer mot kollegaene dine live under
-            kampen. Førstepremien er middag, spa og overnatting for to.
+            Tipp Norge–Irak og konkurrer live mot kollegaene dine under kampen.
           </p>
         </div>
 
@@ -530,77 +493,8 @@ async function handleSubmit(e: React.FormEvent) {
           </div>
 
           <div className="shirtBox">
-            <img
-              src="/events/betonmast-sommerfest/drakt-front.jpg"
-              alt="1998-drakt"
-            />
-            <img
-              src="/events/betonmast-sommerfest/drakt-back.jpg"
-              alt="Betonmast-drakt"
-            />
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <h2 className="sectionTitle">1. premie</h2>
-
-        <div className="prizeCard">
-          <div className="farrisLogoBox">
-            <img
-              src="/events/betonmast-sommerfest/farris-logo.png"
-              alt="Farris Bad"
-            />
-          </div>
-
-          <div className="prizeContent">
-            <div className="prizeLabel">Farris Bad</div>
-
-            <h3>Middag, spa og overnatting for to</h3>
-
-            <p>
-              Vinneren av Tippekampen får middag, spa og én overnatting for to
-              personer på Farris Bad.
-            </p>
-
-            <a
-              href="https://farrisbad.no"
-              target="_blank"
-              rel="noreferrer"
-              className="prizeBtn"
-            >
-              Se premien ↗
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <h2 className="sectionTitle">Regler</h2>
-
-        <div className="rulesGrid">
-          <div className="rulesCard">
-            <span>1</span>
-            <strong>Ett tips</strong>
-            <p>Du kan kun sende inn ett tips per e-postadresse.</p>
-          </div>
-
-          <div className="rulesCard">
-            <span>2</span>
-            <strong>Låses ved kampstart</strong>
-            <p>Alle tips må være sendt inn før kampen starter.</p>
-          </div>
-
-          <div className="rulesCard">
-            <span>3</span>
-            <strong>Live leaderboard</strong>
-            <p>Poenglisten kan oppdateres live under kampen.</p>
-          </div>
-
-          <div className="rulesCard">
-            <span>4</span>
-            <strong>Ved uavgjort</strong>
-            <p>Ved poenglikhet på toppen trekkes vinneren blant de likt plasserte.</p>
+            <img src="/events/betonmast-sommerfest/drakt-front.jpg" />
+            <img src="/events/betonmast-sommerfest/drakt-back.jpg" />
           </div>
         </div>
       </section>
@@ -609,55 +503,50 @@ async function handleSubmit(e: React.FormEvent) {
         <h2 className="sectionTitle">Lever ditt tips</h2>
 
         <form className="formCard" onSubmit={handleSubmit}>
-          <p className="formIntro">
-            Spørsmålene under gir nok spredning til å kåre en vinner blant mange
-            deltakere, men er fortsatt enkle å kontrollere etter kampen.
-          </p>
-
           <div className="formGrid">
+
             <div className="field">
               <label>Navn</label>
-            <input
-  placeholder="Ola Nordmann"
-  value={formData.navn}
-  onChange={(e) => updateField('navn', e.target.value)}
-/>
+              <input
+                value={formData.navn}
+                onChange={(e) => updateField('navn', e.target.value)}
+              />
             </div>
 
             <div className="field">
               <label>E-post</label>
               <input
-  placeholder="navn@betonmast.no"
-  value={formData.email}
-  onChange={(e) => updateField('email', e.target.value)}
-/>
+                value={formData.email}
+                onChange={(e) => updateField('email', e.target.value)}
+              />
             </div>
 
             <div className="field">
               <label>Sluttresultat</label>
               <input
-  placeholder="2-1"
-  value={formData.sluttresultat}
-  onChange={(e) =>
-    updateField('sluttresultat', e.target.value)
-  }
-/>
+                value={formData.sluttresultat}
+                onChange={(e) =>
+                  updateField('sluttresultat', e.target.value)
+                }
+              />
             </div>
 
             <div className="field">
               <label>Pause-resultat</label>
               <input
-  placeholder="1-0"
-  value={formData.pauseResultat}
-  onChange={(e) =>
-    updateField('pauseResultat', e.target.value)
-  }
-/>
+                value={formData.pauseResultat}
+                onChange={(e) =>
+                  updateField('pauseResultat', e.target.value)
+                }
+              />
             </div>
 
             <div className="field">
               <label>Hvem vinner?</label>
-              <select name="vinner">
+              <select
+                value={formData.vinner}
+                onChange={(e) => updateField('vinner', e.target.value)}
+              >
                 <option>Norge</option>
                 <option>Irak</option>
                 <option>Uavgjort</option>
@@ -666,12 +555,20 @@ async function handleSubmit(e: React.FormEvent) {
 
             <div className="field">
               <label>Totalt antall mål</label>
-              <input name="maal" placeholder="4" />
+              <input
+                value={formData.maal}
+                onChange={(e) => updateField('maal', e.target.value)}
+              />
             </div>
 
             <div className="field">
               <label>Første mål</label>
-              <select name="forsteMaal">
+              <select
+                value={formData.forsteMaal}
+                onChange={(e) =>
+                  updateField('forsteMaal', e.target.value)
+                }
+              >
                 <option>Norge</option>
                 <option>Irak</option>
                 <option>Ingen mål</option>
@@ -680,7 +577,12 @@ async function handleSubmit(e: React.FormEvent) {
 
             <div className="field">
               <label>Første corner</label>
-              <select name="forsteCorner">
+              <select
+                value={formData.forsteCorner}
+                onChange={(e) =>
+                  updateField('forsteCorner', e.target.value)
+                }
+              >
                 <option>Norge</option>
                 <option>Irak</option>
               </select>
@@ -688,7 +590,12 @@ async function handleSubmit(e: React.FormEvent) {
 
             <div className="field">
               <label>Første innkast</label>
-              <select name="forsteInnkast">
+              <select
+                value={formData.forsteInnkast}
+                onChange={(e) =>
+                  updateField('forsteInnkast', e.target.value)
+                }
+              >
                 <option>Norge</option>
                 <option>Irak</option>
               </select>
@@ -696,7 +603,12 @@ async function handleSubmit(e: React.FormEvent) {
 
             <div className="field">
               <label>Første gule kort</label>
-              <select name="gultKort">
+              <select
+                value={formData.gultKort}
+                onChange={(e) =>
+                  updateField('gultKort', e.target.value)
+                }
+              >
                 <option>Norge</option>
                 <option>Irak</option>
                 <option>Ingen</option>
@@ -705,23 +617,38 @@ async function handleSubmit(e: React.FormEvent) {
 
             <div className="field">
               <label>Første bytte</label>
-              <select name="forsteBytte">
+              <select
+                value={formData.forsteBytte}
+                onChange={(e) =>
+                  updateField('forsteBytte', e.target.value)
+                }
+              >
                 <option>Norge</option>
                 <option>Irak</option>
               </select>
             </div>
 
             <div className="field">
-              <label>Blir det straffe?</label>
-              <select name="straffe">
+              <label>Straffe?</label>
+              <select
+                value={formData.straffe}
+                onChange={(e) =>
+                  updateField('straffe', e.target.value)
+                }
+              >
                 <option>Ja</option>
                 <option>Nei</option>
               </select>
             </div>
 
             <div className="field">
-              <label>Blir det VAR-situasjon?</label>
-              <select name="var">
+              <label>VAR-situasjon?</label>
+              <select
+                value={formData.var}
+                onChange={(e) =>
+                  updateField('var', e.target.value)
+                }
+              >
                 <option>Ja</option>
                 <option>Nei</option>
               </select>
@@ -729,93 +656,44 @@ async function handleSubmit(e: React.FormEvent) {
 
             <div className="field">
               <label>Rødt kort?</label>
-              <select name="rodtKort">
+              <select
+                value={formData.rodtKort}
+                onChange={(e) =>
+                  updateField('rodtKort', e.target.value)
+                }
+              >
                 <option>Ja</option>
                 <option>Nei</option>
               </select>
             </div>
 
             <div className="field full">
-              <label>Bonus: Første Betonmast-allsang?</label>
-              <select name="allsang">
+              <label>Bonus: første allsang?</label>
+              <select
+                value={formData.allsang}
+                onChange={(e) =>
+                  updateField('allsang', e.target.value)
+                }
+              >
                 <option>Før kampstart</option>
                 <option>I pausen</option>
                 <option>Etter første Norge-mål</option>
                 <option>Etter kampen</option>
               </select>
             </div>
+
           </div>
 
           <button className="submitBtn" disabled={loading}>
-  {loading ? 'Sender...' : 'Send inn tips'}
-</button>
+            {loading ? 'Sender...' : 'Send inn tips'}
+          </button>
+
           {status && (
-  <div className="tieBox">
-    {status}
-  </div>
-)}
-
-          <div className="tieBox">
-            Ved poenglikhet på toppen trekkes vinneren blant de likt plasserte.
-          </div>
-
-          <p className="note">
-            Neste steg blir å koble skjemaet til Google Sheets og lage live
-            leaderboard.
-          </p>
+            <div className="statusBox">
+              {status}
+            </div>
+          )}
         </form>
-      </section>
-
-      <section className="section">
-        <h2 className="sectionTitle">LIVE LEADERBOARD</h2>
-
-        <div className="leaderboardWrap">
-          <div className="leaderboardTop">
-            <div>#</div>
-            <div>Navn</div>
-            <div>Poeng</div>
-            <div>Status</div>
-          </div>
-
-          <div className="leaderboardRow gold">
-            <div>1</div>
-            <div>Martin H.</div>
-            <div>12</div>
-            <div>🔥 Leder</div>
-          </div>
-
-          <div className="leaderboardRow">
-            <div>2</div>
-            <div>Kristine L.</div>
-            <div>11</div>
-            <div>+1 riktig</div>
-          </div>
-
-          <div className="leaderboardRow">
-            <div>3</div>
-            <div>Henrik S.</div>
-            <div>10</div>
-            <div>Henger med</div>
-          </div>
-
-          <div className="leaderboardRow">
-            <div>4</div>
-            <div>Camilla R.</div>
-            <div>9</div>
-            <div>VAR reddet</div>
-          </div>
-
-          <div className="leaderboardRow">
-            <div>5</div>
-            <div>Thomas B.</div>
-            <div>8</div>
-            <div>Trenger mål</div>
-          </div>
-        </div>
-
-        <div className="leaderboardInfo">
-          Leaderboard oppdateres live under kampen av Betonmast-admin.
-        </div>
       </section>
     </main>
   );
