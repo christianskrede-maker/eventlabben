@@ -3,6 +3,61 @@
 import { useEffect, useState } from 'react';
 
 export default function TippekampenPage() {
+  const [formData, setFormData] = useState({
+  navn: '',
+  email: '',
+  sluttresultat: '',
+  pauseResultat: '',
+  vinner: 'Norge',
+  maal: '',
+  forsteMaal: 'Norge',
+  forsteCorner: 'Norge',
+  forsteInnkast: 'Norge',
+  gultKort: 'Norge',
+  forsteBytte: 'Norge',
+  straffe: 'Ja',
+  var: 'Ja',
+  rodtKort: 'Ja',
+  allsang: 'Før kampstart',
+});
+
+const [status, setStatus] = useState('');
+const [loading, setLoading] = useState(false);
+
+function updateField(field: string, value: string) {
+  setFormData((prev) => ({
+    ...prev,
+    [field]: value,
+  }));
+}
+
+async function handleSubmit(e: React.FormEvent) {
+  e.preventDefault();
+  setLoading(true);
+  setStatus('');
+
+  try {
+    const response = await fetch('/api/tippekampen', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      setStatus('Takk! Tipset ditt er registrert.');
+    } else {
+      setStatus(result.error || 'Noe gikk galt.');
+    }
+  } catch {
+    setStatus('Kunne ikke sende inn tips akkurat nå.');
+  } finally {
+    setLoading(false);
+  }
+}
   return (
     <main className="page">
       <style jsx>{`
