@@ -486,6 +486,23 @@ useEffect(() => {
             display: none;
           }
         }
+        .adminLink {
+  margin-top: 40px;
+  padding-bottom: 30px;
+  text-align: center;
+  opacity: 0.28;
+  font-size: 12px;
+}
+
+.adminLink a {
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.adminLink a:hover {
+  opacity: 1;
+}
       `}</style>
 
       <header className="top">
@@ -764,6 +781,11 @@ useEffect(() => {
           Leaderboard oppdateres live under kampen.
         </div>
       </section>
+      <div className="adminLink">
+  <a href="/events/betonmast-sommerfest/admin">
+    Admin
+  </a>
+</div>
     </main>
   );
 }
