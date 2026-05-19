@@ -608,7 +608,7 @@ async function handleSubmit(e: React.FormEvent) {
       <section className="section">
         <h2 className="sectionTitle">Lever ditt tips</h2>
 
-        <div className="formCard">
+        <form className="formCard" onSubmit={handleSubmit}>
           <p className="formIntro">
             Spørsmålene under gir nok spredning til å kåre en vinner blant mange
             deltakere, men er fortsatt enkle å kontrollere etter kampen.
@@ -617,22 +617,42 @@ async function handleSubmit(e: React.FormEvent) {
           <div className="formGrid">
             <div className="field">
               <label>Navn</label>
-              <input placeholder="Ola Nordmann" />
+            <input
+  placeholder="Ola Nordmann"
+  value={formData.navn}
+  onChange={(e) => updateField('navn', e.target.value)}
+/>
             </div>
 
             <div className="field">
               <label>E-post</label>
-              <input placeholder="navn@betonmast.no" />
+              <input
+  placeholder="navn@betonmast.no"
+  value={formData.email}
+  onChange={(e) => updateField('email', e.target.value)}
+/>
             </div>
 
             <div className="field">
               <label>Sluttresultat</label>
-              <input placeholder="2-1" />
+              <input
+  placeholder="2-1"
+  value={formData.sluttresultat}
+  onChange={(e) =>
+    updateField('sluttresultat', e.target.value)
+  }
+/>
             </div>
 
             <div className="field">
               <label>Pause-resultat</label>
-              <input placeholder="1-0" />
+              <input
+  placeholder="1-0"
+  value={formData.pauseResultat}
+  onChange={(e) =>
+    updateField('pauseResultat', e.target.value)
+  }
+/>
             </div>
 
             <div className="field">
@@ -726,7 +746,14 @@ async function handleSubmit(e: React.FormEvent) {
             </div>
           </div>
 
-          <button className="submitBtn">Send inn tips</button>
+          <button className="submitBtn" disabled={loading}>
+  {loading ? 'Sender...' : 'Send inn tips'}
+</button>
+          {status && (
+  <div className="tieBox">
+    {status}
+  </div>
+)}
 
           <div className="tieBox">
             Ved poenglikhet på toppen trekkes vinneren blant de likt plasserte.
@@ -736,7 +763,7 @@ async function handleSubmit(e: React.FormEvent) {
             Neste steg blir å koble skjemaet til Google Sheets og lage live
             leaderboard.
           </p>
-        </div>
+        </form>
       </section>
 
       <section className="section">
