@@ -507,7 +507,7 @@ useEffect(() => {
           </h1>
 
           <p className="lead">
-            Tipp Norge–Irak og konkurrer live mot kollegaene dine under kampen.
+            Tipp før kampen Norge–Irak og konkurrer live mot kollegaene dine under kampen.
           </p>
         </div>
 
