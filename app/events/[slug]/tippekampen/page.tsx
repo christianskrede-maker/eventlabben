@@ -49,7 +49,7 @@ async function fetchLeaderboard() {
 useEffect(() => {
   fetchLeaderboard();
 
-  const interval = setInterval(fetchLeaderboard, 10000);
+  const interval = setInterval(fetchLeaderboard, 5000);
 
   return () => clearInterval(interval);
 }, []);
