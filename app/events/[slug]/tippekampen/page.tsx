@@ -725,6 +725,45 @@ useEffect(() => {
           )}
         </form>
       </section>
+            <section className="section">
+        <h2 className="sectionTitle">LIVE LEADERBOARD</h2>
+
+        <div className="leaderboardWrap">
+
+          <div className="leaderboardTop">
+            <div>#</div>
+            <div>Navn</div>
+            <div>Poeng</div>
+            <div>Status</div>
+          </div>
+
+          {leaderboard.map((player, index) => (
+            <div
+              key={player.email}
+              className={`leaderboardRow ${index === 0 ? 'gold' : ''}`}
+            >
+              <div>{player.plass}</div>
+              <div>{player.navn}</div>
+              <div>{player.poeng}</div>
+              <div>{player.status}</div>
+            </div>
+          ))}
+
+          {leaderboard.length === 0 && (
+            <div className="leaderboardRow">
+              <div>-</div>
+              <div>Ingen tips registrert ennå</div>
+              <div>0</div>
+              <div>Venter</div>
+            </div>
+          )}
+
+        </div>
+
+        <div className="leaderboardInfo">
+          Leaderboard oppdateres live under kampen.
+        </div>
+      </section>
     </main>
   );
 }
