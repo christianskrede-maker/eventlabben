@@ -489,12 +489,14 @@ useEffect(() => {
       `}</style>
 
       <header className="top">
-        <img
-          src="/events/betonmast-sommerfest/betonmast-logo.jpg"
-          alt="Betonmast"
-          className="logo"
-        />
-      </header>
+  <a href="/events/betonmast-sommerfest">
+    <img
+      src="/events/betonmast-sommerfest/betonmast-logo.jpg"
+      alt="Betonmast"
+      className="logo"
+    />
+  </a>
+</header>
 
       <section className="hero">
         <div>
@@ -516,11 +518,9 @@ useEffect(() => {
             <span>🇮🇶 Irak</span>
           </div>
 
-          <div className="badges">
-            <div className="badge">VM 2026</div>
-            <div className="badge">Live leaderboard</div>
-            <div className="badge">Én innsending per e-post</div>
-          </div>
+         <div className="badges">
+  <div className="badge">Én innsending per e-post</div>
+</div>
 
           <div className="shirtBox">
             <img src="/events/betonmast-sommerfest/drakt-front.jpg" />
