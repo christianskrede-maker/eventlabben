@@ -657,7 +657,7 @@ async function handleSubmit(e: React.FormEvent) {
 
             <div className="field">
               <label>Hvem vinner?</label>
-              <select>
+              <select name="vinner">
                 <option>Norge</option>
                 <option>Irak</option>
                 <option>Uavgjort</option>
@@ -671,7 +671,7 @@ async function handleSubmit(e: React.FormEvent) {
 
             <div className="field">
               <label>Første mål</label>
-              <select>
+              <select name="forsteMaal">
                 <option>Norge</option>
                 <option>Irak</option>
                 <option>Ingen mål</option>
@@ -680,7 +680,7 @@ async function handleSubmit(e: React.FormEvent) {
 
             <div className="field">
               <label>Første corner</label>
-              <select>
+              <select name="forsteCorner">
                 <option>Norge</option>
                 <option>Irak</option>
               </select>
@@ -688,7 +688,7 @@ async function handleSubmit(e: React.FormEvent) {
 
             <div className="field">
               <label>Første innkast</label>
-              <select>
+              <select name="forsteInnkast">
                 <option>Norge</option>
                 <option>Irak</option>
               </select>
@@ -696,7 +696,7 @@ async function handleSubmit(e: React.FormEvent) {
 
             <div className="field">
               <label>Første gule kort</label>
-              <select>
+              <select name="gultKort">
                 <option>Norge</option>
                 <option>Irak</option>
                 <option>Ingen</option>
@@ -705,7 +705,7 @@ async function handleSubmit(e: React.FormEvent) {
 
             <div className="field">
               <label>Første bytte</label>
-              <select>
+              <select name="forsteBytte">
                 <option>Norge</option>
                 <option>Irak</option>
               </select>
@@ -713,7 +713,7 @@ async function handleSubmit(e: React.FormEvent) {
 
             <div className="field">
               <label>Blir det straffe?</label>
-              <select>
+              <select name="straffe">
                 <option>Ja</option>
                 <option>Nei</option>
               </select>
@@ -721,7 +721,7 @@ async function handleSubmit(e: React.FormEvent) {
 
             <div className="field">
               <label>Blir det VAR-situasjon?</label>
-              <select>
+              <select name="var">
                 <option>Ja</option>
                 <option>Nei</option>
               </select>
@@ -729,7 +729,7 @@ async function handleSubmit(e: React.FormEvent) {
 
             <div className="field">
               <label>Rødt kort?</label>
-              <select>
+              <select name="rodtKort">
                 <option>Ja</option>
                 <option>Nei</option>
               </select>
@@ -737,7 +737,7 @@ async function handleSubmit(e: React.FormEvent) {
 
             <div className="field full">
               <label>Bonus: Første Betonmast-allsang?</label>
-              <select>
+              <select name="allsang">
                 <option>Før kampstart</option>
                 <option>I pausen</option>
                 <option>Etter første Norge-mål</option>
