@@ -11,7 +11,7 @@ const [unlocked, setUnlocked] = useState(false);
 function checkPassword(e: React.FormEvent) {
   e.preventDefault();
 
-  if (password === 'beton') {
+  if (password === 'zoo') {
     setUnlocked(true);
   }
 }
