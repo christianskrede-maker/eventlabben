@@ -5,6 +5,16 @@ import { useEffect, useState } from 'react';
 export default function AdminPage() {
   const [loading, setLoading] = useState(false);
   const [tippingOpen, setTippingOpen] = useState(true);
+  const [password, setPassword] = useState('');
+const [unlocked, setUnlocked] = useState(false);
+
+function checkPassword(e: React.FormEvent) {
+  e.preventDefault();
+
+  if (password === 'beton') {
+    setUnlocked(true);
+  }
+}
 
   useEffect(() => {
     fetchStatus();
@@ -48,6 +58,74 @@ export default function AdminPage() {
     setLoading(false);
   }
 
+  if (!unlocked) {
+  return (
+    <main className="page">
+      <style jsx>{`
+        .page {
+          min-height: 100vh;
+          background: #050505;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: Arial, sans-serif;
+          padding: 20px;
+        }
+
+        .box {
+          width: 100%;
+          max-width: 420px;
+          background: rgba(255,255,255,0.06);
+          border: 1px solid rgba(255,213,0,0.25);
+          border-radius: 28px;
+          padding: 32px;
+          text-align: center;
+        }
+
+        h1 {
+          color: #ffd500;
+          margin-bottom: 18px;
+        }
+
+        input {
+          width: 100%;
+          padding: 16px;
+          border-radius: 14px;
+          border: 1px solid rgba(255,213,0,0.25);
+          background: rgba(255,255,255,0.08);
+          color: white;
+          font-size: 16px;
+          margin-bottom: 16px;
+        }
+
+        button {
+          width: 100%;
+          padding: 16px;
+          border: none;
+          border-radius: 14px;
+          background: #ffd500;
+          color: black;
+          font-weight: 900;
+          cursor: pointer;
+        }
+      `}</style>
+
+      <form className="box" onSubmit={checkPassword}>
+        <h1>Admin</h1>
+
+        <input
+          type="password"
+          placeholder="Skriv passord"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button type="submit">Logg inn</button>
+      </form>
+    </main>
+  );
+}
   return (
     <main className="page">
       <style jsx>{`
