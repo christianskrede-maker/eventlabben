@@ -255,6 +255,16 @@ export default function EventPage({ params }: { params: { slug: string } }) {
           border: 1px solid rgba(255, 213, 0, 0.22);
           border-radius: 22px;
           padding: 24px;
+          text-decoration: none;
+          color: white;
+          cursor: pointer;
+          transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .factCard:hover {
+          transform: translateY(-4px);
+          border-color: rgba(255, 213, 0, 0.55);
+          background: rgba(255, 255, 255, 0.08);
         }
 
         .factCard span {
@@ -315,7 +325,6 @@ export default function EventPage({ params }: { params: { slug: string } }) {
             font-size: 46px;
             line-height: 1;
             letter-spacing: -1px;
-            word-break: normal;
           }
 
           .text {
@@ -529,29 +538,49 @@ export default function EventPage({ params }: { params: { slug: string } }) {
           </p>
 
           <div className="factsGrid">
-            <div className="factCard">
+            <a
+              className="factCard"
+              href="https://www.yr.no/nb/v%C3%A6rvarsel/daglig-tabell/1-72837/Norge/Oslo/Oslo/Oslo"
+              target="_blank"
+              rel="noreferrer"
+            >
               <span>Vær Oslo</span>
-              <strong>Kommer snart</strong>
-              <p>Live værmelding kan kobles inn her.</p>
-            </div>
+              <strong>Yr</strong>
+              <p>Se oppdatert værmelding for Oslo.</p>
+            </a>
 
-            <div className="factCard">
+            <a
+              className="factCard"
+              href="https://badetemperaturer.no/oslo"
+              target="_blank"
+              rel="noreferrer"
+            >
               <span>Badevann</span>
-              <strong>Kommer snart</strong>
-              <p>Badevannstemperatur for Oslofjorden.</p>
-            </div>
+              <strong>Oslofjorden</strong>
+              <p>Sjekk badetemperaturer i Oslo-området.</p>
+            </a>
 
-            <div className="factCard">
+            <a
+              className="factCard"
+              href="https://eiendomnorge.no/boligprisstatistikk/statistikkbank/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <span>Boligindeks</span>
-              <strong>24 mnd</strong>
-              <p>Graf eller nøkkeltall kan legges inn her.</p>
-            </div>
+              <strong>Statistikkbank</strong>
+              <p>Se boligprisutvikling og nøkkeltall.</p>
+            </a>
 
-            <div className="factCard">
-              <span>Ekstra modul</span>
-              <strong>Ledig</strong>
-              <p>Plass til det kunden spør om senere.</p>
-            </div>
+            <a
+              className="factCard"
+              href="https://www.afgruppen.no/investor/aksjen/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span>AF Gruppen</span>
+              <strong>Aksjen</strong>
+              <p>Følg AF Gruppen på investorsiden.</p>
+            </a>
           </div>
         </div>
       </section>
