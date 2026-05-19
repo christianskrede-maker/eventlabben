@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function TippekampenPage() {
   const [formData, setFormData] = useState({
@@ -23,6 +23,36 @@ export default function TippekampenPage() {
 
   const [status, setStatus] = useState('');
   const [loading, setLoading] = useState(false);
+  const [leaderboard, setLeaderboard] = useState<
+  {
+    plass: number;
+    navn: string;
+    email: string;
+    poeng: number;
+    status: string;
+  }[]
+>([]);
+
+async function fetchLeaderboard() {
+  try {
+    const response = await fetch('/api/tippekampen');
+    const result = await response.json();
+
+    if (result.success) {
+      setLeaderboard(result.leaderboard || []);
+    }
+  } catch {
+    // gjør ingenting hvis henting feiler
+  }
+}
+
+useEffect(() => {
+  fetchLeaderboard();
+
+  const interval = setInterval(fetchLeaderboard, 10000);
+
+  return () => clearInterval(interval);
+}, []);
 
   function updateField(field: string, value: string) {
     setFormData((prev) => ({
