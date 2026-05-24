@@ -67,9 +67,7 @@ export default function TippekampenPage() {
     try {
       const response = await fetch('/api/tippekampen', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
@@ -126,6 +124,7 @@ export default function TippekampenPage() {
         .logo {
           width: 80%;
           max-width: 320px;
+          height: auto;
         }
 
         .hero {
@@ -151,6 +150,7 @@ export default function TippekampenPage() {
           line-height: 0.95;
           margin: 0;
           font-weight: 900;
+          letter-spacing: -2px;
         }
 
         h1 span {
@@ -162,6 +162,7 @@ export default function TippekampenPage() {
           font-size: 22px;
           line-height: 1.7;
           color: rgba(255,255,255,0.82);
+          max-width: 680px;
         }
 
         .matchCard,
@@ -218,6 +219,7 @@ export default function TippekampenPage() {
           width: 100%;
           border-radius: 18px;
           border: 1px solid rgba(255,213,0,0.22);
+          background: #050505;
         }
 
         .section {
@@ -273,6 +275,7 @@ export default function TippekampenPage() {
         .prizeContent p {
           line-height: 1.7;
           color: rgba(255,255,255,0.82);
+          font-size: 18px;
         }
 
         .prizeBtn {
@@ -300,6 +303,7 @@ export default function TippekampenPage() {
           display: flex;
           flex-direction: column;
           gap: 9px;
+          min-width: 0;
         }
 
         .field label {
@@ -311,6 +315,8 @@ export default function TippekampenPage() {
 
         .field input,
         .field select {
+          width: 100%;
+          box-sizing: border-box;
           padding: 15px;
           border-radius: 14px;
           border: 1px solid rgba(255,213,0,0.24);
@@ -334,6 +340,11 @@ export default function TippekampenPage() {
           font-size: 18px;
           font-weight: 900;
           cursor: pointer;
+        }
+
+        .submitBtn:disabled {
+          opacity: 0.6;
+          cursor: wait;
         }
 
         .statusBox {
@@ -393,6 +404,119 @@ export default function TippekampenPage() {
           color: white;
           text-decoration: none;
         }
+
+        @media (max-width: 900px) {
+          .top {
+            padding: 22px 16px;
+          }
+
+          .logo {
+            width: 86%;
+            max-width: 280px;
+          }
+
+          .hero {
+            grid-template-columns: 1fr;
+            padding: 46px 18px 26px;
+            text-align: center;
+            gap: 30px;
+          }
+
+          .eyebrow {
+            font-size: 13px;
+            letter-spacing: 1px;
+          }
+
+          h1 {
+            font-size: 46px;
+            letter-spacing: -1px;
+            line-height: 1;
+          }
+
+          .lead {
+            font-size: 18px;
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+          .matchCard {
+            padding: 20px;
+            border-radius: 22px;
+          }
+
+          .teams {
+            font-size: 28px;
+          }
+
+          .vs {
+            font-size: 20px;
+          }
+
+          .shirtBox {
+            grid-template-columns: 1fr;
+          }
+
+          .section {
+            padding: 38px 18px;
+          }
+
+          .sectionTitle {
+            font-size: 34px;
+            text-align: center;
+          }
+
+          .prizeCard {
+            grid-template-columns: 1fr;
+            border-radius: 22px;
+          }
+
+          .farrisLogoBox {
+            padding: 30px;
+          }
+
+          .farrisLogoBox img {
+            max-width: 190px;
+          }
+
+          .prizeContent {
+            padding: 26px;
+            text-align: center;
+          }
+
+          .prizeContent h3 {
+            font-size: 28px;
+          }
+
+          .prizeContent p {
+            font-size: 16px;
+          }
+
+          .formCard {
+            padding: 20px;
+            border-radius: 22px;
+          }
+
+          .formGrid {
+            grid-template-columns: 1fr;
+          }
+
+          .leaderboardTop,
+          .leaderboardRow {
+            grid-template-columns: 48px 1fr 64px;
+            gap: 10px;
+            padding: 15px 14px;
+            font-size: 14px;
+          }
+
+          .leaderboardTop div:last-child,
+          .leaderboardRow div:last-child {
+            display: none;
+          }
+
+          .leaderboardWrap {
+            border-radius: 22px;
+          }
+        }
       `}</style>
 
       <header className="top">
@@ -414,7 +538,8 @@ export default function TippekampenPage() {
           </h1>
 
           <p className="lead">
-            Tipp før kampen Norge–Irak og konkurrer live mot kollegaene dine under kampen.
+            Tipp før kampen Norge–Irak og konkurrer live mot kollegaene dine
+            under kampen.
           </p>
         </div>
 
@@ -430,8 +555,14 @@ export default function TippekampenPage() {
           </div>
 
           <div className="shirtBox">
-            <img src="/events/betonmast-sommerfest/drakt-front.jpg" />
-            <img src="/events/betonmast-sommerfest/drakt-back.jpg" />
+            <img
+              src="/events/betonmast-sommerfest/drakt-front.jpg"
+              alt="Fotballdrakt front"
+            />
+            <img
+              src="/events/betonmast-sommerfest/drakt-back.jpg"
+              alt="Fotballdrakt bakside"
+            />
           </div>
         </div>
       </section>
@@ -453,7 +584,8 @@ export default function TippekampenPage() {
             <h3>Middag, spa og overnatting for to</h3>
 
             <p>
-              Vinneren av Tippekampen får middag, spa og én overnatting for to personer på Farris Bad.
+              Vinneren av Tippekampen får middag, spa og én overnatting for to
+              personer på Farris Bad.
             </p>
 
             <a
@@ -473,7 +605,6 @@ export default function TippekampenPage() {
 
         <form className="formCard" onSubmit={handleSubmit}>
           <div className="formGrid">
-
             <div className="field">
               <label>Navn</label>
               <input
@@ -604,18 +735,13 @@ export default function TippekampenPage() {
                 <option>Nei</option>
               </select>
             </div>
-
           </div>
 
           <button className="submitBtn" disabled={loading}>
             {loading ? 'Sender...' : 'Send inn tips'}
           </button>
 
-          {status && (
-            <div className="statusBox">
-              {status}
-            </div>
-          )}
+          {status && <div className="statusBox">{status}</div>}
         </form>
       </section>
 
@@ -623,7 +749,6 @@ export default function TippekampenPage() {
         <h2 className="sectionTitle">LIVE LEADERBOARD</h2>
 
         <div className="leaderboardWrap">
-
           <div className="leaderboardTop">
             <div>#</div>
             <div>Navn</div>
@@ -643,6 +768,14 @@ export default function TippekampenPage() {
             </div>
           ))}
 
+          {leaderboard.length === 0 && (
+            <div className="leaderboardRow">
+              <div>-</div>
+              <div>Ingen tips registrert ennå</div>
+              <div>0</div>
+              <div>Venter</div>
+            </div>
+          )}
         </div>
 
         <div className="leaderboardInfo">
@@ -651,11 +784,8 @@ export default function TippekampenPage() {
       </section>
 
       <div className="adminLink">
-        <a href="/events/betonmast-sommerfest/admin">
-          Admin
-        </a>
+        <a href="/events/betonmast-sommerfest/admin">Admin</a>
       </div>
-
     </main>
   );
 }
