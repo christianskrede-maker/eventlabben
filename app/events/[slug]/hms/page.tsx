@@ -6,45 +6,50 @@ export default function HMSPage() {
       <style jsx>{`
         .page {
           min-height: 100vh;
-          background: linear-gradient(135deg, #003b2f, #061f1a, #000);
-          color: white;
+          background: #000;
+          padding: 24px 16px 40px;
           font-family: Arial, sans-serif;
-          padding: 28px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
 
         .top {
+          width: 100%;
           text-align: center;
-          margin-bottom: 36px;
+          margin-bottom: 28px;
         }
 
         .logo {
-          max-width: 320px;
           width: 80%;
-        }
-
-        h1 {
-          color: #7cffb2;
-          text-align: center;
-          font-size: 56px;
-          text-transform: uppercase;
+          max-width: 320px;
+          height: auto;
         }
 
         .poster {
-          display: block;
           width: 100%;
           max-width: 900px;
-          margin: 32px auto;
-          border-radius: 24px;
-          border: 2px solid rgba(124,255,178,0.35);
+          border-radius: 22px;
+          overflow: hidden;
+          box-shadow: 0 0 35px rgba(0,0,0,0.5);
+        }
+
+        .poster img {
+          width: 100%;
+          display: block;
         }
 
         @media (max-width: 800px) {
-          h1 {
-            font-size: 38px;
+          .page {
+            padding: 18px 10px 28px;
           }
 
-          .page {
-            padding: 18px;
+          .logo {
+            width: 88%;
+          }
+
+          .poster {
+            border-radius: 18px;
           }
         }
       `}</style>
@@ -59,13 +64,12 @@ export default function HMSPage() {
         </a>
       </div>
 
-      <h1>HMS</h1>
-
-      <img
-        src="/events/betonmast-sommerfest/hms-plakat.jpg"
-        alt="HMS-plakat"
-        className="poster"
-      />
+      <div className="poster">
+        <img
+          src="/events/betonmast-sommerfest/hms-plakat.jpg"
+          alt="HMS-plakat"
+        />
+      </div>
     </main>
   );
 }
