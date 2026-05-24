@@ -7,6 +7,7 @@ export default function AdminPage() {
   const [tippingOpen, setTippingOpen] = useState(true);
   const [password, setPassword] = useState('');
   const [unlocked, setUnlocked] = useState(false);
+  const [savedMessage, setSavedMessage] = useState('');
 
   const [fasit, setFasit] = useState({
     sluttresultat: '',
@@ -19,9 +20,7 @@ export default function AdminPage() {
     gultKort: 'Norge',
     forsteBytte: 'Norge',
     straffe: 'Ja',
-    var: 'Ja',
     rodtKort: 'Nei',
-    allsang: 'Før kampstart',
   });
 
   function checkPassword(e: React.FormEvent) {
@@ -55,6 +54,7 @@ export default function AdminPage() {
 
   async function updateTipping(value: boolean) {
     setLoading(true);
+    setSavedMessage('');
 
     try {
       const res = await fetch('/api/tippekampen', {
@@ -67,9 +67,11 @@ export default function AdminPage() {
 
       if (data.success) {
         setTippingOpen(value);
+        setSavedMessage(value ? 'Tippingen er åpnet.' : 'Tippingen er stengt.');
       }
     } catch (err) {
       console.error(err);
+      setSavedMessage('Kunne ikke oppdatere tipping-status.');
     }
 
     setLoading(false);
@@ -77,15 +79,25 @@ export default function AdminPage() {
 
   async function saveFasit() {
     setLoading(true);
+    setSavedMessage('');
 
     try {
-      await fetch('/api/tippekampen', {
+      const res = await fetch('/api/tippekampen', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'saveFasit', fasit }),
       });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setSavedMessage('Fasit er lagret. Leaderboard oppdateres.');
+      } else {
+        setSavedMessage('Kunne ikke lagre fasit.');
+      }
     } catch (err) {
       console.error(err);
+      setSavedMessage('Kunne ikke lagre fasit.');
     }
 
     setLoading(false);
@@ -97,7 +109,9 @@ export default function AdminPage() {
         <style jsx>{`
           .loginPage {
             min-height: 100vh;
-            background: #050505;
+            background:
+              radial-gradient(circle at top right, rgba(255,213,0,0.14), transparent 35%),
+              linear-gradient(135deg, #050505, #111, #000);
             color: white;
             display: flex;
             align-items: center;
@@ -114,14 +128,19 @@ export default function AdminPage() {
             border-radius: 28px;
             padding: 32px;
             text-align: center;
+            box-shadow: 0 0 45px rgba(255,213,0,0.08);
           }
 
           h1 {
             color: #ffd500;
+            margin: 0 0 20px;
+            font-size: 42px;
+            text-transform: uppercase;
           }
 
           input {
             width: 100%;
+            box-sizing: border-box;
             padding: 16px;
             border-radius: 14px;
             border: 1px solid rgba(255,213,0,0.25);
@@ -140,6 +159,7 @@ export default function AdminPage() {
             color: black;
             font-weight: 900;
             cursor: pointer;
+            font-size: 16px;
           }
         `}</style>
 
@@ -170,6 +190,7 @@ export default function AdminPage() {
           color: white;
           padding: 40px 20px;
           font-family: Arial, sans-serif;
+          overflow-x: hidden;
         }
 
         .wrap {
@@ -177,17 +198,34 @@ export default function AdminPage() {
           margin: 0 auto;
         }
 
+        .back {
+          display: inline-block;
+          margin-bottom: 24px;
+          color: #ffd500;
+          font-weight: 900;
+          text-decoration: none;
+        }
+
         h1 {
           font-size: 54px;
           color: #ffd500;
-          margin-bottom: 12px;
+          margin: 0 0 12px;
+          text-transform: uppercase;
+          letter-spacing: -1px;
+        }
+
+        h2 {
+          color: #ffd500;
+          font-size: 30px;
+          margin: 0 0 22px;
           text-transform: uppercase;
         }
 
         .sub {
-          color: rgba(255,255,255,0.7);
+          color: rgba(255,255,255,0.72);
           margin-bottom: 36px;
           line-height: 1.6;
+          font-size: 18px;
         }
 
         .card {
@@ -196,6 +234,7 @@ export default function AdminPage() {
           border-radius: 28px;
           padding: 30px;
           margin-bottom: 28px;
+          box-shadow: 0 0 45px rgba(255,213,0,0.06);
         }
 
         .status {
@@ -263,6 +302,7 @@ export default function AdminPage() {
           display: flex;
           flex-direction: column;
           gap: 8px;
+          min-width: 0;
         }
 
         label {
@@ -274,6 +314,8 @@ export default function AdminPage() {
 
         input,
         select {
+          width: 100%;
+          box-sizing: border-box;
           padding: 15px;
           border-radius: 14px;
           border: 1px solid rgba(255,213,0,0.24);
@@ -286,17 +328,52 @@ export default function AdminPage() {
           color: black;
         }
 
-        .back {
-          display: inline-block;
-          margin-bottom: 24px;
-          color: #ffd500;
+        .message {
+          margin-top: 18px;
+          background: rgba(255,213,0,0.12);
+          border: 1px solid rgba(255,213,0,0.3);
+          border-radius: 18px;
+          padding: 16px;
           font-weight: 900;
-          text-decoration: none;
+          text-align: center;
         }
 
         @media (max-width: 800px) {
+          .page {
+            padding: 26px 16px;
+          }
+
           h1 {
             font-size: 36px;
+            text-align: center;
+          }
+
+          h2 {
+            font-size: 24px;
+            text-align: center;
+          }
+
+          .sub {
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 26px;
+          }
+
+          .back {
+            display: block;
+            text-align: center;
+          }
+
+          .card {
+            padding: 20px;
+            border-radius: 22px;
+          }
+
+          .status {
+            width: 100%;
+            box-sizing: border-box;
+            justify-content: center;
+            text-align: center;
           }
 
           .fasitGrid {
@@ -346,6 +423,8 @@ export default function AdminPage() {
               Stopp tippingen
             </button>
           </div>
+
+          {savedMessage && <div className="message">{savedMessage}</div>}
         </div>
 
         <div className="card">
@@ -354,17 +433,26 @@ export default function AdminPage() {
           <div className="fasitGrid">
             <div className="field">
               <label>Sluttresultat</label>
-              <input value={fasit.sluttresultat} onChange={(e) => updateFasit('sluttresultat', e.target.value)} />
+              <input
+                value={fasit.sluttresultat}
+                onChange={(e) => updateFasit('sluttresultat', e.target.value)}
+              />
             </div>
 
             <div className="field">
               <label>Pause-resultat</label>
-              <input value={fasit.pauseResultat} onChange={(e) => updateFasit('pauseResultat', e.target.value)} />
+              <input
+                value={fasit.pauseResultat}
+                onChange={(e) => updateFasit('pauseResultat', e.target.value)}
+              />
             </div>
 
             <div className="field">
               <label>Hvem vinner?</label>
-              <select value={fasit.vinner} onChange={(e) => updateFasit('vinner', e.target.value)}>
+              <select
+                value={fasit.vinner}
+                onChange={(e) => updateFasit('vinner', e.target.value)}
+              >
                 <option>Norge</option>
                 <option>Irak</option>
                 <option>Uavgjort</option>
@@ -373,12 +461,18 @@ export default function AdminPage() {
 
             <div className="field">
               <label>Totalt antall mål</label>
-              <input value={fasit.maal} onChange={(e) => updateFasit('maal', e.target.value)} />
+              <input
+                value={fasit.maal}
+                onChange={(e) => updateFasit('maal', e.target.value)}
+              />
             </div>
 
             <div className="field">
               <label>Første mål</label>
-              <select value={fasit.forsteMaal} onChange={(e) => updateFasit('forsteMaal', e.target.value)}>
+              <select
+                value={fasit.forsteMaal}
+                onChange={(e) => updateFasit('forsteMaal', e.target.value)}
+              >
                 <option>Norge</option>
                 <option>Irak</option>
                 <option>Ingen mål</option>
@@ -387,7 +481,10 @@ export default function AdminPage() {
 
             <div className="field">
               <label>Første corner</label>
-              <select value={fasit.forsteCorner} onChange={(e) => updateFasit('forsteCorner', e.target.value)}>
+              <select
+                value={fasit.forsteCorner}
+                onChange={(e) => updateFasit('forsteCorner', e.target.value)}
+              >
                 <option>Norge</option>
                 <option>Irak</option>
               </select>
@@ -395,7 +492,10 @@ export default function AdminPage() {
 
             <div className="field">
               <label>Første innkast</label>
-              <select value={fasit.forsteInnkast} onChange={(e) => updateFasit('forsteInnkast', e.target.value)}>
+              <select
+                value={fasit.forsteInnkast}
+                onChange={(e) => updateFasit('forsteInnkast', e.target.value)}
+              >
                 <option>Norge</option>
                 <option>Irak</option>
               </select>
@@ -403,61 +503,6 @@ export default function AdminPage() {
 
             <div className="field">
               <label>Første gule kort</label>
-              <select value={fasit.gultKort} onChange={(e) => updateFasit('gultKort', e.target.value)}>
-                <option>Norge</option>
-                <option>Irak</option>
-                <option>Ingen</option>
-              </select>
-            </div>
-
-            <div className="field">
-              <label>Første bytte</label>
-              <select value={fasit.forsteBytte} onChange={(e) => updateFasit('forsteBytte', e.target.value)}>
-                <option>Norge</option>
-                <option>Irak</option>
-              </select>
-            </div>
-
-            <div className="field">
-              <label>Straffe?</label>
-              <select value={fasit.straffe} onChange={(e) => updateFasit('straffe', e.target.value)}>
-                <option>Ja</option>
-                <option>Nei</option>
-              </select>
-            </div>
-
-            <div className="field">
-              <label>VAR-situasjon?</label>
-              <select value={fasit.var} onChange={(e) => updateFasit('var', e.target.value)}>
-                <option>Ja</option>
-                <option>Nei</option>
-              </select>
-            </div>
-
-            <div className="field">
-              <label>Rødt kort?</label>
-              <select value={fasit.rodtKort} onChange={(e) => updateFasit('rodtKort', e.target.value)}>
-                <option>Ja</option>
-                <option>Nei</option>
-              </select>
-            </div>
-
-            <div className="field">
-              <label>Første allsang?</label>
-              <select value={fasit.allsang} onChange={(e) => updateFasit('allsang', e.target.value)}>
-                <option>Før kampstart</option>
-                <option>I pausen</option>
-                <option>Etter første Norge-mål</option>
-                <option>Etter kampen</option>
-              </select>
-            </div>
-          </div>
-
-          <button className="saveBtn" onClick={saveFasit} disabled={loading}>
-            Lagre fasit
-          </button>
-        </div>
-      </div>
-    </main>
-  );
-}
+              <select
+                value={fasit.gultKort}
+                onChange={(e) => updateFasit('gultKort',
