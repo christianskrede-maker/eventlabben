@@ -7,7 +7,7 @@ export default function AdminPage() {
   const [tippingOpen, setTippingOpen] = useState(true);
   const [password, setPassword] = useState('');
   const [unlocked, setUnlocked] = useState(false);
-  const [savedMessage, setSavedMessage] = useState('');
+  const [message, setMessage] = useState('');
 
   const [fasit, setFasit] = useState({
     sluttresultat: '',
@@ -25,17 +25,11 @@ export default function AdminPage() {
 
   function checkPassword(e: React.FormEvent) {
     e.preventDefault();
-
-    if (password === 'zoo') {
-      setUnlocked(true);
-    }
+    if (password === 'zoo') setUnlocked(true);
   }
 
   function updateFasit(field: string, value: string) {
-    setFasit((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
+    setFasit((prev) => ({ ...prev, [field]: value }));
   }
 
   useEffect(() => {
@@ -47,14 +41,12 @@ export default function AdminPage() {
       const res = await fetch('/api/tippekampen?mode=status');
       const data = await res.json();
       setTippingOpen(data.tippingOpen);
-    } catch (err) {
-      console.error(err);
-    }
+    } catch {}
   }
 
   async function updateTipping(value: boolean) {
     setLoading(true);
-    setSavedMessage('');
+    setMessage('');
 
     try {
       const res = await fetch('/api/tippekampen', {
@@ -67,11 +59,10 @@ export default function AdminPage() {
 
       if (data.success) {
         setTippingOpen(value);
-        setSavedMessage(value ? 'Tippingen er åpnet.' : 'Tippingen er stengt.');
+        setMessage(value ? 'Tippingen er åpnet.' : 'Tippingen er stengt.');
       }
-    } catch (err) {
-      console.error(err);
-      setSavedMessage('Kunne ikke oppdatere tipping-status.');
+    } catch {
+      setMessage('Kunne ikke oppdatere status.');
     }
 
     setLoading(false);
@@ -79,7 +70,7 @@ export default function AdminPage() {
 
   async function saveFasit() {
     setLoading(true);
-    setSavedMessage('');
+    setMessage('');
 
     try {
       const res = await fetch('/api/tippekampen', {
@@ -91,13 +82,12 @@ export default function AdminPage() {
       const data = await res.json();
 
       if (data.success) {
-        setSavedMessage('Fasit er lagret. Leaderboard oppdateres.');
+        setMessage('Fasit lagret. Leaderboard oppdateres.');
       } else {
-        setSavedMessage('Kunne ikke lagre fasit.');
+        setMessage('Kunne ikke lagre fasit.');
       }
-    } catch (err) {
-      console.error(err);
-      setSavedMessage('Kunne ikke lagre fasit.');
+    } catch {
+      setMessage('Kunne ikke lagre fasit.');
     }
 
     setLoading(false);
@@ -109,9 +99,7 @@ export default function AdminPage() {
         <style jsx>{`
           .loginPage {
             min-height: 100vh;
-            background:
-              radial-gradient(circle at top right, rgba(255,213,0,0.14), transparent 35%),
-              linear-gradient(135deg, #050505, #111, #000);
+            background: #050505;
             color: white;
             display: flex;
             align-items: center;
@@ -128,14 +116,10 @@ export default function AdminPage() {
             border-radius: 28px;
             padding: 32px;
             text-align: center;
-            box-shadow: 0 0 45px rgba(255,213,0,0.08);
           }
 
           h1 {
             color: #ffd500;
-            margin: 0 0 20px;
-            font-size: 42px;
-            text-transform: uppercase;
           }
 
           input {
@@ -159,7 +143,6 @@ export default function AdminPage() {
             color: black;
             font-weight: 900;
             cursor: pointer;
-            font-size: 16px;
           }
         `}</style>
 
@@ -211,21 +194,17 @@ export default function AdminPage() {
           color: #ffd500;
           margin: 0 0 12px;
           text-transform: uppercase;
-          letter-spacing: -1px;
         }
 
         h2 {
           color: #ffd500;
-          font-size: 30px;
-          margin: 0 0 22px;
-          text-transform: uppercase;
+          margin-top: 0;
         }
 
         .sub {
-          color: rgba(255,255,255,0.72);
+          color: rgba(255,255,255,0.7);
           margin-bottom: 36px;
           line-height: 1.6;
-          font-size: 18px;
         }
 
         .card {
@@ -234,7 +213,6 @@ export default function AdminPage() {
           border-radius: 28px;
           padding: 30px;
           margin-bottom: 28px;
-          box-shadow: 0 0 45px rgba(255,213,0,0.06);
         }
 
         .status {
@@ -302,7 +280,6 @@ export default function AdminPage() {
           display: flex;
           flex-direction: column;
           gap: 8px;
-          min-width: 0;
         }
 
         label {
@@ -348,20 +325,11 @@ export default function AdminPage() {
             text-align: center;
           }
 
-          h2 {
-            font-size: 24px;
-            text-align: center;
-          }
-
-          .sub {
-            font-size: 16px;
-            text-align: center;
-            margin-bottom: 26px;
-          }
-
+          h2,
+          .sub,
           .back {
-            display: block;
             text-align: center;
+            display: block;
           }
 
           .card {
@@ -373,7 +341,6 @@ export default function AdminPage() {
             width: 100%;
             box-sizing: border-box;
             justify-content: center;
-            text-align: center;
           }
 
           .fasitGrid {
@@ -424,7 +391,7 @@ export default function AdminPage() {
             </button>
           </div>
 
-          {savedMessage && <div className="message">{savedMessage}</div>}
+          {message && <div className="message">{message}</div>}
         </div>
 
         <div className="card">
@@ -505,4 +472,53 @@ export default function AdminPage() {
               <label>Første gule kort</label>
               <select
                 value={fasit.gultKort}
-                onChange={(e) => updateFasit('gultKort',
+                onChange={(e) => updateFasit('gultKort', e.target.value)}
+              >
+                <option>Norge</option>
+                <option>Irak</option>
+                <option>Ingen</option>
+              </select>
+            </div>
+
+            <div className="field">
+              <label>Første bytte</label>
+              <select
+                value={fasit.forsteBytte}
+                onChange={(e) => updateFasit('forsteBytte', e.target.value)}
+              >
+                <option>Norge</option>
+                <option>Irak</option>
+              </select>
+            </div>
+
+            <div className="field">
+              <label>Straffe?</label>
+              <select
+                value={fasit.straffe}
+                onChange={(e) => updateFasit('straffe', e.target.value)}
+              >
+                <option>Ja</option>
+                <option>Nei</option>
+              </select>
+            </div>
+
+            <div className="field">
+              <label>Rødt kort?</label>
+              <select
+                value={fasit.rodtKort}
+                onChange={(e) => updateFasit('rodtKort', e.target.value)}
+              >
+                <option>Ja</option>
+                <option>Nei</option>
+              </select>
+            </div>
+          </div>
+
+          <button className="saveBtn" onClick={saveFasit} disabled={loading}>
+            {loading ? 'Lagrer...' : 'Lagre fasit'}
+          </button>
+        </div>
+      </div>
+    </main>
+  );
+}
