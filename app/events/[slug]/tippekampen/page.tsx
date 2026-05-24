@@ -16,43 +16,40 @@ export default function TippekampenPage() {
     gultKort: 'Norge',
     forsteBytte: 'Norge',
     straffe: 'Ja',
-    var: 'Ja',
     rodtKort: 'Nei',
-    allsang: 'Før kampstart',
   });
 
   const [status, setStatus] = useState('');
   const [loading, setLoading] = useState(false);
+
   const [leaderboard, setLeaderboard] = useState<
-  {
-    plass: number;
-    navn: string;
-    email: string;
-    poeng: number;
-    status: string;
-  }[]
->([]);
+    {
+      plass: number;
+      navn: string;
+      email: string;
+      poeng: number;
+      status: string;
+    }[]
+  >([]);
 
-async function fetchLeaderboard() {
-  try {
-    const response = await fetch('/api/tippekampen');
-    const result = await response.json();
+  async function fetchLeaderboard() {
+    try {
+      const response = await fetch('/api/tippekampen');
+      const result = await response.json();
 
-    if (result.success) {
-      setLeaderboard(result.leaderboard || []);
-    }
-  } catch {
-    // gjør ingenting hvis henting feiler
+      if (result.success) {
+        setLeaderboard(result.leaderboard || []);
+      }
+    } catch {}
   }
-}
 
-useEffect(() => {
-  fetchLeaderboard();
+  useEffect(() => {
+    fetchLeaderboard();
 
-  const interval = setInterval(fetchLeaderboard, 5000);
+    const interval = setInterval(fetchLeaderboard, 5000);
 
-  return () => clearInterval(interval);
-}, []);
+    return () => clearInterval(interval);
+  }, []);
 
   function updateField(field: string, value: string) {
     setFormData((prev) => ({
@@ -94,9 +91,7 @@ useEffect(() => {
           gultKort: 'Norge',
           forsteBytte: 'Norge',
           straffe: 'Ja',
-          var: 'Ja',
           rodtKort: 'Nei',
-          allsang: 'Før kampstart',
         });
       } else {
         setStatus(result.error || 'Noe gikk galt.');
@@ -131,7 +126,6 @@ useEffect(() => {
         .logo {
           width: 80%;
           max-width: 320px;
-          height: auto;
         }
 
         .hero {
@@ -173,7 +167,6 @@ useEffect(() => {
         .matchCard,
         .formCard,
         .leaderboardWrap,
-        .rulesCard,
         .prizeCard {
           background: rgba(255,255,255,0.05);
           border: 1px solid rgba(255,213,0,0.22);
@@ -202,8 +195,6 @@ useEffect(() => {
         .badges {
           margin-top: 24px;
           display: flex;
-          flex-wrap: wrap;
-          gap: 10px;
           justify-content: center;
         }
 
@@ -295,43 +286,8 @@ useEffect(() => {
           text-decoration: none;
         }
 
-        .rulesGrid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 16px;
-        }
-
-        .rulesCard {
-          padding: 24px;
-        }
-
-        .rulesCard span {
-          display: block;
-          color: #ffd500;
-          font-size: 13px;
-          font-weight: 900;
-          margin-bottom: 10px;
-        }
-
-        .rulesCard strong {
-          display: block;
-          font-size: 22px;
-          margin-bottom: 10px;
-        }
-
-        .rulesCard p {
-          line-height: 1.6;
-          color: rgba(255,255,255,0.76);
-        }
-
         .formCard {
           padding: 30px;
-        }
-
-        .formIntro {
-          color: rgba(255,255,255,0.78);
-          line-height: 1.7;
-          margin-bottom: 28px;
         }
 
         .formGrid {
@@ -367,10 +323,6 @@ useEffect(() => {
           color: black;
         }
 
-        .full {
-          grid-column: 1 / -1;
-        }
-
         .submitBtn {
           width: 100%;
           margin-top: 28px;
@@ -382,10 +334,6 @@ useEffect(() => {
           font-size: 18px;
           font-weight: 900;
           cursor: pointer;
-        }
-
-        .submitBtn:disabled {
-          opacity: 0.6;
         }
 
         .statusBox {
@@ -433,87 +381,29 @@ useEffect(() => {
           color: rgba(255,255,255,0.7);
         }
 
-        @media (max-width: 900px) {
-          .hero {
-            grid-template-columns: 1fr;
-            padding: 48px 18px 24px;
-            text-align: center;
-          }
-
-          h1 {
-            font-size: 48px;
-          }
-
-          .lead {
-            font-size: 18px;
-          }
-
-          .section {
-            padding: 42px 18px;
-          }
-
-          .sectionTitle {
-            font-size: 34px;
-            text-align: center;
-          }
-
-          .shirtBox {
-            grid-template-columns: 1fr;
-          }
-
-          .prizeCard {
-            grid-template-columns: 1fr;
-          }
-
-          .rulesGrid {
-            grid-template-columns: 1fr;
-          }
-
-          .formGrid {
-            grid-template-columns: 1fr;
-          }
-
-          .leaderboardTop,
-          .leaderboardRow {
-            grid-template-columns: 50px 1fr 70px;
-            gap: 10px;
-            padding: 16px;
-            font-size: 14px;
-          }
-
-          .leaderboardTop div:last-child,
-          .leaderboardRow div:last-child {
-            display: none;
-          }
-        }
         .adminLink {
-  margin-top: 40px;
-  padding-bottom: 30px;
-  text-align: center;
-  opacity: 0.28;
-  font-size: 12px;
-}
+          margin-top: 40px;
+          padding-bottom: 30px;
+          text-align: center;
+          opacity: 0.28;
+          font-size: 12px;
+        }
 
-.adminLink a {
-  color: white;
-  text-decoration: none;
-  transition: opacity 0.2s ease;
-}
-
-.adminLink a:hover {
-  opacity: 1;
-}
+        .adminLink a {
+          color: white;
+          text-decoration: none;
+        }
       `}</style>
 
       <header className="top">
-  <a href="/events/betonmast-sommerfest">
-    <img
-      src="/events/betonmast-sommerfest/betonmast-logo.jpg"
-      alt="Betonmast"
-      className="logo"
-    />
-  </a>
-</header>
+        <a href="/events/betonmast-sommerfest">
+          <img
+            src="/events/betonmast-sommerfest/betonmast-logo.jpg"
+            alt="Betonmast"
+            className="logo"
+          />
+        </a>
+      </header>
 
       <section className="hero">
         <div>
@@ -535,13 +425,45 @@ useEffect(() => {
             <span>🇮🇶 Irak</span>
           </div>
 
-         <div className="badges">
-  <div className="badge">Én innsending per e-post</div>
-</div>
+          <div className="badges">
+            <div className="badge">Én innsending per e-post</div>
+          </div>
 
           <div className="shirtBox">
             <img src="/events/betonmast-sommerfest/drakt-front.jpg" />
             <img src="/events/betonmast-sommerfest/drakt-back.jpg" />
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <h2 className="sectionTitle">1. premie</h2>
+
+        <div className="prizeCard">
+          <div className="farrisLogoBox">
+            <img
+              src="/events/betonmast-sommerfest/farris-logo.png"
+              alt="Farris Bad"
+            />
+          </div>
+
+          <div className="prizeContent">
+            <div className="prizeLabel">Skattefri premie</div>
+
+            <h3>Middag, spa og overnatting for to</h3>
+
+            <p>
+              Vinneren av Tippekampen får middag, spa og én overnatting for to personer på Farris Bad.
+            </p>
+
+            <a
+              href="https://farrisbad.no"
+              target="_blank"
+              rel="noreferrer"
+              className="prizeBtn"
+            >
+              Se premien ↗
+            </a>
           </div>
         </div>
       </section>
@@ -572,9 +494,7 @@ useEffect(() => {
               <label>Sluttresultat</label>
               <input
                 value={formData.sluttresultat}
-                onChange={(e) =>
-                  updateField('sluttresultat', e.target.value)
-                }
+                onChange={(e) => updateField('sluttresultat', e.target.value)}
               />
             </div>
 
@@ -582,9 +502,7 @@ useEffect(() => {
               <label>Pause-resultat</label>
               <input
                 value={formData.pauseResultat}
-                onChange={(e) =>
-                  updateField('pauseResultat', e.target.value)
-                }
+                onChange={(e) => updateField('pauseResultat', e.target.value)}
               />
             </div>
 
@@ -612,9 +530,7 @@ useEffect(() => {
               <label>Første mål</label>
               <select
                 value={formData.forsteMaal}
-                onChange={(e) =>
-                  updateField('forsteMaal', e.target.value)
-                }
+                onChange={(e) => updateField('forsteMaal', e.target.value)}
               >
                 <option>Norge</option>
                 <option>Irak</option>
@@ -626,9 +542,7 @@ useEffect(() => {
               <label>Første corner</label>
               <select
                 value={formData.forsteCorner}
-                onChange={(e) =>
-                  updateField('forsteCorner', e.target.value)
-                }
+                onChange={(e) => updateField('forsteCorner', e.target.value)}
               >
                 <option>Norge</option>
                 <option>Irak</option>
@@ -639,9 +553,7 @@ useEffect(() => {
               <label>Første innkast</label>
               <select
                 value={formData.forsteInnkast}
-                onChange={(e) =>
-                  updateField('forsteInnkast', e.target.value)
-                }
+                onChange={(e) => updateField('forsteInnkast', e.target.value)}
               >
                 <option>Norge</option>
                 <option>Irak</option>
@@ -652,9 +564,7 @@ useEffect(() => {
               <label>Første gule kort</label>
               <select
                 value={formData.gultKort}
-                onChange={(e) =>
-                  updateField('gultKort', e.target.value)
-                }
+                onChange={(e) => updateField('gultKort', e.target.value)}
               >
                 <option>Norge</option>
                 <option>Irak</option>
@@ -666,9 +576,7 @@ useEffect(() => {
               <label>Første bytte</label>
               <select
                 value={formData.forsteBytte}
-                onChange={(e) =>
-                  updateField('forsteBytte', e.target.value)
-                }
+                onChange={(e) => updateField('forsteBytte', e.target.value)}
               >
                 <option>Norge</option>
                 <option>Irak</option>
@@ -679,22 +587,7 @@ useEffect(() => {
               <label>Straffe?</label>
               <select
                 value={formData.straffe}
-                onChange={(e) =>
-                  updateField('straffe', e.target.value)
-                }
-              >
-                <option>Ja</option>
-                <option>Nei</option>
-              </select>
-            </div>
-
-            <div className="field">
-              <label>VAR-situasjon?</label>
-              <select
-                value={formData.var}
-                onChange={(e) =>
-                  updateField('var', e.target.value)
-                }
+                onChange={(e) => updateField('straffe', e.target.value)}
               >
                 <option>Ja</option>
                 <option>Nei</option>
@@ -705,27 +598,10 @@ useEffect(() => {
               <label>Rødt kort?</label>
               <select
                 value={formData.rodtKort}
-                onChange={(e) =>
-                  updateField('rodtKort', e.target.value)
-                }
+                onChange={(e) => updateField('rodtKort', e.target.value)}
               >
                 <option>Ja</option>
                 <option>Nei</option>
-              </select>
-            </div>
-
-            <div className="field full">
-              <label>Bonus: første allsang?</label>
-              <select
-                value={formData.allsang}
-                onChange={(e) =>
-                  updateField('allsang', e.target.value)
-                }
-              >
-                <option>Før kampstart</option>
-                <option>I pausen</option>
-                <option>Etter første Norge-mål</option>
-                <option>Etter kampen</option>
               </select>
             </div>
 
@@ -742,7 +618,8 @@ useEffect(() => {
           )}
         </form>
       </section>
-            <section className="section">
+
+      <section className="section">
         <h2 className="sectionTitle">LIVE LEADERBOARD</h2>
 
         <div className="leaderboardWrap">
@@ -766,26 +643,19 @@ useEffect(() => {
             </div>
           ))}
 
-          {leaderboard.length === 0 && (
-            <div className="leaderboardRow">
-              <div>-</div>
-              <div>Ingen tips registrert ennå</div>
-              <div>0</div>
-              <div>Venter</div>
-            </div>
-          )}
-
         </div>
 
         <div className="leaderboardInfo">
           Leaderboard oppdateres live under kampen.
         </div>
       </section>
+
       <div className="adminLink">
-  <a href="/events/betonmast-sommerfest/admin">
-    Admin
-  </a>
-</div>
+        <a href="/events/betonmast-sommerfest/admin">
+          Admin
+        </a>
+      </div>
+
     </main>
   );
 }
