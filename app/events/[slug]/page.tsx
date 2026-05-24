@@ -535,17 +535,22 @@ export default function EventPage({
   </a>
 </div>
 
-          <div className="spotifyCard">
-            <h3>2026-LÅTA</h3>
+      <div className="spotifyCard">
+  <h3>TOG FOR BIL 2026</h3>
 
-            <p>
-              Ikke klar ennå — kommer når den er publisert.
-            </p>
+  <p>
+    Årets låt – klar for allsang.
+  </p>
 
-            <a className="spotifyBtn">
-              Kommer snart
-            </a>
-          </div>
+  <a
+    href="https://soundcloud.com/christianskrede/tog-for-bil-betonmast-2026"
+    target="_blank"
+    rel="noreferrer"
+    className="spotifyBtn"
+  >
+    Hør på SoundCloud ↗
+  </a>
+</div>
 
           <div className="spotifyCard">
             <h3>HELT RÅ</h3>
