@@ -543,7 +543,7 @@ export default function EventPage({
   </p>
 
   <a
-    href="https://open.spotify.com/track/45H8lXkftq2qzGA1bQbv7T"
+    href="https://open.spotify.com/track/45H8lXkftq2qzGA1bQbV7T"
     target="_blank"
     rel="noreferrer"
     className="spotifyBtn"
