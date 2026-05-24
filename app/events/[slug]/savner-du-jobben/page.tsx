@@ -41,38 +41,45 @@ export default function SavnerJobbenPage() {
           font-size: 22px;
           max-width: 700px;
           line-height: 1.6;
-          margin-bottom: 42px;
+          margin-bottom: 34px;
         }
 
         .card {
           width: 100%;
-          max-width: 1000px;
+          max-width: 1200px;
           background: rgba(255,255,255,0.04);
           border: 1px solid rgba(255,213,0,0.18);
           border-radius: 26px;
-          padding: 40px 24px;
+          padding: 14px;
+          overflow: hidden;
+        }
+
+        .frame {
+          width: 100%;
+          height: 80vh;
+          border: none;
+          border-radius: 18px;
+          background: #111;
+        }
+
+        .fallback {
+          margin-top: 22px;
           text-align: center;
         }
 
         .button {
           display: inline-block;
-          padding: 22px 34px;
-          border-radius: 18px;
+          padding: 16px 24px;
+          border-radius: 16px;
           background: #ffd500;
           color: black;
           text-decoration: none;
           font-weight: 900;
-          font-size: 22px;
-          transition: transform 0.2s ease;
-        }
-
-        .button:hover {
-          transform: scale(1.04);
         }
 
         @media (max-width: 800px) {
           .page {
-            padding: 18px 12px 28px;
+            padding: 18px 10px 28px;
           }
 
           .logo {
@@ -86,19 +93,22 @@ export default function SavnerJobbenPage() {
 
           .sub {
             font-size: 18px;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
           }
 
           .card {
-            padding: 28px 18px;
-            border-radius: 20px;
+            padding: 8px;
+            border-radius: 18px;
+          }
+
+          .frame {
+            height: 72vh;
+            border-radius: 14px;
           }
 
           .button {
             width: 100%;
             box-sizing: border-box;
-            font-size: 20px;
-            padding: 20px;
           }
         }
       `}</style>
@@ -120,13 +130,21 @@ export default function SavnerJobbenPage() {
       </p>
 
       <div className="card">
+        <iframe
+          src="https://tidex.riff.works/byggekameras"
+          className="frame"
+          title="Byggekamera"
+        />
+      </div>
+
+      <div className="fallback">
         <a
           href="https://tidex.riff.works/byggekameras"
           target="_blank"
           rel="noopener noreferrer"
           className="button"
         >
-          Åpne byggekameraene
+          Åpne byggekameraene i ny fane
         </a>
       </div>
     </main>
