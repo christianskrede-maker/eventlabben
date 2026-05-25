@@ -218,6 +218,33 @@ export default function EventPage({
           text-decoration: none;
         }
 
+        .musicEmbed {
+          margin-top: 18px;
+          border-radius: 18px;
+          overflow: hidden;
+          border: 1px solid rgba(255,213,0,0.22);
+          background: rgba(0,0,0,0.35);
+        }
+
+        .musicEmbed iframe {
+          display: block;
+          width: 100%;
+          border: 0;
+        }
+
+        .youtubeEmbed {
+          position: relative;
+          width: 100%;
+          padding-top: 56.25%;
+        }
+
+        .youtubeEmbed iframe {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+        }
+
         .musicBannerWrap {
           margin-top: 56px;
           display: flex;
@@ -518,39 +545,42 @@ export default function EventPage({
         <h2 className="sectionTitle">MUSIKK</h2>
 
         <div className="spotifyGrid">
-    <div className="spotifyCard">
-  <h3>TOG FOR BIL 2026</h3>
+          <div className="spotifyCard">
+            <h3>TOG FOR BIL 2026</h3>
 
-  <p>
-    Årets låt – klar for allsang.
-  </p>
+            <p>
+              Årets låt – klar for allsang.
+            </p>
 
-  <a
-    href="https://soundcloud.com/christianskrede/tog-for-bil-betonmast-2026"
-    target="_blank"
-    rel="noreferrer"
-    className="spotifyBtn"
-  >
-    Hør på SoundCloud ↗
-  </a>
-</div>
+            <div className="musicEmbed">
+              <iframe
+                width="100%"
+                height="166"
+                scrolling="no"
+                frameBorder="no"
+                allow="autoplay"
+                src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/christianskrede/betonmast-helt-ra-2&color=%23ffd500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"
+              />
+            </div>
+          </div>
 
-<div className="spotifyCard">
-  <h3>BUSS FOR TOG 2025</h3>
+          <div className="spotifyCard">
+            <h3>BUSS FOR TOG 2025</h3>
 
-  <p>
-    Den første låta – klar for allsang.
-  </p>
+            <p>
+              Den første låta – klar for allsang.
+            </p>
 
-  <a
-    href="https://open.spotify.com/track/45H8lXkftq2qzGA1bQbV7T"
-    target="_blank"
-    rel="noreferrer"
-    className="spotifyBtn"
-  >
-    Hør på Spotify ↗
-  </a>
-</div>
+            <div className="musicEmbed">
+              <iframe
+                src="https://open.spotify.com/embed/track/45H8lXkftq2qzGA1bQbV7T?utm_source=generator"
+                width="100%"
+                height="152"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+              />
+            </div>
+          </div>
 
           <div className="spotifyCard">
             <h3>HELT RÅ</h3>
@@ -559,14 +589,14 @@ export default function EventPage({
               Offisiell Betonmast-stemning.
             </p>
 
-            <a
-              href="https://www.youtube.com/watch?v=OSSbtGlNLRY"
-              target="_blank"
-              rel="noreferrer"
-              className="spotifyBtn"
-            >
-              Se på YouTube ↗
-            </a>
+            <div className="musicEmbed youtubeEmbed">
+              <iframe
+                src="https://www.youtube.com/embed/OSSbtGlNLRY"
+                title="HELT RÅ"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
           </div>
         </div>
 
