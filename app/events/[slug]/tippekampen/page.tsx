@@ -570,6 +570,26 @@ export default function TippekampenPage() {
       <section className="section">
         <h2 className="sectionTitle">1. premie</h2>
 
+        <div
+  style={{
+    marginBottom: '32px',
+    borderRadius: '22px',
+    overflow: 'hidden',
+    border: '1px solid rgba(255,213,0,0.22)',
+    background: 'rgba(255,255,255,0.05)',
+    boxShadow: '0 0 45px rgba(255,213,0,0.08)',
+  }}
+>
+  <iframe
+    width="100%"
+    height="166"
+    scrolling="no"
+    frameBorder="no"
+    allow="autoplay"
+    src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/christianskrede/betonmast-slapper-av-2&color=%23ffd500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"
+  />
+</div>
+
         <div className="prizeCard">
           <div className="farrisLogoBox">
             <img
