@@ -709,9 +709,9 @@ export default function EventPage({
               Ring Christian
             </a>
 
-            <div className="hostName">Test Christian Skrede</div>
-            <div className="hostRole">Project Manager</div>
-            <div className="hostPhone">Tlf: +47 938 52 693</div>
+            <div className="hostName">Mathias Holgersen</div>
+            <div className="hostRole">Travel Manager</div>
+            <div className="hostPhone">Tlf: +47 482 63 605</div>
           </div>
         </div>
       </section>
