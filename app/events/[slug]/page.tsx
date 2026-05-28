@@ -681,11 +681,11 @@ export default function EventPage({
       </section>
 
       <section className="hostsSection" id="verter">
-        <img
-          src="/events/betonmast-sommerfest/jcp-logo.jpg"
-          alt="JCP"
-          className="JPC-Logo"
-        />
+     <img
+  src="/events/betonmast-sommerfest/JPC-logo.jpg"
+  alt="JCP"
+  className="jcpLogo"
+/>
 
         <h2 className="hostsTitle">VERTER</h2>
 
