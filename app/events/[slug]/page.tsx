@@ -706,7 +706,7 @@ export default function EventPage({
 
           <div className="hostCard">
             <a href="tel:+4793852693" className="callBtn">
-              Ring Christian
+              Ring Mathias
             </a>
 
             <div className="hostName">Mathias Holgersen</div>
