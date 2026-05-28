@@ -468,7 +468,7 @@ export default function EventPage({
           <a href="#verter">Verter</a>
           <a href="/events/betonmast-sommerfest/tippekampen">Tippekampen</a>
           <a href="/events/betonmast-sommerfest/hms">HMS</a>
-          <a href="/events/betonmast-sommerfest/savner-du-byggeplassen din">
+          <a href="/events/betonmast-sommerfest/savner-du-byggeplassen-din">
             Savner du byggeplassen din?
           </a>
         </div>
