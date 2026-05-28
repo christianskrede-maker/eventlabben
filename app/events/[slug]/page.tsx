@@ -207,17 +207,6 @@ export default function EventPage({
           margin-bottom: 12px;
         }
 
-        .spotifyBtn {
-          display: inline-block;
-          margin-top: 18px;
-          background: #ffd500;
-          color: black;
-          padding: 12px 18px;
-          border-radius: 14px;
-          font-weight: bold;
-          text-decoration: none;
-        }
-
         .musicEmbed {
           margin-top: 18px;
           border-radius: 18px;
@@ -291,17 +280,6 @@ export default function EventPage({
           padding: 24px;
           text-decoration: none;
           color: white;
-          cursor: pointer;
-          transition:
-            transform 0.2s ease,
-            border-color 0.2s ease,
-            background 0.2s ease;
-        }
-
-        .factCard:hover {
-          transform: translateY(-4px);
-          border-color: rgba(255,213,0,0.55);
-          background: rgba(255,255,255,0.08);
         }
 
         .factCard span {
@@ -322,6 +300,78 @@ export default function EventPage({
         .factCard p {
           color: #ccc;
           line-height: 1.5;
+        }
+
+        .hostsSection {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 20px 24px 100px;
+          text-align: center;
+        }
+
+        .jcpLogo {
+          height: 72px;
+          max-width: 220px;
+          object-fit: contain;
+          margin-bottom: 28px;
+          background: white;
+          padding: 12px 18px;
+          border-radius: 18px;
+        }
+
+        .hostsTitle {
+          color: #ffd500;
+          font-size: 44px;
+          font-weight: 900;
+          margin-bottom: 12px;
+        }
+
+        .hostsIntro {
+          color: #ddd;
+          font-size: 20px;
+          margin-bottom: 34px;
+        }
+
+        .hostsGrid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 24px;
+        }
+
+        .hostCard {
+          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(255,213,0,0.25);
+          border-radius: 26px;
+          padding: 30px;
+        }
+
+        .callBtn {
+          display: inline-block;
+          background: #ffd500;
+          color: black;
+          padding: 15px 24px;
+          border-radius: 999px;
+          font-weight: 900;
+          text-decoration: none;
+          margin-bottom: 20px;
+          font-size: 18px;
+        }
+
+        .hostName {
+          font-size: 26px;
+          font-weight: 900;
+          margin-bottom: 8px;
+        }
+
+        .hostRole {
+          color: #ffd500;
+          font-weight: bold;
+          margin-bottom: 8px;
+        }
+
+        .hostPhone {
+          color: #ccc;
+          font-size: 18px;
         }
 
         @media (max-width: 900px) {
@@ -359,8 +409,6 @@ export default function EventPage({
 
           .title {
             font-size: 46px;
-            line-height: 1;
-            letter-spacing: -1px;
           }
 
           .text {
@@ -370,22 +418,6 @@ export default function EventPage({
 
           .badges {
             justify-content: center;
-          }
-
-          .badge {
-            font-size: 13px;
-            padding: 10px 14px;
-          }
-
-          .shirtCard {
-            max-width: 340px;
-            padding: 18px;
-          }
-
-          .shirtImage {
-            inset: 18px;
-            width: calc(100% - 36px);
-            height: calc(100% - 36px);
           }
 
           .section {
@@ -407,25 +439,17 @@ export default function EventPage({
             min-width: 64px;
           }
 
-          .spotifyGrid {
+          .factsGrid,
+          .hostsGrid {
             grid-template-columns: 1fr;
           }
 
-          .musicBanner {
-            border-radius: 18px;
-          }
-
-          .factsGrid {
-            grid-template-columns: 1fr;
-          }
-
-          .factsSection h2 {
+          .factsSection h2,
+          .hostsTitle {
             font-size: 34px;
-            text-align: center;
           }
 
-          .factsIntro {
-            text-align: center;
+          .hostsIntro {
             font-size: 17px;
           }
         }
@@ -440,17 +464,10 @@ export default function EventPage({
 
         <div className="menu">
           <a href="#program">Program</a>
-
           <a href="#musikk">Musikk</a>
-
-          <a href="/events/betonmast-sommerfest/tippekampen">
-            Tippekampen
-          </a>
-
-          <a href="/events/betonmast-sommerfest/hms">
-            HMS
-          </a>
-
+          <a href="#verter">Verter</a>
+          <a href="/events/betonmast-sommerfest/tippekampen">Tippekampen</a>
+          <a href="/events/betonmast-sommerfest/hms">HMS</a>
           <a href="/events/betonmast-sommerfest/savner-du-jobben">
             Savner du jobben?
           </a>
@@ -459,32 +476,21 @@ export default function EventPage({
 
       <section className="hero">
         <div>
-          <div className="eyebrow">
-            BETONMAST BUSKERUD-VESTFOLD
-          </div>
+          <div className="eyebrow">BETONMAST BUSKERUD-VESTFOLD</div>
 
           <h1 className="title">
             SOMMERFEST <span>2026</span>
           </h1>
 
           <p className="text">
-            Én gjeng. Én kultur. Fotball-VM,
-            konkurranser, musikk og sommerfest
+            Én gjeng. Én kultur. Fotball-VM, konkurranser, musikk og sommerfest
             med ekte Betonmast-stemning.
           </p>
 
           <div className="badges">
-            <div className="badge">
-              18. juni 2026
-            </div>
-
-            <div className="badge">
-              Oslo
-            </div>
-
-            <div className="badge">
-              Dresscode: fotballdrakt
-            </div>
+            <div className="badge">18. juni 2026</div>
+            <div className="badge">Oslo</div>
+            <div className="badge">Dresscode: fotballdrakt</div>
           </div>
         </div>
 
@@ -495,22 +501,19 @@ export default function EventPage({
             <img
               src="/events/betonmast-sommerfest/drakt-front.jpg"
               alt="Fotballdrakt front"
-              className={`shirtImage ${
-                shirtIndex === 0 ? 'active' : 'hidden'
-              }`}
+              className={`shirtImage ${shirtIndex === 0 ? 'active' : 'hidden'}`}
             />
 
             <img
               src="/events/betonmast-sommerfest/drakt-back.jpg"
               alt="Fotballdrakt bakside"
-              className={`shirtImage ${
-                shirtIndex === 1 ? 'active' : 'hidden'
-              }`}
+              className={`shirtImage ${shirtIndex === 1 ? 'active' : 'hidden'}`}
             />
           </div>
         </div>
       </section>
-            <section className="section" id="program">
+
+      <section className="section" id="program">
         <h2 className="sectionTitle">PROGRAM</h2>
 
         <div className="programList">
@@ -547,10 +550,7 @@ export default function EventPage({
         <div className="spotifyGrid">
           <div className="spotifyCard">
             <h3>TOG FOR BIL 2026</h3>
-
-            <p>
-              Årets låt – klar for allsang.
-            </p>
+            <p>Årets låt – klar for allsang.</p>
 
             <div className="musicEmbed">
               <iframe
@@ -566,10 +566,7 @@ export default function EventPage({
 
           <div className="spotifyCard">
             <h3>BUSS FOR TOG 2025</h3>
-
-            <p>
-              Den første låta – klar for allsang.
-            </p>
+            <p>Den første låta – klar for allsang.</p>
 
             <div className="musicEmbed">
               <iframe
@@ -584,10 +581,7 @@ export default function EventPage({
 
           <div className="spotifyCard">
             <h3>HELT RÅ</h3>
-
-            <p>
-              Offisiell Betonmast-stemning.
-            </p>
+            <p>Offisiell Betonmast-stemning.</p>
 
             <div className="musicEmbed youtubeEmbed">
               <iframe
@@ -612,12 +606,11 @@ export default function EventPage({
           <h2>LIVE & FAKTA</h2>
 
           <p className="factsIntro">
-            Her samler vi nyttig live-info og
-            morsomme fakta før og under arrangementet.
+            Her samler vi nyttig live-info og morsomme fakta før og under
+            arrangementet.
           </p>
 
           <div className="factsGrid">
-
             <a
               className="factCard"
               href="https://www.yr.no/nb/v%C3%A6rvarsel/daglig-tabell/1-72837/Norge/Oslo/Oslo/Oslo"
@@ -625,12 +618,8 @@ export default function EventPage({
               rel="noreferrer"
             >
               <span>Vær Oslo</span>
-
               <strong>Yr</strong>
-
-              <p>
-                Se oppdatert værmelding for Oslo.
-              </p>
+              <p>Se oppdatert værmelding for Oslo.</p>
             </a>
 
             <a
@@ -640,12 +629,8 @@ export default function EventPage({
               rel="noreferrer"
             >
               <span>Badevann</span>
-
               <strong>Oslofjorden</strong>
-
-              <p>
-                Sjekk badetemperaturer i Oslo-området.
-              </p>
+              <p>Sjekk badetemperaturer i Oslo-området.</p>
             </a>
 
             <a
@@ -655,12 +640,8 @@ export default function EventPage({
               rel="noreferrer"
             >
               <span>Boligindeks</span>
-
               <strong>Statistikkbank</strong>
-
-              <p>
-                Se boligprisutvikling og nøkkeltall.
-              </p>
+              <p>Se boligprisutvikling og nøkkeltall.</p>
             </a>
 
             <a
@@ -670,12 +651,8 @@ export default function EventPage({
               rel="noreferrer"
             >
               <span>AF Gruppen</span>
-
               <strong>Aksjen</strong>
-
-              <p>
-                Følg AF Gruppen på investorsiden.
-              </p>
+              <p>Følg AF Gruppen på investorsiden.</p>
             </a>
 
             <a
@@ -685,12 +662,8 @@ export default function EventPage({
               rel="noreferrer"
             >
               <span>Transport</span>
-
               <strong>Ruter</strong>
-
-              <p>
-                Planlegg kollektivtransport i Oslo.
-              </p>
+              <p>Planlegg kollektivtransport i Oslo.</p>
             </a>
 
             <a
@@ -700,14 +673,45 @@ export default function EventPage({
               rel="noreferrer"
             >
               <span>Drosje</span>
-
               <strong>Bolt</strong>
+              <p>Bestill Bolt i Oslo-området.</p>
+            </a>
+          </div>
+        </div>
+      </section>
 
-              <p>
-                Bestill Bolt i Oslo-området.
-              </p>
+      <section className="hostsSection" id="verter">
+        <img
+          src="/events/betonmast-sommerfest/jcp-logo.jpg"
+          alt="JCP"
+          className="jcpLogo"
+        />
+
+        <h2 className="hostsTitle">VERTER</h2>
+
+        <p className="hostsIntro">
+          Trenger du hjelp underveis? Ring en av vertene fra eventbyrået.
+        </p>
+
+        <div className="hostsGrid">
+          <div className="hostCard">
+            <a href="tel:+4793062809" className="callBtn">
+              Ring Paul
             </a>
 
+            <div className="hostName">Paul Zimmer</div>
+            <div className="hostRole">Project Manager</div>
+            <div className="hostPhone">Tlf: +47 930 62 809</div>
+          </div>
+
+          <div className="hostCard">
+            <a href="tel:+4793852693" className="callBtn">
+              Ring Christian
+            </a>
+
+            <div className="hostName">Test Christian Skrede</div>
+            <div className="hostRole">Project Manager</div>
+            <div className="hostPhone">Tlf: +47 938 52 693</div>
           </div>
         </div>
       </section>
