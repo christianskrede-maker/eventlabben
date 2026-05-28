@@ -684,7 +684,7 @@ export default function EventPage({
         <img
           src="/events/betonmast-sommerfest/jcp-logo.jpg"
           alt="JCP"
-          className="jcpLogo"
+          className="JPC-Logo"
         />
 
         <h2 className="hostsTitle">VERTER</h2>
