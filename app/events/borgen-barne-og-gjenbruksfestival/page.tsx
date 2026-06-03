@@ -1,6 +1,3 @@
-Ja — bytt ut `page.tsx` med dette som første utkast:
-
-```tsx
 export default function Page() {
   return (
     <main style={styles.page}>
