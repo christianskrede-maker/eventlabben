@@ -2,7 +2,7 @@ import InterestButtons from './InterestButtons';
 
 export default function Hero() {
   return (
-    <section id="program"
+    <section id="hero"
       style={{
         textAlign: 'center',
         padding: '80px 20px',
