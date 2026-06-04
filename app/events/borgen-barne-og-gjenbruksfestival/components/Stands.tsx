@@ -5,7 +5,7 @@ const stands = Array.from({ length: 4 }, (_, index) => ({
 
 export default function Stands() {
   return (
-    <section id="program" style={sectionStyle}>
+    <section id="stands" style={sectionStyle}>
       <h2 style={headingStyle}>Standplasser</h2>
       <p style={textStyle}>
         Vi har plass til fire stands for miljø, informasjon, lag, foreninger
