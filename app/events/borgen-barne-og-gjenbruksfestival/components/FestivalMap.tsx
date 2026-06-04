@@ -1,6 +1,6 @@
 export default function FestivalMap() {
   return (
-    <section id="festivalmap"
+    <section id="kart"
       style={{
         maxWidth: '1200px',
         margin: '0 auto',
