@@ -34,11 +34,13 @@ export default function Program() {
       <img
         src="/events/borgen-barne-og-gjenbruksfestival/program-musikk.png"
         alt="Musikk og kultur"
-        style={{
-          width: '100%',
-          borderRadius: '24px',
-          marginBottom: '30px',
-        }}
+   style={{
+  width: '100%',
+  maxWidth: '760px',
+  display: 'block',
+  margin: '0 auto 30px',
+  borderRadius: '24px',
+}}
       />
 
       <div
