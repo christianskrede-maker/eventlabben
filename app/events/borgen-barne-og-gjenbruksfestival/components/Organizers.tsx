@@ -16,7 +16,7 @@ export default function Organizers() {
 
   return (
     <section style={sectionStyle}>
-      <h2 style={headingStyle}>Arrangører</h2>
+      <h2 style={headingStyle}>Festivalen arrangeres av</h2>
 
       <div style={gridStyle}>
         {organizers.map((organizer) => (
