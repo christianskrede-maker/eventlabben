@@ -1,6 +1,6 @@
 export default function Foodtruck() {
   return (
-    <section id="program"
+    <section id="foodtruck"
       style={{
         maxWidth: '1200px',
         margin: '0 auto',
