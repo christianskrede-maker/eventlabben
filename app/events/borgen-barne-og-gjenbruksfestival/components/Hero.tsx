@@ -1,3 +1,5 @@
+import InterestButtons from './InterestButtons';
+
 export default function Hero() {
   return (
     <section
@@ -51,37 +53,7 @@ export default function Hero() {
         gjenbruk og fellesskap.
       </p>
 
-      <div
-        style={{
-          display: 'flex',
-          gap: '12px',
-          justifyContent: 'center',
-          flexWrap: 'wrap',
-        }}
-      >
-        <button style={buttonStyle}>
-          Meld interesse for salgsplass
-        </button>
-
-        <button style={buttonStyle}>
-          Bli frivillig
-        </button>
-
-        <button style={buttonStyle}>
-          Kontakt oss
-        </button>
-      </div>
+      <InterestButtons />
     </section>
   );
 }
-
-const buttonStyle = {
-  background: '#31583a',
-  color: '#fff',
-  border: 'none',
-  borderRadius: '999px',
-  padding: '14px 24px',
-  fontSize: '16px',
-  fontWeight: 700,
-  cursor: 'pointer',
-} as const;
