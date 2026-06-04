@@ -1,6 +1,6 @@
 export default function FestivalMap() {
   return (
-    <section id="program"
+    <section id="festivalmap"
       style={{
         maxWidth: '1200px',
         margin: '0 auto',
