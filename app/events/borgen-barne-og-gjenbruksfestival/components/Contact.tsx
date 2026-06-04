@@ -2,7 +2,7 @@ import InterestButtons from './InterestButtons';
 
 export default function Contact() {
   return (
-    <section id="program" style={sectionStyle}>
+    <section id="contact" style={sectionStyle}>
       <h2 style={headingStyle}>Vil du bidra eller vite mer?</h2>
 
       <p style={textStyle}>
