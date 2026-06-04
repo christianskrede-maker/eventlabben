@@ -1,6 +1,6 @@
 export default function Waste() {
   return (
-    <section id="program" style={sectionStyle}>
+    <section id="waste" style={sectionStyle}>
       <h2 style={headingStyle}>Avfall og miljø</h2>
       <p style={textStyle}>
         På festivalen ønsker vi å gjøre det enkelt å sortere riktig og lære mer
