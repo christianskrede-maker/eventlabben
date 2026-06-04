@@ -1,3 +1,4 @@
+import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Organizers from './components/Organizers';
 import FestivalMap from './components/FestivalMap';
@@ -15,17 +16,28 @@ export default function Page() {
         minHeight: '100vh',
         background: '#ffffff',
         color: '#1f2a24',
-        fontFamily: 'Arial, sans-serif',
+        fontFamily:
+          'Inter, Arial, Helvetica, sans-serif',
       }}
     >
+      <Navbar />
+
       <Hero />
+
       <Organizers />
+
       <FestivalMap />
+
       <Program />
+
       <Foodtruck />
+
       <Market />
+
       <Stands />
+
       <Waste />
+
       <Contact />
     </main>
   );
