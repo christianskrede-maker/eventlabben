@@ -1,4 +1,5 @@
 import Hero from './components/Hero';
+import Organizers from './components/Organizers';
 
 export default function Page() {
   return (
@@ -11,6 +12,7 @@ export default function Page() {
       }}
     >
       <Hero />
+      <Organizers />
     </main>
   );
 }
