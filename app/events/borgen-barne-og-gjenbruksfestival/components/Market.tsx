@@ -2,7 +2,7 @@ import { stalls } from '../data/stalls';
 
 export default function Market() {
   return (
-    <section style={sectionStyle}>
+    <section id="program" style={sectionStyle}>
       <h2 style={headingStyle}>Salgsboder</h2>
 
       <p style={textStyle}>
