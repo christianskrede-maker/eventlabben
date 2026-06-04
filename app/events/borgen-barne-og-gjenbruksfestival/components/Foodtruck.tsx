@@ -34,10 +34,12 @@ export default function Foodtruck() {
         src="/events/borgen-barne-og-gjenbruksfestival/foodtruck.png"
         alt="Foodtruck på festivalen"
         style={{
-          width: '100%',
-          borderRadius: '24px',
-          marginBottom: '30px',
-        }}
+  width: '100%',
+  maxWidth: '760px',
+  display: 'block',
+  margin: '0 auto 30px',
+  borderRadius: '24px',
+}}
       />
 
       <div
