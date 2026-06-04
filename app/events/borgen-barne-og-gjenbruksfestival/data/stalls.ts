@@ -29,11 +29,11 @@ export const stalls = [
     title: 'Ledig',
     description: '',
   },
-  {
-    id: 7,
-    title: 'Ledig',
-    description: '',
-  },
+{
+  id: 7,
+  title: 'Nina Hansen',
+  description: 'Barneklær, leker og bøker',
+},
   {
     id: 8,
     title: 'Ledig',
