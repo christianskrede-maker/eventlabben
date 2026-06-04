@@ -1,10 +1,10 @@
 export default function Navbar() {
   const links = [
-    { label: 'Program', href: '#program' },
     { label: 'Kart', href: '#kart' },
+    { label: 'Program', href: '#program' },
+    { label: 'Foodtruck', href: '#foodtruck' },
     { label: 'Salgsboder', href: '#market' },
     { label: 'Standplasser', href: '#stands' },
-    { label: 'Foodtruck', href: '#foodtruck' },
     { label: 'Miljø', href: '#waste' },
     { label: 'Kontakt', href: '#contact' },
   ];
@@ -14,10 +14,9 @@ export default function Navbar() {
       style={{
         position: 'sticky',
         top: 0,
-        zIndex: 100,
+        zIndex: 999,
         background: '#31583a',
-        padding: '12px 20px',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.08)',
+        borderBottom: '3px solid #4f6f52',
       }}
     >
       <div
@@ -25,10 +24,26 @@ export default function Navbar() {
           maxWidth: '1200px',
           margin: '0 auto',
           display: 'flex',
-          gap: '20px',
+          alignItems: 'center',
+          gap: '16px',
+          padding: '12px 16px',
           overflowX: 'auto',
+          scrollbarWidth: 'none',
         }}
       >
+        <a
+          href="#top"
+          style={{
+            color: '#fff',
+            fontWeight: 800,
+            textDecoration: 'none',
+            whiteSpace: 'nowrap',
+            marginRight: '12px',
+          }}
+        >
+          🦌 Borgen Festival
+        </a>
+
         {links.map((link) => (
           <a
             key={link.href}
@@ -38,6 +53,9 @@ export default function Navbar() {
               textDecoration: 'none',
               fontWeight: 600,
               whiteSpace: 'nowrap',
+              padding: '8px 12px',
+              borderRadius: '999px',
+              background: 'rgba(255,255,255,0.08)',
             }}
           >
             {link.label}
