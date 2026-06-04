@@ -1,5 +1,6 @@
 import Hero from './components/Hero';
 import Organizers from './components/Organizers';
+import FestivalMap from './components/FestivalMap';
 
 export default function Page() {
   return (
@@ -13,6 +14,7 @@ export default function Page() {
     >
       <Hero />
       <Organizers />
+      <FestivalMap />
     </main>
   );
 }
