@@ -488,7 +488,7 @@ export default function EventPage({
           </p>
 
           <div className="badges">
-            <div className="badge">18. juni 2026</div>
+            <div className="badge">16. juni 2026</div>
             <div className="badge">Oslo</div>
             <div className="badge">Dresscode: fotballdrakt</div>
           </div>
