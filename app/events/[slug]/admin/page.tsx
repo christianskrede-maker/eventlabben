@@ -12,15 +12,15 @@ export default function AdminPage() {
   const [fasit, setFasit] = useState({
     sluttresultat: '',
     pauseResultat: '',
-    vinner: 'Norge',
+    vinner: '',
     maal: '',
-    forsteMaal: 'Norge',
-    forsteCorner: 'Norge',
-    forsteInnkast: 'Norge',
-    gultKort: 'Norge',
-    forsteBytte: 'Norge',
-    straffe: 'Ja',
-    rodtKort: 'Nei',
+    forsteMaal: '',
+    forsteCorner: '',
+    forsteInnkast: '',
+    gultKort: '',
+    forsteBytte: '',
+    straffe: '',
+    rodtKort: '',
   });
 
   function checkPassword(e: React.FormEvent) {
@@ -40,7 +40,10 @@ export default function AdminPage() {
     try {
       const res = await fetch('/api/tippekampen?mode=status');
       const data = await res.json();
-      setTippingOpen(data.tippingOpen);
+
+      if (typeof data.tippingOpen === 'boolean') {
+        setTippingOpen(data.tippingOpen);
+      }
     } catch {}
   }
 
@@ -60,6 +63,8 @@ export default function AdminPage() {
       if (data.success) {
         setTippingOpen(value);
         setMessage(value ? 'Tippingen er åpnet.' : 'Tippingen er stengt.');
+      } else {
+        setMessage('Kunne ikke oppdatere status.');
       }
     } catch {
       setMessage('Kunne ikke oppdatere status.');
@@ -402,6 +407,7 @@ export default function AdminPage() {
               <label>Sluttresultat</label>
               <input
                 value={fasit.sluttresultat}
+                placeholder="F.eks. 2-1"
                 onChange={(e) => updateFasit('sluttresultat', e.target.value)}
               />
             </div>
@@ -410,6 +416,7 @@ export default function AdminPage() {
               <label>Pause-resultat</label>
               <input
                 value={fasit.pauseResultat}
+                placeholder="F.eks. 1-0"
                 onChange={(e) => updateFasit('pauseResultat', e.target.value)}
               />
             </div>
@@ -420,6 +427,7 @@ export default function AdminPage() {
                 value={fasit.vinner}
                 onChange={(e) => updateFasit('vinner', e.target.value)}
               >
+                <option value="">Velg...</option>
                 <option>Norge</option>
                 <option>Irak</option>
                 <option>Uavgjort</option>
@@ -430,6 +438,7 @@ export default function AdminPage() {
               <label>Totalt antall mål</label>
               <input
                 value={fasit.maal}
+                placeholder="F.eks. 3"
                 onChange={(e) => updateFasit('maal', e.target.value)}
               />
             </div>
@@ -440,6 +449,7 @@ export default function AdminPage() {
                 value={fasit.forsteMaal}
                 onChange={(e) => updateFasit('forsteMaal', e.target.value)}
               >
+                <option value="">Velg...</option>
                 <option>Norge</option>
                 <option>Irak</option>
                 <option>Ingen mål</option>
@@ -452,6 +462,7 @@ export default function AdminPage() {
                 value={fasit.forsteCorner}
                 onChange={(e) => updateFasit('forsteCorner', e.target.value)}
               >
+                <option value="">Velg...</option>
                 <option>Norge</option>
                 <option>Irak</option>
               </select>
@@ -463,6 +474,7 @@ export default function AdminPage() {
                 value={fasit.forsteInnkast}
                 onChange={(e) => updateFasit('forsteInnkast', e.target.value)}
               >
+                <option value="">Velg...</option>
                 <option>Norge</option>
                 <option>Irak</option>
               </select>
@@ -474,6 +486,7 @@ export default function AdminPage() {
                 value={fasit.gultKort}
                 onChange={(e) => updateFasit('gultKort', e.target.value)}
               >
+                <option value="">Velg...</option>
                 <option>Norge</option>
                 <option>Irak</option>
                 <option>Ingen</option>
@@ -486,6 +499,7 @@ export default function AdminPage() {
                 value={fasit.forsteBytte}
                 onChange={(e) => updateFasit('forsteBytte', e.target.value)}
               >
+                <option value="">Velg...</option>
                 <option>Norge</option>
                 <option>Irak</option>
               </select>
@@ -497,6 +511,7 @@ export default function AdminPage() {
                 value={fasit.straffe}
                 onChange={(e) => updateFasit('straffe', e.target.value)}
               >
+                <option value="">Velg...</option>
                 <option>Ja</option>
                 <option>Nei</option>
               </select>
@@ -508,6 +523,7 @@ export default function AdminPage() {
                 value={fasit.rodtKort}
                 onChange={(e) => updateFasit('rodtKort', e.target.value)}
               >
+                <option value="">Velg...</option>
                 <option>Ja</option>
                 <option>Nei</option>
               </select>
