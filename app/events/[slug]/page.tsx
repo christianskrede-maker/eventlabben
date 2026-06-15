@@ -623,8 +623,7 @@ export default function EventPage({
           <div className="programItem">
             <div className="time">HOTELL</div>
             <div>
-              Hotellene er Scandic Helsfyr og K7 Hotel Oslo. Romfordeling i egen
-              fane.
+              Hotellene er Scandic Helsfyr (Innspurten 7) og K7 Hotel Oslo (Rådhusgata, Kongens gate 7).
             </div>
           </div>
 
