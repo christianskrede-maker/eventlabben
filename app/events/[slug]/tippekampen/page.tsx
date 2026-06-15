@@ -168,7 +168,8 @@ export default function TippekampenPage() {
         .matchCard,
         .formCard,
         .leaderboardWrap,
-        .prizeCard {
+        .prizeCard,
+        .rulesBox {
           background: rgba(255,255,255,0.05);
           border: 1px solid rgba(255,213,0,0.22);
           border-radius: 28px;
@@ -234,6 +235,18 @@ export default function TippekampenPage() {
           margin-bottom: 26px;
           font-weight: 900;
           text-transform: uppercase;
+        }
+
+        .rulesBox {
+          padding: 24px 28px;
+          margin-bottom: 28px;
+          color: rgba(255,255,255,0.86);
+          line-height: 1.7;
+          font-size: 18px;
+        }
+
+        .rulesBox strong {
+          color: #ffd500;
         }
 
         .prizeCard {
@@ -465,6 +478,13 @@ export default function TippekampenPage() {
             text-align: center;
           }
 
+          .rulesBox {
+            padding: 20px;
+            border-radius: 22px;
+            font-size: 16px;
+            text-align: center;
+          }
+
           .prizeCard {
             grid-template-columns: 1fr;
             border-radius: 22px;
@@ -622,6 +642,13 @@ export default function TippekampenPage() {
 
       <section className="section">
         <h2 className="sectionTitle">Lever ditt tips</h2>
+
+        <div className="rulesBox">
+          <strong>Regler:</strong> Innleveringsfrist er kampstart. Tips som
+          registreres etter kampstart vil ikke bli vurdert i konkurransen, selv
+          om de lagres i systemet. Dersom to eller flere deler førsteplassen,
+          avgjøres gevinsten ved loddtrekning.
+        </div>
 
         <form className="formCard" onSubmit={handleSubmit}>
           <div className="formGrid">
