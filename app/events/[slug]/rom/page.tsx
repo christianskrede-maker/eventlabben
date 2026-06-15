@@ -194,6 +194,7 @@ export default function RomPage({
           border: 1px solid rgba(255,213,0,0.22);
           border-radius: 22px;
           padding: 22px;
+          min-height: 78px;
         }
 
         .roomCard strong {
@@ -205,11 +206,6 @@ export default function RomPage({
         .roomCard span {
           color: #ffd500;
           font-size: 18px;
-        }
-
-        .alone {
-          color: #aaa !important;
-          font-style: italic;
         }
 
         .note {
@@ -305,18 +301,23 @@ export default function RomPage({
         </h1>
 
         <p className="intro">
-          Her finner du hvilket hotell du skal bo på og hvem du deler rom med.
+          Her finner du hvilket hotell du skal bo på og eventuell romkamerat.
           Endelig romnummer tildeles ved innsjekk på hotellet.
         </p>
 
         <div className="infoBox">
-          Listen under viser kun hotell og romkamerater. Noen har rom alene.
+          Listen under viser hotell og romfordeling. Faktisk romnummer får du
+          ved innsjekk.
         </div>
 
         <div className="addressGrid">
           <div className="addressCard">
             <h2>K7 Hotel Oslo</h2>
-            <p>Rådhusgata / Kongens gate 7<br />0153 Oslo</p>
+            <p>
+              Rådhusgata / Kongens gate 7
+              <br />
+              0153 Oslo
+            </p>
             <a
               className="mapBtn"
               href="https://www.google.com/maps/search/?api=1&query=Kongens%20gate%207%200153%20Oslo"
@@ -329,7 +330,11 @@ export default function RomPage({
 
           <div className="addressCard">
             <h2>Scandic Helsfyr</h2>
-            <p>Innspurten 7<br />0663 Oslo</p>
+            <p>
+              Innspurten 7
+              <br />
+              0663 Oslo
+            </p>
             <a
               className="mapBtn"
               href="https://www.google.com/maps/search/?api=1&query=Innspurten%207%200663%20Oslo"
@@ -348,9 +353,7 @@ export default function RomPage({
             {k7Rooms.map((room, index) => (
               <div className="roomCard" key={`k7-${index}`}>
                 <strong>{room[0]}</strong>
-                <span className={room[1] ? '' : 'alone'}>
-                  {room[1] || 'Rom alene'}
-                </span>
+                {room[1] && <span>{room[1]}</span>}
               </div>
             ))}
           </div>
@@ -363,9 +366,7 @@ export default function RomPage({
             {scandicRooms.map((room, index) => (
               <div className="roomCard" key={`scandic-${index}`}>
                 <strong>{room[0]}</strong>
-                <span className={room[1] ? '' : 'alone'}>
-                  {room[1] || 'Rom alene'}
-                </span>
+                {room[1] && <span>{room[1]}</span>}
               </div>
             ))}
           </div>
