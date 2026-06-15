@@ -464,13 +464,14 @@ export default function EventPage({
 
         <div className="menu">
           <a href="#program">Program</a>
+          <a href="#praktisk-info">Praktisk info</a>
           <a href="#musikk">Musikk</a>
           <a href="#verter">Verter</a>
           <a href="/events/betonmast-sommerfest/tippekampen">Tippekampen</a>
           <a href="/events/betonmast-sommerfest/hms">HMS</a>
-         <a href="/events/betonmast-sommerfest/savner-du-jobben">
-  Savner du byggeplassen din?
-</a>
+          <a href="/events/betonmast-sommerfest/savner-du-jobben">
+            Savner du byggeplassen din?
+          </a>
         </div>
       </nav>
 
@@ -483,8 +484,8 @@ export default function EventPage({
           </h1>
 
           <p className="text">
-            Én gjeng. Én kultur. Fotball-VM, konkurranser, musikk og sommerfest
-            med ekte Betonmast-stemning.
+            Én gjeng. Én kultur. Fotball-VM, hemmelig Oslo-opplegg, musikk,
+            middag og sommerfest med ekte Betonmast-stemning.
           </p>
 
           <div className="badges">
@@ -518,28 +519,127 @@ export default function EventPage({
 
         <div className="programList">
           <div className="programItem">
-            <div className="time">15:00</div>
-            <div>Dørene åpner</div>
+            <div className="time">07:45</div>
+            <div>Avreise Larvik → Sem → Drammen → Oslo</div>
           </div>
 
           <div className="programItem">
-            <div className="time">16:00</div>
-            <div>Grillbuffet og mingling</div>
+            <div className="time">08:20</div>
+            <div>Opphenting Sem</div>
           </div>
 
           <div className="programItem">
-            <div className="time">17:30</div>
-            <div>Quiz og konkurranser</div>
+            <div className="time">08:30</div>
+            <div>Buss fra Sem til Drammen</div>
           </div>
 
           <div className="programItem">
-            <div className="time">18:30</div>
-            <div>Kampvisning og tippekamp</div>
+            <div className="time">09:15</div>
+            <div>Samling i Drammen</div>
+          </div>
+
+          <div className="programItem">
+            <div className="time">12:45</div>
+            <div>Avreise til Oslo</div>
+          </div>
+
+          <div className="programItem">
+            <div className="time">13:30</div>
+            <div>Ankomst Oslo – Vippetangen</div>
+          </div>
+
+          <div className="programItem">
+            <div className="time">14:00</div>
+            <div>
+              Avgang til hemmelig Oslo-opplegg, aperitiff, mingling og lunsj
+            </div>
+          </div>
+
+          <div className="programItem">
+            <div className="time">14:30</div>
+            <div>DJ-overraskelse og Patski spiller</div>
+          </div>
+
+          <div className="programItem">
+            <div className="time">17:00</div>
+            <div>Ankomst og avreise til Kampen Bistro</div>
+          </div>
+
+          <div className="programItem">
+            <div className="time">18:00</div>
+            <div>Middag på Kampen Bistro</div>
+          </div>
+
+          <div className="programItem">
+            <div className="time">20:00</div>
+            <div>Avreise til Jordal Amfi</div>
           </div>
 
           <div className="programItem">
             <div className="time">21:00</div>
-            <div>DJ, musikk og sommerfest</div>
+            <div>Kampstart: Frankrike – Senegal</div>
+          </div>
+
+          <div className="programItem">
+            <div className="time">00:00</div>
+            <div>Kampstart: Irak – Norge</div>
+          </div>
+
+          <div className="programItem">
+            <div className="time">01:30</div>
+            <div>Avreise til hotell</div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="praktisk-info">
+        <h2 className="sectionTitle">PRAKTISK INFO</h2>
+
+        <div className="programList">
+          <div className="programItem">
+            <div className="time">OSLO</div>
+            <div>
+              Opplegget i Oslo er hemmelig. Kle dere etter vær og for en hel dag.
+            </div>
+          </div>
+
+          <div className="programItem">
+            <div className="time">KLÆR</div>
+            <div>
+              Badetøy anbefales dersom noen ønsker en dukkert underveis.
+            </div>
+          </div>
+
+          <div className="programItem">
+            <div className="time">BAGASJE</div>
+            <div>
+              Bager merkes med navn og telefonnummer. Bagasjen sjekkes inn på
+              hotellet for dere.
+            </div>
+          </div>
+
+          <div className="programItem">
+            <div className="time">HOTELL</div>
+            <div>
+              Hotellene er Scandic Helsfyr og K7 Hotel Oslo. Romfordeling kommer
+              i egen fane.
+            </div>
+          </div>
+
+          <div className="programItem">
+            <div className="time">NATT</div>
+            <div>
+              Folk sørger for transport selv eller i grupper til hotell når det
+              passer utover natten.
+            </div>
+          </div>
+
+          <div className="programItem">
+            <div className="time">HJEM</div>
+            <div>
+              Transport hjem onsdag 17. juni er på eget ansvar. Tog anbefales
+              for det sosiale og miljøet.
+            </div>
           </div>
         </div>
       </section>
@@ -681,11 +781,11 @@ export default function EventPage({
       </section>
 
       <section className="hostsSection" id="verter">
-     <img
-  src="/events/betonmast-sommerfest/JPC-logo.jpg"
-  alt="JCP"
-  className="jcpLogo"
-/>
+        <img
+          src="/events/betonmast-sommerfest/JPC-logo.jpg"
+          alt="JCP"
+          className="jcpLogo"
+        />
 
         <h2 className="hostsTitle">VERTER</h2>
 
@@ -705,7 +805,7 @@ export default function EventPage({
           </div>
 
           <div className="hostCard">
-            <a href="tel:+4793852693" className="callBtn">
+            <a href="tel:+4748263605" className="callBtn">
               Ring Mathias
             </a>
 
