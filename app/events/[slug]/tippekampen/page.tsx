@@ -21,6 +21,7 @@ export default function TippekampenPage() {
 
   const [status, setStatus] = useState('');
   const [loading, setLoading] = useState(false);
+  const [tippingOpen, setTippingOpen] = useState(true);
 
   const [leaderboard, setLeaderboard] = useState<
     {
@@ -39,6 +40,10 @@ export default function TippekampenPage() {
 
       if (result.success) {
         setLeaderboard(result.leaderboard || []);
+
+        if (typeof result.tippingOpen === 'boolean') {
+          setTippingOpen(result.tippingOpen);
+        }
       }
     } catch {}
   }
@@ -247,6 +252,25 @@ export default function TippekampenPage() {
 
         .rulesBox strong {
           color: #ffd500;
+        }
+
+        .closedBox {
+          padding: 36px;
+          text-align: center;
+        }
+
+        .closedBox h3 {
+          color: #ffd500;
+          font-size: 34px;
+          margin: 0 0 14px;
+          text-transform: uppercase;
+        }
+
+        .closedBox p {
+          color: rgba(255,255,255,0.82);
+          font-size: 19px;
+          line-height: 1.6;
+          margin: 0;
         }
 
         .prizeCard {
@@ -485,6 +509,18 @@ export default function TippekampenPage() {
             text-align: center;
           }
 
+          .closedBox {
+            padding: 28px 20px;
+          }
+
+          .closedBox h3 {
+            font-size: 28px;
+          }
+
+          .closedBox p {
+            font-size: 17px;
+          }
+
           .prizeCard {
             grid-template-columns: 1fr;
             border-radius: 22px;
@@ -650,146 +686,156 @@ export default function TippekampenPage() {
           avgjøres gevinsten ved loddtrekning.
         </div>
 
-        <form className="formCard" onSubmit={handleSubmit}>
-          <div className="formGrid">
-            <div className="field">
-              <label>Navn</label>
-              <input
-                value={formData.navn}
-                onChange={(e) => updateField('navn', e.target.value)}
-              />
+        {tippingOpen ? (
+          <form className="formCard" onSubmit={handleSubmit}>
+            <div className="formGrid">
+              <div className="field">
+                <label>Navn</label>
+                <input
+                  value={formData.navn}
+                  onChange={(e) => updateField('navn', e.target.value)}
+                />
+              </div>
+
+              <div className="field">
+                <label>E-post</label>
+                <input
+                  value={formData.email}
+                  onChange={(e) => updateField('email', e.target.value)}
+                />
+              </div>
+
+              <div className="field">
+                <label>Sluttresultat (Norge-Irak)</label>
+                <input
+                  value={formData.sluttresultat}
+                  onChange={(e) => updateField('sluttresultat', e.target.value)}
+                />
+              </div>
+
+              <div className="field">
+                <label>Pause-resultat (Norge-Irak)</label>
+                <input
+                  value={formData.pauseResultat}
+                  onChange={(e) => updateField('pauseResultat', e.target.value)}
+                />
+              </div>
+
+              <div className="field">
+                <label>Hvem vinner?</label>
+                <select
+                  value={formData.vinner}
+                  onChange={(e) => updateField('vinner', e.target.value)}
+                >
+                  <option>Norge</option>
+                  <option>Irak</option>
+                  <option>Uavgjort</option>
+                </select>
+              </div>
+
+              <div className="field">
+                <label>Totalt antall mål</label>
+                <input
+                  value={formData.maal}
+                  onChange={(e) => updateField('maal', e.target.value)}
+                />
+              </div>
+
+              <div className="field">
+                <label>Første mål</label>
+                <select
+                  value={formData.forsteMaal}
+                  onChange={(e) => updateField('forsteMaal', e.target.value)}
+                >
+                  <option>Norge</option>
+                  <option>Irak</option>
+                  <option>Ingen mål</option>
+                </select>
+              </div>
+
+              <div className="field">
+                <label>Første corner</label>
+                <select
+                  value={formData.forsteCorner}
+                  onChange={(e) => updateField('forsteCorner', e.target.value)}
+                >
+                  <option>Norge</option>
+                  <option>Irak</option>
+                </select>
+              </div>
+
+              <div className="field">
+                <label>Første innkast</label>
+                <select
+                  value={formData.forsteInnkast}
+                  onChange={(e) => updateField('forsteInnkast', e.target.value)}
+                >
+                  <option>Norge</option>
+                  <option>Irak</option>
+                </select>
+              </div>
+
+              <div className="field">
+                <label>Første gule kort</label>
+                <select
+                  value={formData.gultKort}
+                  onChange={(e) => updateField('gultKort', e.target.value)}
+                >
+                  <option>Norge</option>
+                  <option>Irak</option>
+                  <option>Ingen</option>
+                </select>
+              </div>
+
+              <div className="field">
+                <label>Første bytte</label>
+                <select
+                  value={formData.forsteBytte}
+                  onChange={(e) => updateField('forsteBytte', e.target.value)}
+                >
+                  <option>Norge</option>
+                  <option>Irak</option>
+                </select>
+              </div>
+
+              <div className="field">
+                <label>Straffe?</label>
+                <select
+                  value={formData.straffe}
+                  onChange={(e) => updateField('straffe', e.target.value)}
+                >
+                  <option>Ja</option>
+                  <option>Nei</option>
+                </select>
+              </div>
+
+              <div className="field">
+                <label>Rødt kort?</label>
+                <select
+                  value={formData.rodtKort}
+                  onChange={(e) => updateField('rodtKort', e.target.value)}
+                >
+                  <option>Ja</option>
+                  <option>Nei</option>
+                </select>
+              </div>
             </div>
 
-            <div className="field">
-              <label>E-post</label>
-              <input
-                value={formData.email}
-                onChange={(e) => updateField('email', e.target.value)}
-              />
-            </div>
+            <button className="submitBtn" disabled={loading}>
+              {loading ? 'Sender...' : 'Send inn tips'}
+            </button>
 
-            <div className="field">
-              <label>Sluttresultat (Norge-Irak)</label>
-              <input
-                value={formData.sluttresultat}
-                onChange={(e) => updateField('sluttresultat', e.target.value)}
-              />
-            </div>
-
-            <div className="field">
-              <label>Pause-resultat (Norge-Irak)</label>
-              <input
-                value={formData.pauseResultat}
-                onChange={(e) => updateField('pauseResultat', e.target.value)}
-              />
-            </div>
-
-            <div className="field">
-              <label>Hvem vinner?</label>
-              <select
-                value={formData.vinner}
-                onChange={(e) => updateField('vinner', e.target.value)}
-              >
-                <option>Norge</option>
-                <option>Irak</option>
-                <option>Uavgjort</option>
-              </select>
-            </div>
-
-            <div className="field">
-              <label>Totalt antall mål</label>
-              <input
-                value={formData.maal}
-                onChange={(e) => updateField('maal', e.target.value)}
-              />
-            </div>
-
-            <div className="field">
-              <label>Første mål</label>
-              <select
-                value={formData.forsteMaal}
-                onChange={(e) => updateField('forsteMaal', e.target.value)}
-              >
-                <option>Norge</option>
-                <option>Irak</option>
-                <option>Ingen mål</option>
-              </select>
-            </div>
-
-            <div className="field">
-              <label>Første corner</label>
-              <select
-                value={formData.forsteCorner}
-                onChange={(e) => updateField('forsteCorner', e.target.value)}
-              >
-                <option>Norge</option>
-                <option>Irak</option>
-              </select>
-            </div>
-
-            <div className="field">
-              <label>Første innkast</label>
-              <select
-                value={formData.forsteInnkast}
-                onChange={(e) => updateField('forsteInnkast', e.target.value)}
-              >
-                <option>Norge</option>
-                <option>Irak</option>
-              </select>
-            </div>
-
-            <div className="field">
-              <label>Første gule kort</label>
-              <select
-                value={formData.gultKort}
-                onChange={(e) => updateField('gultKort', e.target.value)}
-              >
-                <option>Norge</option>
-                <option>Irak</option>
-                <option>Ingen</option>
-              </select>
-            </div>
-
-            <div className="field">
-              <label>Første bytte</label>
-              <select
-                value={formData.forsteBytte}
-                onChange={(e) => updateField('forsteBytte', e.target.value)}
-              >
-                <option>Norge</option>
-                <option>Irak</option>
-              </select>
-            </div>
-
-            <div className="field">
-              <label>Straffe?</label>
-              <select
-                value={formData.straffe}
-                onChange={(e) => updateField('straffe', e.target.value)}
-              >
-                <option>Ja</option>
-                <option>Nei</option>
-              </select>
-            </div>
-
-            <div className="field">
-              <label>Rødt kort?</label>
-              <select
-                value={formData.rodtKort}
-                onChange={(e) => updateField('rodtKort', e.target.value)}
-              >
-                <option>Ja</option>
-                <option>Nei</option>
-              </select>
-            </div>
+            {status && <div className="statusBox">{status}</div>}
+          </form>
+        ) : (
+          <div className="formCard closedBox">
+            <h3>Tippekampen er stengt</h3>
+            <p>
+              Takk for alle tips! Skjemaet er nå lukket, og konkurransen følger
+              leaderboardet under kampen.
+            </p>
           </div>
-
-          <button className="submitBtn" disabled={loading}>
-            {loading ? 'Sender...' : 'Send inn tips'}
-          </button>
-
-          {status && <div className="statusBox">{status}</div>}
-        </form>
+        )}
       </section>
 
       <section className="section">
