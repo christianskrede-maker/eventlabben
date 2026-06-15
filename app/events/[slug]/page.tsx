@@ -571,7 +571,7 @@ export default function EventPage({
 
           <div className="programItem">
             <div className="time">17:00</div>
-            <div>Ankomst og avreise til Kampen Bistro</div>
+            <div>Ankomst og avreise til Kampen Bistro, Bøgata 21, 0655 Oslo</div>
           </div>
 
           <div className="programItem">
