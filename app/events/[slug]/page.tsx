@@ -221,6 +221,10 @@ export default function EventPage({
           border: 0;
         }
 
+        .soundcloudVisual iframe {
+          height: 320px;
+        }
+
         .youtubeEmbed {
           position: relative;
           width: 100%;
@@ -439,6 +443,10 @@ export default function EventPage({
             min-width: 64px;
           }
 
+          .soundcloudVisual iframe {
+            height: 260px;
+          }
+
           .factsGrid,
           .hostsGrid {
             grid-template-columns: 1fr;
@@ -467,9 +475,7 @@ export default function EventPage({
           <a href="#praktisk-info">Praktisk info</a>
           <a href="#musikk">Musikk</a>
           <a href="#verter">Verter</a>
-            <a href="/events/betonmast-sommerfest/rom">
-    Rom
-  </a>
+          <a href="/events/betonmast-sommerfest/rom">Rom</a>
           <a href="/events/betonmast-sommerfest/tippekampen">Tippekampen</a>
           <a href="/events/betonmast-sommerfest/hms">HMS</a>
           <a href="/events/betonmast-sommerfest/savner-du-jobben">
@@ -624,8 +630,8 @@ export default function EventPage({
           <div className="programItem">
             <div className="time">HOTELL</div>
             <div>
-              Hotellene er Scandic Helsfyr og K7 Hotel Oslo. Romfordeling
-              i egen fane.
+              Hotellene er Scandic Helsfyr og K7 Hotel Oslo. Romfordeling i egen
+              fane.
             </div>
           </div>
 
@@ -655,14 +661,14 @@ export default function EventPage({
             <h3>TOG FOR BIL 2026</h3>
             <p>Årets låt – klar for allsang.</p>
 
-            <div className="musicEmbed">
+            <div className="musicEmbed soundcloudVisual">
               <iframe
                 width="100%"
-                height="166"
+                height="320"
                 scrolling="no"
                 frameBorder="no"
                 allow="autoplay"
-                src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/christianskrede/betonmast-helt-ra-2&color=%23ffd500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"
+                src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/christianskrede/betonmast-helt-ra-2&color=%23ffd500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true"
               />
             </div>
           </div>
