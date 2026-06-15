@@ -265,7 +265,7 @@ export default function RomPage({
 
         <div className="infoBox">
           Hotellene er K7 Hotel Oslo og Scandic Helsfyr. Listen under viser kun
-          romkamerater og hotell, ikke faktiske hotellromnummer.
+          romkamerater og hotell.
         </div>
 
         <div className="hotelSection">
