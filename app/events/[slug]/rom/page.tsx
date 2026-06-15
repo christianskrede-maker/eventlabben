@@ -10,44 +10,44 @@ export default function RomPage({
   }
 
   const k7Rooms = [
-    ['Lars Fauske', 'Per Anders Muri'],
+    ['Ole Bergersen', ''],
     ['Emma Stiansen', 'Eva Schuster'],
-    ['Marie Hammer Iversen', 'Silje Foss Rønning'],
-    ['Yvonne Sørem', 'Ingebjørg Eldevik'],
+    ['Stine Krigsstrøm', 'Kirsten Slotte Birkeland'],
+    ['Yvonne Sørem', ''],
     ['Amund Blomkvist', 'Anders Bertheussen'],
     ['Anders Mandt', 'Andreas Narverud'],
-    ['Andreas Wahl Espeseth', 'Carl Erik Gjersøe'],
-    ['Eivind Kjennerud', 'Emil Ivarsson'],
+    ['Carl Erik Gjersøe', ''],
+    ['Kristian Gjestemoen', ''],
     ['Henrik Hermann', 'Håvard Føske'],
-    ['Kristian Gjestemoen', 'Lars Lian Tollnes'],
-    ['Ole Bergersen', 'Ole Gunnar Meland Hansen'],
-    ['Per Kristian Hegg', 'Pål Frenvik Sveen'],
-    ['Sondre Carlsen', 'Sondre Fristad Aas'],
-    ['Trygve Ygre Fjeld', 'Øyvind Grødem'],
-    ['Leif Raustein', 'Tom Rickard Holm'],
-    ['Trond Nordseter', 'Lars Bettum Stuen'],
+    ['Per Kristian Hegg', ''],
+    ['Ole Gunnar Meland Hansen', 'Lars Bettum Stuen'],
+    ['Pål Frenvik Sveen', ''],
+    ['Øyvind Grødem', 'Sondre Fristad Aas'],
+    ['Trygve Ygre Fjeld', 'Tom Rickard Holm'],
+    ['Leif Raustein', 'Andreas Wahl Espeseth'],
+    ['Trond Nordseter', ''],
   ];
 
   const scandicRooms = [
-    ['Peter Sandrup', 'Ole Bjørn Bakke'],
-    ['Hannie Evensen', 'Mari Landa Ericsson'],
-    ['Stine Krigsstrøm', 'Karolina Miklaszewicz-Szczawinska'],
-    ['Christoffer Henriksen', 'Christopher Bjønness'],
-    ['Christopher Carlsen', 'Eirik Trulsen Bakken'],
-    ['Erik Sætran Gustavsen', 'Espen Bråten'],
+    ['Morten Solum', ''],
+    ['Hannie Evensen', ''],
+    ['Mari Landa Ericsson', ''],
+    ['Christoffer Henriksen', ''],
+    ['Pål Farmen', ''],
+    ['Rune Allum', ''],
     ['Frode Kristiansen', 'Hans-Asbjørn Gunnerød'],
     ['Johan Swanberg', 'Jøran Horntvedt'],
     ['Kenneth Bredesen', 'Lars Gundersen Waale'],
     ['Lars Mendonca Fuhre', 'Magnus Hoff'],
     ['Marius Røgeberg Evensen', 'Mathias Bjune'],
-    ['Rolf Jacobsen Blaasvær', 'Rune Allum'],
+    ['Rolf Jacobsen Blaasvær', ''],
     ['Stian Hilliges Bergsveen', 'Truls Dahl Wiese'],
     ['Rune Aas', 'Eirik Ryvænge Larsen'],
     ['Kristian Hoel Dahl', 'Torstein Dahle'],
-    ['Pål Farmen', 'Henrik Øren Lundh'],
-    ['Mats Trollsås', 'Morten Solum'],
+    ['Christopher Carlsen', 'Eirik Trulsen Bakken'],
+    ['Mats Trollsås', 'Espen Bråten'],
     ['Harald Verpe Dyrrdal', 'Jon Sverre Roberg'],
-    ['Kirsten Slotte Birkeland', 'Ingvild Svenke Fundli'],
+    ['Christopher Bjønness', 'Henrik Øren Lundh'],
   ];
 
   return (
@@ -135,6 +135,43 @@ export default function RomPage({
           margin-bottom: 54px;
         }
 
+        .addressGrid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 18px;
+          margin-bottom: 54px;
+        }
+
+        .addressCard {
+          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(255,213,0,0.22);
+          border-radius: 24px;
+          padding: 26px;
+        }
+
+        .addressCard h2 {
+          color: #ffd500;
+          font-size: 26px;
+          margin: 0 0 10px;
+        }
+
+        .addressCard p {
+          color: #ddd;
+          font-size: 18px;
+          line-height: 1.5;
+          margin: 0 0 18px;
+        }
+
+        .mapBtn {
+          display: inline-block;
+          background: #ffd500;
+          color: black;
+          padding: 12px 18px;
+          border-radius: 999px;
+          font-weight: 900;
+          text-decoration: none;
+        }
+
         .hotelSection {
           margin-top: 60px;
         }
@@ -168,6 +205,11 @@ export default function RomPage({
         .roomCard span {
           color: #ffd500;
           font-size: 18px;
+        }
+
+        .alone {
+          color: #aaa !important;
+          font-style: italic;
         }
 
         .note {
@@ -219,6 +261,10 @@ export default function RomPage({
             font-size: 18px;
           }
 
+          .addressGrid {
+            grid-template-columns: 1fr;
+          }
+
           .hotelSection h2 {
             font-size: 30px;
           }
@@ -264,8 +310,35 @@ export default function RomPage({
         </p>
 
         <div className="infoBox">
-          Hotellene er K7 Hotel Oslo og Scandic Helsfyr. Listen under viser kun
-          romkamerater og hotell.
+          Listen under viser kun hotell og romkamerater. Noen har rom alene.
+        </div>
+
+        <div className="addressGrid">
+          <div className="addressCard">
+            <h2>K7 Hotel Oslo</h2>
+            <p>Rådhusgata / Kongens gate 7<br />0153 Oslo</p>
+            <a
+              className="mapBtn"
+              href="https://www.google.com/maps/search/?api=1&query=Kongens%20gate%207%200153%20Oslo"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Åpne kart
+            </a>
+          </div>
+
+          <div className="addressCard">
+            <h2>Scandic Helsfyr</h2>
+            <p>Innspurten 7<br />0663 Oslo</p>
+            <a
+              className="mapBtn"
+              href="https://www.google.com/maps/search/?api=1&query=Innspurten%207%200663%20Oslo"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Åpne kart
+            </a>
+          </div>
         </div>
 
         <div className="hotelSection">
@@ -275,7 +348,9 @@ export default function RomPage({
             {k7Rooms.map((room, index) => (
               <div className="roomCard" key={`k7-${index}`}>
                 <strong>{room[0]}</strong>
-                <span>{room[1]}</span>
+                <span className={room[1] ? '' : 'alone'}>
+                  {room[1] || 'Rom alene'}
+                </span>
               </div>
             ))}
           </div>
@@ -288,7 +363,9 @@ export default function RomPage({
             {scandicRooms.map((room, index) => (
               <div className="roomCard" key={`scandic-${index}`}>
                 <strong>{room[0]}</strong>
-                <span>{room[1]}</span>
+                <span className={room[1] ? '' : 'alone'}>
+                  {room[1] || 'Rom alene'}
+                </span>
               </div>
             ))}
           </div>
