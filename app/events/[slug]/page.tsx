@@ -621,7 +621,7 @@ export default function EventPage({
           <div className="programItem">
             <div className="time">HOTELL</div>
             <div>
-              Hotellene er Scandic Helsfyr og K7 Hotel Oslo. Romfordeling kommer
+              Hotellene er Scandic Helsfyr og K7 Hotel Oslo. Romfordeling
               i egen fane.
             </div>
           </div>
