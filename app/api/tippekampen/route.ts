@@ -32,7 +32,13 @@ export async function POST(req: Request) {
 
     const statusData = await statusResponse.json();
 
-    if (statusData.tippingOpen === false) {
+    const tippingIsOpen =
+      statusData.tippingOpen === true ||
+      statusData.tippingOpen === 'true' ||
+      statusData.tippingOpen === 'ÅPEN' ||
+      statusData.tippingOpen === 'open';
+
+    if (!tippingIsOpen) {
       return NextResponse.json({
         success: false,
         error: 'Tippekampen er stengt. Innsending er ikke lenger mulig.',
