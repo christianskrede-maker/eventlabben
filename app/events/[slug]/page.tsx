@@ -613,13 +613,6 @@ export default function EventPage({
           </div>
 
           <div className="programItem">
-            <div className="time">KLÆR</div>
-            <div>
-              Badetøy anbefales dersom noen ønsker en dukkert underveis.
-            </div>
-          </div>
-
-          <div className="programItem">
             <div className="time">BAGASJE</div>
             <div>
               Bager merkes med navn og telefonnummer. Bagasjen sjekkes inn på
