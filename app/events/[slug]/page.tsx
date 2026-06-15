@@ -548,7 +548,7 @@ export default function EventPage({
 
           <div className="programItem">
             <div className="time">13:30</div>
-            <div>Ankomst Oslo – Vippetangen</div>
+            <div>Ankomst Oslo</div>
           </div>
 
           <div className="programItem">
