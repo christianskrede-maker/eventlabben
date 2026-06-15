@@ -642,7 +642,7 @@ export default function TippekampenPage() {
             </div>
 
             <div className="field">
-              <label>Sluttresultat</label>
+              <label>Sluttresultat (Norge-Irak)</label>
               <input
                 value={formData.sluttresultat}
                 onChange={(e) => updateField('sluttresultat', e.target.value)}
@@ -650,7 +650,7 @@ export default function TippekampenPage() {
             </div>
 
             <div className="field">
-              <label>Pause-resultat</label>
+              <label>Pause-resultat (Norge-Irak)</label>
               <input
                 value={formData.pauseResultat}
                 onChange={(e) => updateField('pauseResultat', e.target.value)}
