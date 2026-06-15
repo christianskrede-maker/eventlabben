@@ -6,7 +6,8 @@ export default function SavnerJobbenPage() {
       <style jsx>{`
         .page {
           min-height: 100vh;
-          background: #000;
+          background:
+            radial-gradient(circle at top right, #3a3200 0%, #000 45%);
           padding: 24px 16px 40px;
           font-family: Arial, sans-serif;
           color: white;
@@ -18,12 +19,12 @@ export default function SavnerJobbenPage() {
         .top {
           width: 100%;
           text-align: center;
-          margin-bottom: 30px;
+          margin-bottom: 22px;
         }
 
         .logo {
           width: 80%;
-          max-width: 320px;
+          max-width: 300px;
           height: auto;
         }
 
@@ -31,89 +32,108 @@ export default function SavnerJobbenPage() {
           color: #ffd500;
           font-size: 58px;
           text-align: center;
-          margin: 10px 0 16px;
+          margin: 8px 0 12px;
           text-transform: uppercase;
+          line-height: 1;
         }
 
         .sub {
           text-align: center;
-          color: rgba(255,255,255,0.8);
-          font-size: 22px;
-          max-width: 700px;
-          line-height: 1.6;
-          margin-bottom: 34px;
+          color: rgba(255,255,255,0.82);
+          font-size: 21px;
+          max-width: 760px;
+          line-height: 1.5;
+          margin-bottom: 28px;
         }
 
         .card {
           width: 100%;
-          max-width: 1200px;
+          max-width: 1250px;
           background: rgba(255,255,255,0.04);
-          border: 1px solid rgba(255,213,0,0.18);
+          border: 1px solid rgba(255,213,0,0.22);
           border-radius: 26px;
-          padding: 14px;
+          padding: 12px;
           overflow: hidden;
+          box-shadow: 0 0 45px rgba(255,213,0,0.08);
         }
 
         .frame {
           width: 100%;
-          height: 80vh;
+          height: 78vh;
           border: none;
           border-radius: 18px;
           background: #111;
+          display: block;
         }
 
         .fallback {
-          margin-top: 22px;
+          margin-top: 20px;
           text-align: center;
         }
 
         .button {
           display: inline-block;
-          padding: 16px 24px;
-          border-radius: 16px;
+          padding: 15px 24px;
+          border-radius: 999px;
           background: #ffd500;
           color: black;
           text-decoration: none;
           font-weight: 900;
-          transition: 0.2s ease;
+          font-size: 17px;
         }
 
-        .button:hover {
-          transform: translateY(-2px);
+        .back {
+          display: inline-block;
+          margin-top: 18px;
+          color: #ffd500;
+          text-decoration: none;
+          font-weight: bold;
         }
 
         @media (max-width: 800px) {
           .page {
-            padding: 18px 10px 28px;
+            padding: 14px 8px 26px;
+          }
+
+          .top {
+            margin-bottom: 14px;
           }
 
           .logo {
-            width: 88%;
+            width: 72%;
+            max-width: 240px;
           }
 
           h1 {
-            font-size: 38px;
-            line-height: 1.1;
+            font-size: 34px;
+            margin: 6px 0 10px;
           }
 
           .sub {
-            font-size: 18px;
-            margin-bottom: 24px;
+            font-size: 16px;
+            margin-bottom: 18px;
+            padding: 0 8px;
           }
 
           .card {
-            padding: 8px;
+            padding: 6px;
             border-radius: 18px;
           }
 
           .frame {
-            height: 72vh;
+            height: 68vh;
             border-radius: 14px;
           }
 
           .button {
             width: 100%;
             box-sizing: border-box;
+            font-size: 16px;
+          }
+
+          .fallback {
+            width: 100%;
+            margin-top: 14px;
           }
         }
       `}</style>
@@ -149,9 +169,13 @@ export default function SavnerJobbenPage() {
           rel="noopener noreferrer"
           className="button"
         >
-          Åpne byggekameraene i ny fane
+          Åpne i ny fane
         </a>
       </div>
+
+      <a href="/events/betonmast-sommerfest" className="back">
+        ← Tilbake til sommerfesten
+      </a>
     </main>
   );
 }
