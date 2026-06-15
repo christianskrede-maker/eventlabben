@@ -40,18 +40,29 @@ export default function TippekampenPage() {
 
       if (result.success) {
         setLeaderboard(result.leaderboard || []);
+      }
+    } catch {}
+  }
 
-        if (typeof result.tippingOpen === 'boolean') {
-          setTippingOpen(result.tippingOpen);
-        }
+  async function fetchTippingStatus() {
+    try {
+      const response = await fetch('/api/tippekampen?mode=status');
+      const result = await response.json();
+
+      if (typeof result.tippingOpen === 'boolean') {
+        setTippingOpen(result.tippingOpen);
       }
     } catch {}
   }
 
   useEffect(() => {
     fetchLeaderboard();
+    fetchTippingStatus();
 
-    const interval = setInterval(fetchLeaderboard, 5000);
+    const interval = setInterval(() => {
+      fetchLeaderboard();
+      fetchTippingStatus();
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
