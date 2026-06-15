@@ -9,45 +9,45 @@ export default function RomPage({
     return <div>Fant ikke arrangementet</div>;
   }
 
-  const rooms = [
-    { rom: '1', hotell: 'K7', person1: 'Lars Fauske', person2: 'Per Anders Muri' },
-    { rom: '2', hotell: 'K7', person1: 'Emma Stiansen', person2: 'Eva Schuster' },
-    { rom: '3', hotell: 'K7', person1: 'Marie Hammer Iversen', person2: 'Silje Foss Rønning' },
-    { rom: '4', hotell: 'K7', person1: 'Yvonne Sørem', person2: 'Ingebjørg Eldevik' },
-    { rom: '5', hotell: 'K7', person1: 'Amund Blomkvist', person2: 'Anders Bertheussen' },
-    { rom: '6', hotell: 'K7', person1: 'Anders Mandt', person2: 'Andreas Narverud' },
-    { rom: '7', hotell: 'K7', person1: 'Andreas Wahl Espeseth', person2: 'Carl Erik Gjersøe' },
-    { rom: '8', hotell: 'K7', person1: 'Eivind Kjennerud', person2: 'Emil Ivarsson' },
-    { rom: '9', hotell: 'K7', person1: 'Henrik Hermann', person2: 'Håvard Føske' },
-    { rom: '10', hotell: 'K7', person1: 'Kristian Gjestemoen', person2: 'Lars Lian Tollnes' },
-    { rom: '11', hotell: 'K7', person1: 'Ole Bergersen', person2: 'Ole Gunnar Meland Hansen' },
-    { rom: '12', hotell: 'K7', person1: 'Per Kristian Hegg', person2: 'Pål Frenvik Sveen' },
-    { rom: '13', hotell: 'K7', person1: 'Sondre Carlsen', person2: 'Sondre Fristad Aas' },
-    { rom: '14', hotell: 'K7', person1: 'Trygve Ygre Fjeld', person2: 'Øyvind Grødem' },
-    { rom: '15', hotell: 'K7', person1: 'Leif Raustein', person2: 'Tom Rickard Holm' },
-    { rom: '16', hotell: 'K7', person1: 'Trond Nordseter', person2: 'Lars Bettum Stuen' },
+  const k7Rooms = [
+    ['Lars Fauske', 'Per Anders Muri'],
+    ['Emma Stiansen', 'Eva Schuster'],
+    ['Marie Hammer Iversen', 'Silje Foss Rønning'],
+    ['Yvonne Sørem', 'Ingebjørg Eldevik'],
+    ['Amund Blomkvist', 'Anders Bertheussen'],
+    ['Anders Mandt', 'Andreas Narverud'],
+    ['Andreas Wahl Espeseth', 'Carl Erik Gjersøe'],
+    ['Eivind Kjennerud', 'Emil Ivarsson'],
+    ['Henrik Hermann', 'Håvard Føske'],
+    ['Kristian Gjestemoen', 'Lars Lian Tollnes'],
+    ['Ole Bergersen', 'Ole Gunnar Meland Hansen'],
+    ['Per Kristian Hegg', 'Pål Frenvik Sveen'],
+    ['Sondre Carlsen', 'Sondre Fristad Aas'],
+    ['Trygve Ygre Fjeld', 'Øyvind Grødem'],
+    ['Leif Raustein', 'Tom Rickard Holm'],
+    ['Trond Nordseter', 'Lars Bettum Stuen'],
+  ];
 
-    { rom: '17', hotell: 'Scandic Helsfyr', person1: 'Peter Sandrup', person2: 'Ole Bjørn Bakke' },
-    { rom: '18', hotell: 'Scandic Helsfyr', person1: 'Hannie Evensen', person2: 'Mari Landa Ericsson' },
-    { rom: '19', hotell: 'Scandic Helsfyr', person1: 'Stine Krigsstrøm', person2: 'Karolina Miklaszewicz-Szczawinska' },
-    { rom: '20', hotell: 'Scandic Helsfyr', person1: 'Christoffer Henriksen', person2: 'Christopher Bjønness' },
-    { rom: '21', hotell: 'Scandic Helsfyr', person1: 'Christopher Carlsen', person2: 'Eirik Trulsen Bakken' },
-    { rom: '22', hotell: 'Scandic Helsfyr', person1: 'Erik Sætran Gustavsen', person2: 'Espen Bråten' },
-    { rom: '23', hotell: 'Scandic Helsfyr', person1: 'Frode Kristiansen', person2: 'Hans-Asbjørn Gunnerød' },
-    { rom: '24', hotell: 'Scandic Helsfyr', person1: 'Johan Swanberg', person2: 'Jøran Horntvedt' },
-    { rom: '25', hotell: 'Scandic Helsfyr', person1: 'Kenneth Bredesen', person2: 'Lars Gundersen Waale' },
-    { rom: '26', hotell: 'Scandic Helsfyr', person1: 'Lars Mendonca Fuhre', person2: 'Magnus Hoff' },
-    { rom: '27', hotell: 'Scandic Helsfyr', person1: 'Marius Røgeberg Evensen', person2: 'Mathias Bjune' },
-    { rom: '28', hotell: 'Scandic Helsfyr', person1: 'Rolf Jacobsen Blaasvær', person2: 'Rune Allum' },
-    { rom: '29', hotell: 'Scandic Helsfyr', person1: 'Stian Hilliges Bergsveen', person2: 'Truls Dahl Wiese' },
-    { rom: '30', hotell: 'Scandic Helsfyr', person1: 'Rune Aas', person2: 'Eirik Ryvænge Larsen' },
-    { rom: '31', hotell: 'Scandic Helsfyr', person1: 'Kristian Hoel Dahl', person2: 'Torstein Dahle' },
-    { rom: '32', hotell: 'Scandic Helsfyr', person1: 'Pål Farmen', person2: 'Henrik Øren Lundh' },
-    { rom: '33', hotell: 'Scandic Helsfyr', person1: 'Mats Trollsås', person2: 'Morten Solum' },
-    { rom: '34', hotell: 'Scandic Helsfyr', person1: 'Harald Verpe Dyrrdal', person2: 'Jon Sverre Roberg' },
-    { rom: '35', hotell: 'Scandic Helsfyr', person1: 'Kirsten Slotte Birkeland', person2: 'Ingvild Svenke Fundli' },
-    { rom: '36', hotell: 'Scandic Helsfyr', person1: '', person2: '' },
-    { rom: '37', hotell: 'Scandic Helsfyr', person1: '', person2: '' },
+  const scandicRooms = [
+    ['Peter Sandrup', 'Ole Bjørn Bakke'],
+    ['Hannie Evensen', 'Mari Landa Ericsson'],
+    ['Stine Krigsstrøm', 'Karolina Miklaszewicz-Szczawinska'],
+    ['Christoffer Henriksen', 'Christopher Bjønness'],
+    ['Christopher Carlsen', 'Eirik Trulsen Bakken'],
+    ['Erik Sætran Gustavsen', 'Espen Bråten'],
+    ['Frode Kristiansen', 'Hans-Asbjørn Gunnerød'],
+    ['Johan Swanberg', 'Jøran Horntvedt'],
+    ['Kenneth Bredesen', 'Lars Gundersen Waale'],
+    ['Lars Mendonca Fuhre', 'Magnus Hoff'],
+    ['Marius Røgeberg Evensen', 'Mathias Bjune'],
+    ['Rolf Jacobsen Blaasvær', 'Rune Allum'],
+    ['Stian Hilliges Bergsveen', 'Truls Dahl Wiese'],
+    ['Rune Aas', 'Eirik Ryvænge Larsen'],
+    ['Kristian Hoel Dahl', 'Torstein Dahle'],
+    ['Pål Farmen', 'Henrik Øren Lundh'],
+    ['Mats Trollsås', 'Morten Solum'],
+    ['Harald Verpe Dyrrdal', 'Jon Sverre Roberg'],
+    ['Kirsten Slotte Birkeland', 'Ingvild Svenke Fundli'],
   ];
 
   return (
@@ -73,7 +73,9 @@ export default function RomPage({
           border-bottom: 3px solid #ffd500;
         }
 
-        .logo { height: 36px; }
+        .logo {
+          height: 36px;
+        }
 
         .menu {
           display: flex;
@@ -110,85 +112,66 @@ export default function RomPage({
           margin-bottom: 24px;
         }
 
-        .title span { color: #ffd500; }
+        .title span {
+          color: #ffd500;
+        }
 
         .intro {
           font-size: 22px;
           line-height: 1.6;
           color: #ddd;
-          max-width: 760px;
-          margin-bottom: 42px;
+          max-width: 820px;
+          margin-bottom: 38px;
         }
 
-        .hotelGrid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 24px;
-          margin-bottom: 46px;
-        }
-
-        .hotelCard {
+        .infoBox {
           background: rgba(255,255,255,0.05);
           border: 1px solid rgba(255,213,0,0.22);
           border-radius: 24px;
-          padding: 28px;
-        }
-
-        .hotelCard h2 {
-          color: #ffd500;
-          font-size: 28px;
-          margin-bottom: 12px;
-        }
-
-        .hotelCard p {
+          padding: 26px;
           color: #ddd;
           font-size: 18px;
-          line-height: 1.5;
+          line-height: 1.6;
+          margin-bottom: 54px;
         }
 
-        .tableWrap {
-          overflow-x: auto;
-          border: 1px solid rgba(255,213,0,0.25);
-          border-radius: 24px;
-          background: rgba(255,255,255,0.04);
+        .hotelSection {
+          margin-top: 60px;
         }
 
-        table {
-          width: 100%;
-          border-collapse: collapse;
-          min-width: 760px;
-        }
-
-        th {
-          background: #ffd500;
-          color: black;
-          text-align: left;
-          padding: 18px;
-          font-size: 16px;
-          text-transform: uppercase;
-        }
-
-        td {
-          padding: 18px;
-          border-top: 1px solid rgba(255,213,0,0.18);
-          font-size: 18px;
-        }
-
-        .hotelName {
+        .hotelSection h2 {
           color: #ffd500;
+          font-size: 38px;
+          margin-bottom: 24px;
           font-weight: 900;
         }
 
-        .roomNumber {
-          font-weight: 900;
+        .roomGrid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 18px;
         }
 
-        .empty {
-          color: #777;
+        .roomCard {
+          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(255,213,0,0.22);
+          border-radius: 22px;
+          padding: 22px;
+        }
+
+        .roomCard strong {
+          display: block;
+          font-size: 20px;
+          margin-bottom: 8px;
+        }
+
+        .roomCard span {
+          color: #ffd500;
+          font-size: 18px;
         }
 
         .note {
-          margin-top: 34px;
+          margin-top: 54px;
           background: rgba(255,255,255,0.05);
           border: 1px solid rgba(255,213,0,0.22);
           border-radius: 22px;
@@ -206,7 +189,9 @@ export default function RomPage({
             padding: 18px 16px;
           }
 
-          .logo { height: 48px; }
+          .logo {
+            height: 48px;
+          }
 
           .menu {
             width: 100%;
@@ -234,12 +219,16 @@ export default function RomPage({
             font-size: 18px;
           }
 
-          .hotelGrid {
-            grid-template-columns: 1fr;
+          .hotelSection h2 {
+            font-size: 30px;
           }
 
-          td {
-            font-size: 16px;
+          .roomCard strong {
+            font-size: 18px;
+          }
+
+          .roomCard span {
+            font-size: 17px;
           }
         }
       `}</style>
@@ -270,48 +259,39 @@ export default function RomPage({
         </h1>
 
         <p className="intro">
-          Her finner du romfordeling for hotelloppholdet i Oslo.
-          Hotellene er K7 Hotel Oslo og Scandic Helsfyr.
+          Her finner du hvilket hotell du skal bo på og hvem du deler rom med.
+          Endelig romnummer tildeles ved innsjekk på hotellet.
         </p>
 
-        <div className="hotelGrid">
-          <div className="hotelCard">
-            <h2>K7 Hotel Oslo</h2>
-            <p>Rom 1–16.</p>
-          </div>
+        <div className="infoBox">
+          Hotellene er K7 Hotel Oslo og Scandic Helsfyr. Listen under viser kun
+          romkamerater og hotell, ikke faktiske hotellromnummer.
+        </div>
 
-          <div className="hotelCard">
-            <h2>Scandic Helsfyr</h2>
-            <p>Rom 17–37.</p>
+        <div className="hotelSection">
+          <h2>K7 HOTEL OSLO</h2>
+
+          <div className="roomGrid">
+            {k7Rooms.map((room, index) => (
+              <div className="roomCard" key={`k7-${index}`}>
+                <strong>{room[0]}</strong>
+                <span>{room[1]}</span>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="tableWrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Rom</th>
-                <th>Hotell</th>
-                <th>Person 1</th>
-                <th>Person 2</th>
-              </tr>
-            </thead>
+        <div className="hotelSection">
+          <h2>SCANDIC HELSFYR</h2>
 
-            <tbody>
-              {rooms.map((room) => (
-                <tr key={room.rom}>
-                  <td className="roomNumber">{room.rom}</td>
-                  <td className="hotelName">{room.hotell}</td>
-                  <td className={room.person1 ? '' : 'empty'}>
-                    {room.person1 || 'Ledig'}
-                  </td>
-                  <td className={room.person2 ? '' : 'empty'}>
-                    {room.person2 || 'Ledig'}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="roomGrid">
+            {scandicRooms.map((room, index) => (
+              <div className="roomCard" key={`scandic-${index}`}>
+                <strong>{room[0]}</strong>
+                <span>{room[1]}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="note">
