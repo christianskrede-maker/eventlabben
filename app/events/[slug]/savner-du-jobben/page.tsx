@@ -75,6 +75,11 @@ export default function SavnerJobbenPage() {
           color: black;
           text-decoration: none;
           font-weight: 900;
+          transition: 0.2s ease;
+        }
+
+        .button:hover {
+          transform: translateY(-2px);
         }
 
         @media (max-width: 800px) {
@@ -126,12 +131,12 @@ export default function SavnerJobbenPage() {
       <h1>Savner du jobben?</h1>
 
       <p className="sub">
-        Følg byggeplassen minutt for minutt her.
+        Følg byggeplassene live direkte fra kameraene.
       </p>
 
       <div className="card">
         <iframe
-          src="https://tidex.riff.works/byggekameras"
+          src="https://byggekameras.pages.dev"
           className="frame"
           title="Byggekamera"
         />
@@ -139,7 +144,7 @@ export default function SavnerJobbenPage() {
 
       <div className="fallback">
         <a
-          href="https://tidex.riff.works/byggekameras"
+          href="https://byggekameras.pages.dev"
           target="_blank"
           rel="noopener noreferrer"
           className="button"
