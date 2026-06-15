@@ -766,7 +766,7 @@ export default function TippekampenPage() {
       </section>
 
       <section className="section">
-        <h2 className="sectionTitle">LIVE LEADERBOARD</h2>
+        <h2 className="sectionTitle">LIVE LEADERBOARD(loddtrekning hvis likt resultat)</h2>
 
         <div className="leaderboardWrap">
           <div className="leaderboardTop">
