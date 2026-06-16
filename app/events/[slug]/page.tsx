@@ -630,7 +630,7 @@ export default function EventPage({
 <div className="programItem">
   <div className="time">T-BANE</div>
   <div>
-    Til Scandic Helsfyr anbefales T-bane til Ensjø.
+    Til Scandic Helsfyr anbefales T-bane til Kampen Bistro/Jordal(Ensjø stasjon).
     <br />
     Fra Nasjonalteateret går:
     <br />
