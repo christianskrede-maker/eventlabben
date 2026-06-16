@@ -630,9 +630,22 @@ export default function EventPage({
 <div className="programItem">
   <div className="time">T-BANE</div>
   <div>
-    Til Scandic Helsfyr anbefales T-bane til Kampen Bistro/Jordal(Ensjø stasjon).
+    <strong>Til Kampen Bistro og Jordal Amfi:</strong>
     <br />
-    Fra Nasjonalteateret går:
+    Ta t-banen til Ensjø stasjon.
+    <br />
+    Linje 1 Bergkrystallen
+    <br />
+    Linje 2 Ellingsrudåsen
+    <br />
+    Linje 3 Mortensrud
+    <br />
+    Linje 4 Bergkrystallen
+    <br />
+    <br />
+    <strong>Til Scandic Helsfyr:</strong>
+    <br />
+    Ta t-banen til Helsfyr stasjon.
     <br />
     Linje 1 Bergkrystallen
     <br />
