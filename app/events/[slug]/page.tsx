@@ -627,6 +627,23 @@ export default function EventPage({
             </div>
           </div>
 
+<div className="programItem">
+  <div className="time">T-BANE</div>
+  <div>
+    Til Scandic Helsfyr anbefales T-bane til Ensjø.
+    <br />
+    Fra Nasjonalteateret går:
+    <br />
+    Linje 1 Bergkrystallen
+    <br />
+    Linje 2 Ellingsrudåsen
+    <br />
+    Linje 3 Mortensrud
+    <br />
+    Linje 4 Bergkrystallen
+  </div>
+</div>
+          
           <div className="programItem">
             <div className="time">NATT</div>
             <div>
