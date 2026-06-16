@@ -654,6 +654,9 @@ export default function EventPage({
     Linje 3 Mortensrud
     <br />
     Linje 4 Bergkrystallen
+    <br />
+    <br />
+    <strong>Tips:</strong> Se Ruter-appen eller ruter.no for beste rute og oppdatert reiseinformasjon.
   </div>
 </div>
           
