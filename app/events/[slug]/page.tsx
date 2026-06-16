@@ -656,7 +656,7 @@ export default function EventPage({
     Linje 4 Bergkrystallen
     <br />
     <br />
-    <strong>Tips:</strong> Se Ruter-appen eller ruter.no for beste rute og oppdatert reiseinformasjon.
+    <strong>Tips:</strong> Se Ruter-appen, ruter.no eller linken lenger ned for beste rute og oppdatert reiseinformasjon.
   </div>
 </div>
           
