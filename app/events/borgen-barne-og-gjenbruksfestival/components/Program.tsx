@@ -73,7 +73,7 @@ export default function Program() {
 
         <ProgramItem
           title="13.00"
-          text="Leder av oppvekst, Elisabeth Holter-Schøyen, deler ut skolestartpakke til alle påmeldte førsteklassinger."
+          text="Vi deler ut skolestartpakke til alle påmeldte førsteklassinger."
         >
           <button
             onClick={() => setSchoolPopupOpen(true)}
