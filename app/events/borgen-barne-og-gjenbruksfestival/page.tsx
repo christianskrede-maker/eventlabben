@@ -12,6 +12,9 @@ import Market from './components/Market';
 import Waste from './components/Waste';
 import Contact from './components/Contact';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default function Page() {
   return (
     <main
