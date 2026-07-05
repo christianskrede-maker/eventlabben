@@ -11,12 +11,12 @@ export default function FestivalMap() {
       <h2
         style={{
           textAlign: 'center',
-          fontSize: '34px',
+          fontSize: '36px',
           color: '#31583a',
           marginBottom: '20px',
         }}
       >
-        Kart over festivalområdet
+        Festivalkart
       </h2>
 
       <p
@@ -27,53 +27,34 @@ export default function FestivalMap() {
           lineHeight: 1.7,
         }}
       >
-        Her finner du oversikt over salgsboder, stands, scene,
-        foodtruck, toaletter, grillområde og aktiviteter på Elgplassen.
+        Her finner du oversikt over festivalområdet på Elgplassen. Nytt
+        festivalkart publiseres når alle områder er endelig klare.
       </p>
 
       <img
         src="/events/borgen-barne-og-gjenbruksfestival/kart-festivalomradet.png"
-        alt="Kart over festivalområdet"
+        alt="Festivalkart over Elgplassen"
         style={{
           width: '100%',
           borderRadius: '24px',
           border: '1px solid #dfe8d8',
+          display: 'block',
         }}
       />
 
-      <div
+      <p
         style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-          gap: '12px',
-          marginTop: '24px',
+          textAlign: 'center',
+          maxWidth: '760px',
+          margin: '20px auto 0',
+          fontSize: '15px',
+          color: '#555',
+          lineHeight: 1.6,
         }}
       >
-        <InfoCard title="24 Salgsboder" />
-        <InfoCard title="4 Standplasser" />
-        <InfoCard title="Foodtruck" />
-        <InfoCard title="Scene & Musikk" />
-        <InfoCard title="Toaletter" />
-        <InfoCard title="Barneaktiviteter" />
-      </div>
+        Kartet vil vise salgsboder, standplasser, scene, matområde,
+        grillplass, toaletter, barneaktiviteter og avfallspunkter.
+      </p>
     </section>
-  );
-}
-
-function InfoCard({ title }: { title: string }) {
-  return (
-    <div
-      style={{
-        background: '#f7f8f3',
-        border: '1px solid #dfe8d8',
-        borderRadius: '16px',
-        padding: '16px',
-        textAlign: 'center',
-        fontWeight: 700,
-        color: '#31583a',
-      }}
-    >
-      {title}
-    </div>
   );
 }

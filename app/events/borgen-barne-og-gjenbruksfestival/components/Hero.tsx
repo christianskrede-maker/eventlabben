@@ -1,11 +1,13 @@
 import InterestButtons from './InterestButtons';
+import Countdown from './Countdown';
 
 export default function Hero() {
   return (
-    <section id="hero"
+    <section
+      id="hero"
       style={{
         textAlign: 'center',
-        padding: '80px 20px',
+        padding: '90px 20px 70px',
         maxWidth: '1200px',
         margin: '0 auto',
       }}
@@ -16,7 +18,7 @@ export default function Hero() {
         style={{
           width: '100%',
           maxWidth: '320px',
-          marginBottom: '30px',
+          marginBottom: '28px',
         }}
       />
 
@@ -24,17 +26,18 @@ export default function Hero() {
         style={{
           color: '#4f6f52',
           fontWeight: 700,
-          marginBottom: '12px',
+          marginBottom: '10px',
         }}
       >
-        Lørdag 15. august 2026 • Elgplassen • Gratis for alle
+        Lørdag 15. august 2026 kl. 11.00 • Elgplassen • Gratis for alle
       </p>
 
       <h1
         style={{
-          fontSize: 'clamp(42px, 8vw, 80px)',
+          fontSize: 'clamp(40px, 8vw, 78px)',
           color: '#31583a',
           marginBottom: '20px',
+          lineHeight: 1.05,
         }}
       >
         Borgen Barne- og Gjenbruksfestival
@@ -42,18 +45,34 @@ export default function Hero() {
 
       <p
         style={{
-          maxWidth: '800px',
-          margin: '0 auto 40px',
+          maxWidth: '720px',
+          margin: '0 auto 28px',
           fontSize: '20px',
-          lineHeight: 1.7,
+          lineHeight: 1.65,
         }}
       >
         En inkluderende festival for hele nærmiljøet med bruktmarked,
-        barneaktiviteter, kultur, musikk, foodtruck og fokus på miljø,
-        gjenbruk og fellesskap.
+        barneaktiviteter, kultur, musikk, mat, miljø, gjenbruk og fellesskap.
       </p>
 
-      <InterestButtons />
+<div
+  style={{
+    display: 'grid',
+    gap: '8px',
+    margin: '0 auto 28px',
+    maxWidth: '520px',
+    color: '#31583a',
+    fontWeight: 700,
+  }}
+>
+  <span>Publikum åpner kl. 11.00</span>
+  <span>Deltakere møter kl. 09.30</span>
+  <span>Frivillige møter kl. 08.00</span>
+</div>
+
+<Countdown />
+
+<InterestButtons />
     </section>
   );
 }

@@ -1,26 +1,41 @@
 'use client';
 
+import { useState } from 'react';
+import PopupForm from './PopupForm';
+import type { FormType } from '../data/formConfig';
+
 export default function InterestButtons() {
-  function handleClick(type: string) {
-    alert(
-      `Takk! Her kommer snart skjema for: ${type}.\n\nNeste steg blir å koble dette til Resend.`
-    );
+  const [popup, setPopup] = useState<FormType | null>(null);
+
+  function closePopup() {
+    setPopup(null);
   }
 
   return (
-    <div style={buttonGridStyle}>
-      <button onClick={() => handleClick('salgsplass')} style={buttonStyle}>
-        Meld interesse for salgsplass
-      </button>
+    <>
+      <div style={buttonGridStyle}>
+        <button onClick={() => setPopup('sales')} style={buttonStyle}>
+          Meld interesse for salgsplass
+        </button>
 
-      <button onClick={() => handleClick('frivillig')} style={buttonStyle}>
-        Bli frivillig
-      </button>
+        <button onClick={() => setPopup('volunteer')} style={buttonStyle}>
+          Bli frivillig
+        </button>
 
-      <button onClick={() => handleClick('spørsmål')} style={buttonStyle}>
-        Ta kontakt ved spørsmål
-      </button>
-    </div>
+        <button onClick={() => setPopup('contact')} style={buttonStyle}>
+          Ta kontakt
+        </button>
+      </div>
+
+      {popup && (
+        <PopupForm
+          key={popup}
+          type={popup}
+          open={true}
+          onClose={closePopup}
+        />
+      )}
+    </>
   );
 }
 

@@ -16,16 +16,25 @@ export default function Organizers() {
 
   return (
     <section style={sectionStyle}>
-      <h2 style={headingStyle}>Festivalen arrangeres av</h2>
+      <h2 style={headingStyle}>
+        Festivalen arrangeres i samarbeid mellom
+      </h2>
+
+      <p style={textStyle}>
+        Festivalen er et felles initiativ fra frivillige organisasjoner og
+        nærmiljøet på Borgen. Sammen ønsker vi å skape en hyggelig møteplass
+        med fokus på fellesskap, gjenbruk og aktiviteter for hele familien.
+      </p>
 
       <div style={gridStyle}>
         {organizers.map((organizer) => (
-          <div key={organizer.name} style={cardStyle}>
+          <div key={organizer.name} style={itemStyle}>
             <img
               src={organizer.logo}
               alt={organizer.name}
               style={logoStyle}
             />
+
             <h3 style={nameStyle}>{organizer.name}</h3>
           </div>
         ))}
@@ -37,37 +46,46 @@ export default function Organizers() {
 const sectionStyle = {
   maxWidth: '1100px',
   margin: '0 auto',
-  padding: '40px 20px 70px',
+  padding: '50px 20px 80px',
   textAlign: 'center',
 } as const;
 
 const headingStyle = {
-  fontSize: '34px',
+  fontSize: '36px',
   color: '#31583a',
-  marginBottom: '28px',
+  marginBottom: '18px',
+} as const;
+
+const textStyle = {
+  maxWidth: '760px',
+  margin: '0 auto 45px',
+  lineHeight: 1.7,
+  fontSize: '18px',
+  color: '#444',
 } as const;
 
 const gridStyle = {
   display: 'grid',
   gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-  gap: '20px',
+  gap: '40px',
+  alignItems: 'center',
 } as const;
 
-const cardStyle = {
-  background: '#f7f8f3',
-  border: '1px solid #dfe8d8',
-  borderRadius: '24px',
-  padding: '28px',
+const itemStyle = {
+  textAlign: 'center',
 } as const;
 
 const logoStyle = {
-  maxWidth: '160px',
-  height: '110px',
+  width: '170px',
+  height: '120px',
   objectFit: 'contain',
-  marginBottom: '16px',
+  display: 'block',
+  margin: '0 auto 14px',
 } as const;
 
 const nameStyle = {
   margin: 0,
   color: '#31583a',
+  fontSize: '22px',
+  fontWeight: 700,
 } as const;

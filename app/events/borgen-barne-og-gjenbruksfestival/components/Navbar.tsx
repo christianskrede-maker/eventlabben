@@ -1,10 +1,10 @@
 export default function Navbar() {
   const links = [
-    { label: 'Kart', href: '#kart' },
+    { label: 'Til toppen', href: '#hero' },
+    { label: 'Festivalkart', href: '#kart' },
     { label: 'Program', href: '#program' },
     { label: 'Mat', href: '#foodtruck' },
-    { label: 'Boder', href: '#market' },
-    { label: 'Stands', href: '#stands' },
+    { label: 'Salgsboder', href: '#market' },
     { label: 'Miljø', href: '#waste' },
     { label: 'Kontakt', href: '#contact' },
   ];
@@ -25,26 +25,14 @@ export default function Navbar() {
           margin: '0 auto',
           display: 'flex',
           alignItems: 'center',
+          justifyContent: 'center',
           gap: '10px',
-          padding: '12px',
+          padding: '14px 18px',
           overflowX: 'auto',
           scrollbarWidth: 'none',
           WebkitOverflowScrolling: 'touch',
         }}
       >
-        <a
-          href="#top"
-          style={{
-            color: '#fff',
-            fontWeight: 800,
-            textDecoration: 'none',
-            whiteSpace: 'nowrap',
-            paddingRight: '8px',
-          }}
-        >
-          Borgen
-        </a>
-
         {links.map((link) => (
           <a
             key={link.href}
@@ -54,10 +42,11 @@ export default function Navbar() {
               textDecoration: 'none',
               fontWeight: 600,
               whiteSpace: 'nowrap',
-              padding: '8px 12px',
+              padding: '10px 16px',
               borderRadius: '999px',
               background: 'rgba(255,255,255,0.12)',
-              fontSize: '14px',
+              fontSize: '15px',
+              transition: '0.2s',
             }}
           >
             {link.label}

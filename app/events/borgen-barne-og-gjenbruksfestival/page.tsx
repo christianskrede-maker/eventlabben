@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -6,7 +8,6 @@ import FestivalMap from './components/FestivalMap';
 import Program from './components/Program';
 import Foodtruck from './components/Foodtruck';
 import Market from './components/Market';
-import Stands from './components/Stands';
 import Waste from './components/Waste';
 import Contact from './components/Contact';
 
@@ -28,9 +29,25 @@ export default function Page() {
       <Program />
       <Foodtruck />
       <Market />
-      <Stands />
       <Waste />
       <Contact />
+
+      <div style={adminLinkWrapperStyle}>
+        <Link href="/admin" style={adminLinkStyle}>
+          Administrasjon
+        </Link>
+      </div>
     </main>
   );
 }
+
+const adminLinkWrapperStyle = {
+  textAlign: 'center',
+  padding: '0 20px 40px',
+} as const;
+
+const adminLinkStyle = {
+  fontSize: '12px',
+  color: '#8a958b',
+  textDecoration: 'none',
+} as const;
