@@ -12,10 +12,13 @@ export default function Location() {
           <p>Bruk nærliggende parkeringsmuligheter og vis hensyn til naboer.</p>
 
           <h3 style={subHeadingStyle}>🚌 Buss og gange</h3>
-          <p>Festivalområdet ligger sentralt på Borgen og er enkelt å finne til fots.</p>
+          <p>
+            Festivalområdet ligger sentralt på Borgen og er enkelt å finne til
+            fots.
+          </p>
 
           <a
-            href="https://www.google.com/maps/search/?api=1&query=Elgplassen%20Borgen%20Asker"
+            href="https://www.google.com/maps/search/?api=1&query=59.8220027,10.4272704"
             target="_blank"
             rel="noopener noreferrer"
             style={buttonStyle}
@@ -26,7 +29,7 @@ export default function Location() {
 
         <iframe
           title="Kart til Borgen Barne- og Gjenbruksfestival"
-          src="https://www.google.com/maps?q=Elgplassen%20Borgen%20Asker&output=embed"
+          src="https://www.google.com/maps?q=59.8220027,10.4272704&z=18&output=embed"
           style={mapStyle}
           loading="lazy"
         />
