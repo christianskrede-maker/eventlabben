@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Organizers from './components/Organizers';
 import FestivalMap from './components/FestivalMap';
+import Location from './components/Location';
 import Program from './components/Program';
 import Foodtruck from './components/Foodtruck';
 import Market from './components/Market';
@@ -26,6 +27,7 @@ export default function Page() {
       <About />
       <Organizers />
       <FestivalMap />
+      <Location />
       <Program />
       <Foodtruck />
       <Market />
