@@ -52,7 +52,6 @@ export default async function Market() {
       )}
 
       <div style={infoGridStyle}>
-        <InfoCard title="Påmeldingsfrist" text="9. august kl. 21.00" />
         <InfoCard title="Kontakt" text="Nina Johnsen • 97 19 99 37" />
         <InfoCard title="Plass 1–11" text="Kan ha ett eller to bord." />
         <InfoCard title="Plass 12–22" text="Passer for klesstativer." />

@@ -55,24 +55,24 @@ export default function Hero() {
         barneaktiviteter, kultur, musikk, mat, miljø, gjenbruk og fellesskap.
       </p>
 
-<div
-  style={{
-    display: 'grid',
-    gap: '8px',
-    margin: '0 auto 28px',
-    maxWidth: '520px',
-    color: '#31583a',
-    fontWeight: 700,
-  }}
->
-  <span>Publikum åpner kl. 11.00</span>
-  <span>Deltakere møter kl. 09.30</span>
-  <span>Frivillige møter kl. 08.00</span>
-</div>
+      <div
+        style={{
+          display: 'grid',
+          gap: '8px',
+          margin: '0 auto 28px',
+          maxWidth: '520px',
+          color: '#31583a',
+          fontWeight: 700,
+        }}
+      >
+        <span>Publikum åpner kl. 11.00</span>
+        <span>Deltakere møter kl. 09.30</span>
+        <span>Frivillige møter kl. 08.00</span>
+      </div>
 
-<Countdown />
+      <Countdown />
 
-<InterestButtons />
+      <InterestButtons />
     </section>
   );
 }

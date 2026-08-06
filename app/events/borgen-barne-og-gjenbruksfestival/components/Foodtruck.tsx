@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function Foodtruck() {
   return (
     <section
@@ -33,14 +35,40 @@ export default function Foodtruck() {
 
       <div
         style={{
+          maxWidth: '460px',
+          margin: '0 auto 50px',
+          padding: '14px',
+          background: '#ffffff',
+          border: '1px solid #dfe8d8',
+          borderRadius: '24px',
+          boxShadow: '0 12px 35px rgba(49, 88, 58, 0.12)',
+        }}
+      >
+        <Image
+          src="/events/borgen-barne-og-gjenbruksfestival/foodtruck-meny.png"
+          alt="Meny for Greek & Grill foodtruck"
+          width={1024}
+          height={1536}
+          sizes="(max-width: 600px) 90vw, 460px"
+          style={{
+            display: 'block',
+            width: '100%',
+            height: 'auto',
+            borderRadius: '14px',
+          }}
+        />
+      </div>
+
+      <div
+        style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
           gap: '20px',
         }}
       >
         <InfoCard
-          title="🍔 Foodtruck"
-          text="Årets foodtruck presenteres nærmere festivalen. Her blir det mat og drikke for hele familien."
+          title="🍔 Greek & Grill"
+          text="Greek & Grill kommer med gyros i pita, gyrosboks og drikke. Se menyen og prisene ovenfor."
         />
 
         <InfoCard
