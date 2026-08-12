@@ -45,6 +45,8 @@ export default function Program() {
 
         <KongHalvorItem />
 
+        <PhotographerItem />
+
         <SchoolStartItem
           onRegister={() => setSchoolPopupOpen(true)}
         />
@@ -72,14 +74,6 @@ export default function Program() {
           time="Hele dagen"
           title="Askers uoffisielle krittmesterskap"
           text="Bli med og forvandle Elgplassen til et gigantisk kunstverk. Jo flere farger, streker og mønstre, desto bedre. Klarer vi å tegne opp hele plassen?"
-        />
-
-        <ActivityCard
-          imageName="program-sapebobler.png"
-          imageLabel="Såpeboblestasjon på festivalen"
-          time="Hele dagen"
-          title="Såpeboblestasjon"
-          text="Hvor mange såpebobler klarer vi å lage sammen, og hvor store kan de bli?"
         />
 
         <ActivityCard
@@ -178,7 +172,9 @@ function ProgramItem({
         {title}
       </strong>
 
-      <div style={programTextStyle}>{text}</div>
+      <div style={programTextStyle}>
+        {text}
+      </div>
     </div>
   );
 }
@@ -237,10 +233,9 @@ function KongHalvorItem() {
         </p>
 
         <p style={kongHalvorTextStyle}>
-          Vi tar også en liten prat med
-          Halvor om oppveksten hans i Huldreveien, veien inn i graffitimiljøet,
-          hva han arbeider med i dag og noen av prosjektene han har vært
-          involvert i.
+          Vi tar også en liten prat med Halvor om oppveksten hans i Huldreveien,
+          veien inn i graffitimiljøet, hva han arbeider med i dag og noen av
+          prosjektene han har vært involvert i.
         </p>
 
         <p style={kongHalvorTextStyle}>
@@ -265,6 +260,34 @@ function KongHalvorItem() {
   );
 }
 
+function PhotographerItem() {
+  return (
+    <div style={photographerCardStyle}>
+      <span style={photographerLabelStyle}>
+        12.00–14.00 – Fotograf
+      </span>
+
+      <strong style={photographerTitleStyle}>
+        Kristian Ruvino fotograferer festivalen
+      </strong>
+
+      <p style={photographerTextStyle}>
+        Fotograf Kristian Ruvino er til stede mellom kl. 12.00 og 14.00 og
+        dokumenterer stemningen, aktivitetene og livet på festivalområdet.
+      </p>
+
+      <a
+        href="https://kristianruvino.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={photographerLinkStyle}
+      >
+        Se mer av Kristian Ruvinos arbeid
+      </a>
+    </div>
+  );
+}
+
 function SchoolStartItem({
   onRegister,
 }: {
@@ -282,8 +305,7 @@ function SchoolStartItem({
         </strong>
 
         <p style={schoolTextStyle}>
-          Elisabeth Holther-Schøyen (V), leder av Hovedutvalg for oppvekst,
-          deler ut skolestartpakker til påmeldte førsteklassinger.
+          Vi deler ut skolestartpakker til påmeldte førsteklassinger.
         </p>
 
         <button
@@ -298,12 +320,6 @@ function SchoolStartItem({
           hjelper vi deg med registreringen.
         </p>
       </div>
-
-      <ProgramImage
-        fileName="program-elisabeth.png"
-        label="Portrett av Elisabeth Holther-Schøyen"
-        variant="portrait"
-      />
     </div>
   );
 }
@@ -326,7 +342,6 @@ function ActivityCard({
       <ProgramImage
         fileName={imageName}
         label={imageLabel}
-        variant="activity"
       />
 
       <div style={activityContentStyle}>
@@ -349,26 +364,11 @@ function ActivityCard({
 function ProgramImage({
   fileName,
   label,
-  variant,
 }: {
   fileName: string;
   label: string;
-  variant: 'activity' | 'portrait';
 }) {
   const [imageFailed, setImageFailed] = useState(false);
-
-  const dimensions =
-    variant === 'portrait'
-      ? {
-          width: '180px',
-          height: '210px',
-          minHeight: '210px',
-        }
-      : {
-          width: '100%',
-          height: '210px',
-          minHeight: '210px',
-        };
 
   if (!imageFailed) {
     return (
@@ -379,8 +379,8 @@ function ProgramImage({
         onError={() => setImageFailed(true)}
         style={{
           display: 'block',
-          width: dimensions.width,
-          height: dimensions.height,
+          width: '100%',
+          height: '210px',
           objectFit: 'cover',
           objectPosition: 'center',
           flexShrink: 0,
@@ -396,10 +396,9 @@ function ProgramImage({
       aria-label={label}
       style={{
         ...imagePlaceholderStyle,
-        width: dimensions.width,
-        height: dimensions.height,
-        minHeight: dimensions.minHeight,
-        flexShrink: 0,
+        width: '100%',
+        height: '210px',
+        minHeight: '210px',
       }}
     >
       <strong style={placeholderTitleStyle}>
@@ -585,22 +584,58 @@ const kongHalvorLinkStyle = {
   fontWeight: 800,
 } as const;
 
+const photographerCardStyle = {
+  background: '#eef4f6',
+  border: '2px solid #8ba7b1',
+  borderRadius: '20px',
+  padding: '22px 24px',
+  boxShadow: '0 10px 28px rgba(59, 89, 102, 0.1)',
+} as const;
+
+const photographerLabelStyle = {
+  display: 'inline-block',
+  background: '#456b78',
+  color: '#ffffff',
+  borderRadius: '999px',
+  padding: '6px 12px',
+  fontSize: '13px',
+  fontWeight: 800,
+  marginBottom: '10px',
+} as const;
+
+const photographerTitleStyle = {
+  display: 'block',
+  color: '#31583a',
+  fontSize: '21px',
+  marginBottom: '9px',
+} as const;
+
+const photographerTextStyle = {
+  margin: '0 0 14px',
+  lineHeight: 1.65,
+} as const;
+
+const photographerLinkStyle = {
+  display: 'inline-block',
+  background: '#31583a',
+  color: '#ffffff',
+  textDecoration: 'none',
+  borderRadius: '999px',
+  padding: '10px 17px',
+  fontSize: '14px',
+  fontWeight: 800,
+} as const;
+
 const schoolCardStyle = {
-  display: 'flex',
-  alignItems: 'stretch',
-  justifyContent: 'space-between',
-  gap: '24px',
   background: '#eef5ea',
   border: '2px solid #8baa80',
   borderRadius: '20px',
   padding: '22px',
   boxShadow: '0 10px 30px rgba(49, 88, 58, 0.1)',
-  flexWrap: 'wrap',
-  overflow: 'hidden',
 } as const;
 
 const schoolContentStyle = {
-  flex: '1 1 480px',
+  width: '100%',
 } as const;
 
 const schoolLabelStyle = {
