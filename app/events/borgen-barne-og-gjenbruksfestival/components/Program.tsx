@@ -237,7 +237,7 @@ function KongHalvorItem() {
         </p>
 
         <p style={kongHalvorTextStyle}>
-          Hvis vi får mikrofonoppsett på plass, tar vi også en liten prat med
+          Vi tar også en liten prat med
           Halvor om oppveksten hans i Huldreveien, veien inn i graffitimiljøet,
           hva han arbeider med i dag og noen av prosjektene han har vært
           involvert i.
