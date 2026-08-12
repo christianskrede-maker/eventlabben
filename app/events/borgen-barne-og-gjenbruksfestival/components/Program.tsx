@@ -25,7 +25,10 @@ export default function Program() {
       />
 
       <div style={timelineStyle}>
-        <ProgramItem title="08.00" text="Oppmøte for frivillige." />
+        <ProgramItem
+          title="08.00"
+          text="Oppmøte for frivillige."
+        />
 
         <ProgramItem
           title="09.30"
@@ -40,15 +43,21 @@ export default function Program() {
 
         <GrillItem />
 
+        <KongHalvorItem />
+
         <SchoolStartItem
           onRegister={() => setSchoolPopupOpen(true)}
         />
       </div>
 
       <div style={sectionHeaderStyle}>
-        <span style={eyebrowStyle}>Aktiviteter og opplevelser</span>
+        <span style={eyebrowStyle}>
+          Aktiviteter og opplevelser
+        </span>
 
-        <h3 style={sectionTitleStyle}>Dette skjer på festivalen</h3>
+        <h3 style={sectionTitleStyle}>
+          Dette skjer på festivalen
+        </h3>
 
         <p style={sectionTextStyle}>
           Aktivitetene er gratis. Noen aktiviteter foregår hele dagen, mens
@@ -90,14 +99,6 @@ export default function Program() {
         />
 
         <ActivityCard
-          imageName="program-soppelsortering.png"
-          imageLabel="Søppelsorteringsmesterskap på festivalen"
-          time="Hele dagen"
-          title="Søppelsorteringsmesterskap"
-          text="Test hvor flink du er til å sortere søppel i riktig beholder. Klarer du å sortere alt riktig, vanker det en liten premie."
-        />
-
-        <ActivityCard
           imageName="program-hoppeslott.png"
           imageLabel="Hoppeslott på festivalen"
           time="Hele dagen"
@@ -122,33 +123,7 @@ export default function Program() {
         />
       </div>
 
-      <div style={comingBoxStyle}>
-        <span style={comingLabelStyle}>Under planlegging</span>
-
-        <h3 style={comingHeadingStyle}>
-          Dette håper vi også å få på plass
-        </h3>
-
-        <div style={comingGridStyle}>
-          <ComingItem
-            imageName="program-graffiti.png"
-            title="Graffiti med Kong Halvor"
-            text="Vi håper Halvor Harsem, kjent som Kong Halvor, kommer for å male graffiti under festivalen."
-          />
-
-          <ComingItem
-            imageName="program-ansiktsmaling.png"
-            title="Ansiktsmaling"
-            text="Vi arbeider med å få på plass ansiktsmaling for barna."
-          />
-        </div>
-
-        <p style={comingFooterStyle}>
-          Endelig bekreftelse og eventuelle tidspunkt publiseres fortløpende.
-        </p>
-      </div>
-
-      <div style={{ ...timelineStyle, marginTop: '28px' }}>
+      <div style={{ ...timelineStyle, marginTop: '40px' }}>
         <ProgramItem
           title="18.00"
           text="Festivalen avsluttes. Takk for en hyggelig dag på Elgplassen."
@@ -189,7 +164,9 @@ function ProgramItem({
       }}
     >
       {isOpening && (
-        <span style={openingLabelStyle}>Festivalåpning</span>
+        <span style={openingLabelStyle}>
+          Festivalåpning
+        </span>
       )}
 
       <strong
@@ -212,7 +189,9 @@ function GrillItem() {
       <div style={grillAccentStyle} />
 
       <div style={grillContentStyle}>
-        <span style={grillLabelStyle}>Grilling hele dagen</span>
+        <span style={grillLabelStyle}>
+          Grilling hele dagen
+        </span>
 
         <strong style={grillTitleStyle}>
           Husk å ta med egen mat
@@ -231,6 +210,61 @@ function GrillItem() {
   );
 }
 
+function KongHalvorItem() {
+  return (
+    <div style={kongHalvorCardStyle}>
+      <div style={kongHalvorImageWrapperStyle}>
+        <img
+          src={`${imageBasePath}/kong-halvor.png`}
+          alt="Graffiti av Kong Halvor"
+          style={kongHalvorImageStyle}
+        />
+      </div>
+
+      <div style={kongHalvorContentStyle}>
+        <span style={kongHalvorLabelStyle}>
+          12.00 – Graffiti
+        </span>
+
+        <strong style={kongHalvorTitleStyle}>
+          Kong Halvor maler graffiti på Elgplassen
+        </strong>
+
+        <p style={kongHalvorTextStyle}>
+          Halvor Harsem, bedre kjent som Kong Halvor, kommer til festivalen og
+          starter graffitiarbeidet kl. 12.00. Han vil male videre gjennom dagen,
+          slik at publikum kan følge verket fra start til slutt.
+        </p>
+
+        <p style={kongHalvorTextStyle}>
+          Hvis vi får mikrofonoppsett på plass, tar vi også en liten prat med
+          Halvor om oppveksten hans i Huldreveien, veien inn i graffitimiljøet,
+          hva han arbeider med i dag og noen av prosjektene han har vært
+          involvert i.
+        </p>
+
+        <p style={kongHalvorTextStyle}>
+          Han har blant annet skrevet boka{' '}
+          <strong>
+            «Skrotnisse – på skattejakt i Norge: din guide til bruktmarkeder,
+            thrifting og samlinger»
+          </strong>
+          , et tema som passer svært godt inn i årets gjenbruksfestival.
+        </p>
+
+        <a
+          href="https://konghalvor.blogg.no/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={kongHalvorLinkStyle}
+        >
+          Besøk bloggen til Kong Halvor
+        </a>
+      </div>
+    </div>
+  );
+}
+
 function SchoolStartItem({
   onRegister,
 }: {
@@ -239,7 +273,9 @@ function SchoolStartItem({
   return (
     <div style={schoolCardStyle}>
       <div style={schoolContentStyle}>
-        <span style={schoolLabelStyle}>Skolestart</span>
+        <span style={schoolLabelStyle}>
+          Skolestart
+        </span>
 
         <strong style={schoolTitleStyle}>
           13.00 – Utdeling av skolestartpakker
@@ -250,7 +286,10 @@ function SchoolStartItem({
           deler ut skolestartpakker til påmeldte førsteklassinger.
         </p>
 
-        <button onClick={onRegister} style={buttonStyle}>
+        <button
+          onClick={onRegister}
+          style={buttonStyle}
+        >
           Meld på førsteklassing
         </button>
 
@@ -291,38 +330,19 @@ function ActivityCard({
       />
 
       <div style={activityContentStyle}>
-        <span style={timeLabelStyle}>{time}</span>
+        <span style={timeLabelStyle}>
+          {time}
+        </span>
 
-        <h4 style={activityTitleStyle}>{title}</h4>
+        <h4 style={activityTitleStyle}>
+          {title}
+        </h4>
 
-        <p style={activityTextStyle}>{text}</p>
+        <p style={activityTextStyle}>
+          {text}
+        </p>
       </div>
     </article>
-  );
-}
-
-function ComingItem({
-  imageName,
-  title,
-  text,
-}: {
-  imageName: string;
-  title: string;
-  text: string;
-}) {
-  return (
-    <div style={comingItemStyle}>
-      <ProgramImage
-        fileName={imageName}
-        label={`Bilde til ${title}`}
-        variant="small"
-      />
-
-      <div style={comingItemContentStyle}>
-        <strong style={comingItemTitleStyle}>{title}</strong>
-        <p style={comingItemTextStyle}>{text}</p>
-      </div>
-    </div>
   );
 }
 
@@ -333,7 +353,7 @@ function ProgramImage({
 }: {
   fileName: string;
   label: string;
-  variant: 'activity' | 'portrait' | 'small';
+  variant: 'activity' | 'portrait';
 }) {
   const [imageFailed, setImageFailed] = useState(false);
 
@@ -344,17 +364,11 @@ function ProgramImage({
           height: '210px',
           minHeight: '210px',
         }
-      : variant === 'small'
-        ? {
-            width: '180px',
-            height: '125px',
-            minHeight: '125px',
-          }
-        : {
-            width: '100%',
-            height: '210px',
-            minHeight: '210px',
-          };
+      : {
+          width: '100%',
+          height: '210px',
+          minHeight: '210px',
+        };
 
   if (!imageFailed) {
     return (
@@ -388,8 +402,13 @@ function ProgramImage({
         flexShrink: 0,
       }}
     >
-      <strong style={placeholderTitleStyle}>Bilde kommer</strong>
-      <span style={placeholderFileStyle}>{fileName}</span>
+      <strong style={placeholderTitleStyle}>
+        Bilde kommer
+      </strong>
+
+      <span style={placeholderFileStyle}>
+        {fileName}
+      </span>
     </div>
   );
 }
@@ -503,6 +522,67 @@ const grillImportantStyle = {
   color: '#31583a',
   fontWeight: 800,
   lineHeight: 1.6,
+} as const;
+
+const kongHalvorCardStyle = {
+  overflow: 'hidden',
+  background: '#f5f0f7',
+  border: '2px solid #83628f',
+  borderRadius: '20px',
+  boxShadow: '0 12px 30px rgba(81, 53, 91, 0.12)',
+} as const;
+
+const kongHalvorImageWrapperStyle = {
+  width: '100%',
+  background: '#222',
+} as const;
+
+const kongHalvorImageStyle = {
+  display: 'block',
+  width: '100%',
+  height: 'auto',
+  maxHeight: '280px',
+  objectFit: 'cover',
+  objectPosition: 'center',
+} as const;
+
+const kongHalvorContentStyle = {
+  padding: '24px',
+} as const;
+
+const kongHalvorLabelStyle = {
+  display: 'inline-block',
+  background: '#65476f',
+  color: '#ffffff',
+  borderRadius: '999px',
+  padding: '6px 12px',
+  fontSize: '13px',
+  fontWeight: 800,
+  marginBottom: '11px',
+} as const;
+
+const kongHalvorTitleStyle = {
+  display: 'block',
+  color: '#31583a',
+  fontSize: '23px',
+  marginBottom: '12px',
+} as const;
+
+const kongHalvorTextStyle = {
+  margin: '0 0 12px',
+  lineHeight: 1.65,
+} as const;
+
+const kongHalvorLinkStyle = {
+  display: 'inline-block',
+  marginTop: '6px',
+  background: '#31583a',
+  color: '#ffffff',
+  textDecoration: 'none',
+  borderRadius: '999px',
+  padding: '11px 18px',
+  fontSize: '14px',
+  fontWeight: 800,
 } as const;
 
 const schoolCardStyle = {
@@ -637,70 +717,6 @@ const placeholderFileStyle = {
   fontSize: '12px',
   color: '#617164',
   wordBreak: 'break-word',
-} as const;
-
-const comingBoxStyle = {
-  marginTop: '48px',
-  background: '#f7f8f3',
-  border: '1px solid #dfe8d8',
-  borderRadius: '24px',
-  padding: '28px',
-} as const;
-
-const comingLabelStyle = {
-  display: 'inline-block',
-  background: '#fff4cc',
-  color: '#725a00',
-  borderRadius: '999px',
-  padding: '7px 13px',
-  fontSize: '14px',
-  fontWeight: 700,
-  marginBottom: '12px',
-} as const;
-
-const comingHeadingStyle = {
-  color: '#31583a',
-  fontSize: '27px',
-  margin: '0 0 24px',
-} as const;
-
-const comingGridStyle = {
-  display: 'grid',
-  gap: '14px',
-} as const;
-
-const comingItemStyle = {
-  display: 'flex',
-  alignItems: 'stretch',
-  gap: '18px',
-  background: '#ffffff',
-  border: '1px solid #e3e8dc',
-  borderRadius: '18px',
-  padding: '14px',
-  flexWrap: 'wrap',
-  overflow: 'hidden',
-} as const;
-
-const comingItemContentStyle = {
-  flex: '1 1 350px',
-  padding: '8px 4px',
-} as const;
-
-const comingItemTitleStyle = {
-  color: '#31583a',
-  display: 'block',
-  marginBottom: '6px',
-} as const;
-
-const comingItemTextStyle = {
-  margin: 0,
-  lineHeight: 1.6,
-} as const;
-
-const comingFooterStyle = {
-  margin: '20px 0 0',
-  color: '#555',
-  fontStyle: 'italic',
 } as const;
 
 const buttonStyle = {
